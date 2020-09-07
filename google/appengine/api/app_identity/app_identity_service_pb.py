@@ -359,7 +359,7 @@ class SignForAppRequest(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.SignForAppRequest"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KHGFwcGhvc3RpbmcuU2lnbkZvckFwcFJlcXVlc3QTGg1ieXRlc190b19zaWduIAEoAjAJOAEUwgEiYXBwaG9zdGluZy5BcHBJZGVudGl0eVNlcnZpY2VFcnJvcg=="
         )
     )
@@ -563,7 +563,7 @@ class SignForAppResponse(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.SignForAppResponse"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KHWFwcGhvc3RpbmcuU2lnbkZvckFwcFJlc3BvbnNlExoIa2V5X25hbWUgASgCMAk4ARQTGg9zaWduYXR1cmVfYnl0ZXMgAigCMAk4ARTCASJhcHBob3N0aW5nLkFwcElkZW50aXR5U2VydmljZUVycm9y"
         )
     )
@@ -683,7 +683,7 @@ class GetPublicCertificateForAppRequest(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetPublicCertificateForAppRequest"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KLGFwcGhvc3RpbmcuR2V0UHVibGljQ2VydGlmaWNhdGVGb3JBcHBSZXF1ZXN0wgEiYXBwaG9zdGluZy5BcHBJZGVudGl0eVNlcnZpY2VFcnJvcg=="
         )
     )
@@ -891,7 +891,7 @@ class PublicCertificate(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.PublicCertificate"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KHGFwcGhvc3RpbmcuUHVibGljQ2VydGlmaWNhdGUTGghrZXlfbmFtZSABKAIwCTgBFBMaFHg1MDlfY2VydGlmaWNhdGVfcGVtIAIoAjAJOAEUwgEiYXBwaG9zdGluZy5BcHBJZGVudGl0eVNlcnZpY2VFcnJvcg=="
         )
     )
@@ -1127,7 +1127,7 @@ class GetPublicCertificateForAppResponse(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetPublicCertificateForAppResponse"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KLWFwcGhvc3RpbmcuR2V0UHVibGljQ2VydGlmaWNhdGVGb3JBcHBSZXNwb25zZRMaF3B1YmxpY19jZXJ0aWZpY2F0ZV9saXN0IAEoAjALOANKHGFwcGhvc3RpbmcuUHVibGljQ2VydGlmaWNhdGWjAaoBBWN0eXBlsgEGcHJvdG8ypAEUExofbWF4X2NsaWVudF9jYWNoZV90aW1lX2luX3NlY29uZCACKAAwAzgBFMIBImFwcGhvc3RpbmcuQXBwSWRlbnRpdHlTZXJ2aWNlRXJyb3I="
         )
     )
@@ -1247,7 +1247,7 @@ class GetServiceAccountNameRequest(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetServiceAccountNameRequest"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KJ2FwcGhvc3RpbmcuR2V0U2VydmljZUFjY291bnROYW1lUmVxdWVzdMIBImFwcGhvc3RpbmcuQXBwSWRlbnRpdHlTZXJ2aWNlRXJyb3I="
         )
     )
@@ -1413,7 +1413,7 @@ class GetServiceAccountNameResponse(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetServiceAccountNameResponse"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KKGFwcGhvc3RpbmcuR2V0U2VydmljZUFjY291bnROYW1lUmVzcG9uc2UTGhRzZXJ2aWNlX2FjY291bnRfbmFtZSABKAIwCTgBFMIBImFwcGhvc3RpbmcuQXBwSWRlbnRpdHlTZXJ2aWNlRXJyb3I="
         )
     )
@@ -1679,7 +1679,7 @@ class GetAccessTokenRequest(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetAccessTokenRequest"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KIGFwcGhvc3RpbmcuR2V0QWNjZXNzVG9rZW5SZXF1ZXN0ExoFc2NvcGUgASgCMAk4AxQTGhJzZXJ2aWNlX2FjY291bnRfaWQgAigAMAM4ARQTGhRzZXJ2aWNlX2FjY291bnRfbmFtZSADKAIwCTgBFMIBImFwcGhvc3RpbmcuQXBwSWRlbnRpdHlTZXJ2aWNlRXJyb3I="
         )
     )
@@ -1885,7 +1885,7 @@ class GetAccessTokenResponse(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetAccessTokenResponse"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KIWFwcGhvc3RpbmcuR2V0QWNjZXNzVG9rZW5SZXNwb25zZRMaDGFjY2Vzc190b2tlbiABKAIwCTgBFBMaD2V4cGlyYXRpb25fdGltZSACKAAwAzgBFMIBImFwcGhvc3RpbmcuQXBwSWRlbnRpdHlTZXJ2aWNlRXJyb3I="
         )
     )
@@ -2005,7 +2005,7 @@ class GetDefaultGcsBucketNameRequest(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetDefaultGcsBucketNameRequest"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KKWFwcGhvc3RpbmcuR2V0RGVmYXVsdEdjc0J1Y2tldE5hbWVSZXF1ZXN0wgEiYXBwaG9zdGluZy5BcHBJZGVudGl0eVNlcnZpY2VFcnJvcg=="
         )
     )
@@ -2171,7 +2171,7 @@ class GetDefaultGcsBucketNameResponse(ProtocolBuffer.ProtocolMessage):
     _PROTO_DESCRIPTOR_NAME = "apphosting.GetDefaultGcsBucketNameResponse"
     _SERIALIZED_DESCRIPTOR = array.array("B")
     _SERIALIZED_DESCRIPTOR.fromstring(
-        base64.decodestring(
+        base64.b64decode(
             "WjZhcHBob3N0aW5nL2FwaS9hcHBfaWRlbnRpdHkvYXBwX2lkZW50aXR5X3NlcnZpY2UucHJvdG8KKmFwcGhvc3RpbmcuR2V0RGVmYXVsdEdjc0J1Y2tldE5hbWVSZXNwb25zZRMaF2RlZmF1bHRfZ2NzX2J1Y2tldF9uYW1lIAEoAjAJOAEUwgEiYXBwaG9zdGluZy5BcHBJZGVudGl0eVNlcnZpY2VFcnJvcg=="
         )
     )

@@ -67,7 +67,7 @@ class CacheClass(BaseCache):
             transaction.commit_unless_managed(using=db)
             return default
         value = connections[db].ops.process_clob(row[1])
-        return pickle.loads(base64.decodestring(value))
+        return pickle.loads(base64.b64decode(value))
 
     def set(self, key, value, timeout=None):
         self.validate_key(key)

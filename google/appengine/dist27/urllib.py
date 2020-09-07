@@ -604,7 +604,7 @@ class URLopener(object):
                                             time.gmtime(time.time())))
         msg.append('Content-type: %s' % type)
         if encoding == 'base64':
-            data = base64.decodestring(data)
+            data = base64.b64decode(data)
         else:
             data = unquote(data)
         msg.append('Content-Length: %d' % len(data))
