@@ -16,7 +16,7 @@
 #
 """Base pipelines."""
 
-from __future__ import absolute_import
+
 import google
 
 from appengine_pipeline.src import pipeline

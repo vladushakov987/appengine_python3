@@ -25,7 +25,7 @@
 
 
 
-from __future__ import absolute_import
+
 import six
 from six.moves import range
 _successfully_imported_fancy_urllib = False
@@ -44,7 +44,7 @@ import six.moves.http_client
 import logging
 import os
 import socket
-import StringIO
+import io
 import sys
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 import six.moves.urllib.parse
@@ -447,13 +447,13 @@ class URLFetchServiceStub(apiproxy_stub.APIProxyStub):
         response.set_statuscode(http_response.status)
         if (http_response.getheader('content-encoding') == 'gzip' and
             not passthrough_content_encoding):
-          gzip_stream = StringIO.StringIO(http_response_data)
+          gzip_stream = io.StringIO(http_response_data)
           gzip_file = gzip.GzipFile(fileobj=gzip_stream)
           http_response_data = gzip_file.read()
         response.set_content(http_response_data[:MAX_RESPONSE_SIZE])
 
 
-        for header_key in http_response.msg.keys():
+        for header_key in list(http_response.msg.keys()):
           for header_value in http_response.msg.getheaders(header_key):
             if (header_key.lower() == 'content-encoding' and
                 header_value == 'gzip' and
@@ -495,6 +495,6 @@ class URLFetchServiceStub(apiproxy_stub.APIProxyStub):
       logging.warn('Stripped prohibited headers from URLFetch request: %s',
                    prohibited_headers)
 
-      for index in reversed(range(len(headers))):
+      for index in reversed(list(range(len(headers)))):
         if headers[index].key().lower() in untrusted_headers:
           del headers[index]

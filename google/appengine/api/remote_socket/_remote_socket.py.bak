@@ -38,7 +38,7 @@ other things adds a buffered file-like interface.
 
 
 
-from __future__ import absolute_import
+
 import errno
 import os
 import re
@@ -320,12 +320,12 @@ def getaddrinfo(host, service, family=AF_UNSPEC, socktype=0, proto=0, flags=0):
   if not host and not service:
     raise gaierror(EAI_NONAME, 'nodename nor servname provided, or not known')
 
-  families = [f for f in _ADDRESS_FAMILY_MAP.keys()
+  families = [f for f in list(_ADDRESS_FAMILY_MAP.keys())
               if family in (AF_UNSPEC, f)]
   if not families:
     raise gaierror(EAI_FAMILY, 'ai_family not supported')
 
-  sock_proto = [sp for sp in _SOCK_PROTO_MAP.keys()
+  sock_proto = [sp for sp in list(_SOCK_PROTO_MAP.keys())
                 if socktype in (0, sp[0]) and proto in (0, sp[1])]
   if not sock_proto:
     raise gaierror(EAI_BADHINTS, 'Bad hints')

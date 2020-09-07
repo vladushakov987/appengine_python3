@@ -1,6 +1,10 @@
 """Default variable filters."""
+from __future__ import division
 
 
+from builtins import map
+from builtins import str
+from past.utils import old_div
 import re
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import random as random_module
@@ -89,7 +93,7 @@ fix_ampersands = stringfilter(fix_ampersands)
 # (see Python Issue757815 and Issue1080440).
 pos_inf = 1e200 * 1e200
 neg_inf = -1e200 * 1e200
-nan = (1e200 * 1e200) / (1e200 * 1e200)
+nan = old_div((1e200 * 1e200), (1e200 * 1e200))
 special_floats = [str(pos_inf), str(neg_inf), str(nan)]
 
 def floatformat(text, arg=-1):
@@ -152,7 +156,7 @@ def floatformat(text, arg=-1):
     if p == 0:
         exp = Decimal(1)
     else:
-        exp = Decimal('1.0') / (Decimal(10) ** abs(p))
+        exp = old_div(Decimal('1.0'), (Decimal(10) ** abs(p)))
     try:
         return mark_safe(formats.number_format('%s' % str(d.quantize(exp, ROUND_HALF_UP)), abs(p)))
     except InvalidOperation:
@@ -799,10 +803,10 @@ def filesizeformat(bytes):
     if bytes < 1024:
         return ungettext("%(size)d byte", "%(size)d bytes", bytes) % {'size': bytes}
     if bytes < 1024 * 1024:
-        return ugettext("%s KB") % filesize_number_format(bytes / 1024)
+        return ugettext("%s KB") % filesize_number_format(old_div(bytes, 1024))
     if bytes < 1024 * 1024 * 1024:
-        return ugettext("%s MB") % filesize_number_format(bytes / (1024 * 1024))
-    return ugettext("%s GB") % filesize_number_format(bytes / (1024 * 1024 * 1024))
+        return ugettext("%s MB") % filesize_number_format(old_div(bytes, (1024 * 1024)))
+    return ugettext("%s GB") % filesize_number_format(old_div(bytes, (1024 * 1024 * 1024)))
 filesizeformat.is_safe = True
 
 def pluralize(value, arg='s'):

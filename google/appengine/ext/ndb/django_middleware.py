@@ -15,6 +15,7 @@
 """Django middleware for NDB."""
 
 
+from builtins import object
 __author__ = 'James A. Morrison'
 
 from . import eventloop, tasklets

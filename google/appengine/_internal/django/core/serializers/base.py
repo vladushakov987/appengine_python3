@@ -3,6 +3,7 @@ Module for abstract serializer/unserializer base classes.
 """
 
 
+from builtins import object
 from io import StringIO
 
 from google.appengine._internal.django.db import models

@@ -35,6 +35,8 @@ Class:
 
 
 
+from builtins import str
+from builtins import object
 import base64
 import os
 import time

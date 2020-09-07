@@ -32,6 +32,8 @@ Versions 1.9 and 1.10 of docker remote API are supported.
 """
 
 
+from builtins import filter
+from builtins import object
 from collections import namedtuple
 import itertools
 import json

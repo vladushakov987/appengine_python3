@@ -38,6 +38,7 @@ Classes/variables/functions defined here:
 
 
 
+from builtins import object
 import inspect
 import sys
 import threading

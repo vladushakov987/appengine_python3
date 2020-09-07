@@ -17,6 +17,7 @@
 """Performs translation of queue.xml to queue.yaml."""
 
 
+from builtins import object
 from xml.etree import ElementTree
 
 from google.appengine.tools import xml_parser_utils

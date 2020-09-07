@@ -19,6 +19,8 @@
 
 
 
+from builtins import str
+from builtins import range
 import datetime
 import os
 import unittest

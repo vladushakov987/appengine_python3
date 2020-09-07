@@ -28,6 +28,7 @@
 
 
 from __future__ import absolute_import
+from builtins import input
 from google.storage.speckle.python.api import rdbms_googleapi
 
 import apiclient
@@ -55,7 +56,7 @@ class Command(base.NoArgsCommand):
                       flow.step1_get_authorize_url('oob'))
     accepted = 'n'
     while accepted.lower() == 'n':
-      accepted = input('Have you authorized me? (y/n) ')
+      accepted = eval(input('Have you authorized me? (y/n) '))
     code = input('What is the verification code? ').strip()
     try:
       credential = flow.step2_exchange(code)

@@ -19,12 +19,16 @@
 
 
 """Userland RPC instrumentation for App Engine."""
+from __future__ import division
 
 
 
 
 
 
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import datetime
 import logging
 import os
@@ -50,7 +54,7 @@ from six.moves import range
 def _to_micropennies_per_op(pennies, per):
   """The price of a single op in micropennies."""
 
-  return (pennies * 1000000) / per
+  return old_div((pennies * 1000000), per)
 
 
 class ConfigDefaults(object):

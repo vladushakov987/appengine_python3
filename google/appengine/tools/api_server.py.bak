@@ -19,11 +19,11 @@
 The Remote API protocol is used for communication.
 """
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six.moves.BaseHTTPServer
 import six.moves.http_client
 import logging

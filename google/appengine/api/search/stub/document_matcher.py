@@ -18,9 +18,14 @@
 
 DocumentMatcher provides an approximation of the Search API's query matching.
 """
+from __future__ import division
 
 
 
+from builtins import zip
+from builtins import str
+from past.utils import old_div
+from builtins import object
 from google.appengine.datastore import document_pb
 
 from google.appengine._internal.antlr3 import tree
@@ -435,4 +440,4 @@ class DocumentMatcher(object):
 def _DateStrToDays(date_str):
 
   date = search_util.DeserializeDate(date_str)
-  return search_util.EpochTime(date) / MSEC_PER_DAY
+  return old_div(search_util.EpochTime(date), MSEC_PER_DAY)

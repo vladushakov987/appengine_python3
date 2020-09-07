@@ -39,7 +39,7 @@ base path. A default queue is also provided for simple usage.
 
 
 
-from __future__ import absolute_import
+
 import six
 from six.moves import zip
 __all__ = [
@@ -981,7 +981,7 @@ class Queue(object):
 
       class JointException(datastore_exception.__class__, DatastoreError):
         """There was a datastore error while accessing the queue."""
-        __msg = (u'taskqueue.DatastoreError caused by: %s %s' %
+        __msg = ('taskqueue.DatastoreError caused by: %s %s' %
                  (datastore_exception.__class__, detail))
         def __str__(self):
           return JointException.__msg

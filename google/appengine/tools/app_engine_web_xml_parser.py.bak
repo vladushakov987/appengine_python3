@@ -35,7 +35,7 @@ AppEngineConfigException - generically reports illegal inputs.
 
 """
 
-from __future__ import absolute_import
+
 import os
 import re
 from xml.etree import ElementTree

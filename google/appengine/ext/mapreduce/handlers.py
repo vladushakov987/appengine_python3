@@ -30,6 +30,7 @@
 
 
 """Defines executor tasks handlers for MapReduce implementation."""
+from __future__ import division
 
 
 
@@ -37,6 +38,10 @@
 
 
 
+from builtins import zip
+from builtins import next
+from builtins import str
+from past.utils import old_div
 import datetime
 import logging
 import math
@@ -1027,8 +1032,8 @@ class MapperWorkerCallbackHandler(base_handler.HugeTaskHandler):
     slice_processing_limit = -1
     if processing_rate > 0:
       slice_processing_limit = int(math.ceil(
-          parameters.config._SLICE_DURATION_SEC*processing_rate/
-          int(spec.mapper.shard_count)))
+          old_div(parameters.config._SLICE_DURATION_SEC*processing_rate,
+          int(spec.mapper.shard_count))))
     return slice_processing_limit
 
 

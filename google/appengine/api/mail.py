@@ -35,6 +35,9 @@ for their applications.  Also provides a few utility methods.
 
 
 
+from builtins import map
+from builtins import str
+from builtins import object
 import email
 from email import MIMEBase
 from email import MIMEMultipart

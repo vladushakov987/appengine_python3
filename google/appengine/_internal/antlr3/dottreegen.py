@@ -39,6 +39,8 @@ This module contains all support classes for AST construction and tree parsers.
 # pylint: disable-msg=C0111
 
 
+from builtins import range
+from builtins import object
 from google.appengine._internal.antlr3.tree import CommonTreeAdaptor
 import stringtemplate3
 from six.moves import range

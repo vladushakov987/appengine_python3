@@ -24,6 +24,7 @@ BlacklistEntry: describes a blacklisted IP.
 """
 
 
+from builtins import object
 import re
 from xml.etree import ElementTree
 

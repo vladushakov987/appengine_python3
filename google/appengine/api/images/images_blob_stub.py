@@ -26,6 +26,7 @@
 
 
 
+from builtins import object
 import logging
 
 from google.appengine.api import datastore

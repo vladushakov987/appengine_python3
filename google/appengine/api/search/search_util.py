@@ -17,10 +17,13 @@
 
 
 """Provides utility methods used by modules in the FTS API stub."""
+from __future__ import division
 
 
 
 
+from builtins import str
+from past.utils import old_div
 import datetime
 import re
 
@@ -132,7 +135,7 @@ def EpochTime(date):
   else:
     td = date - BASE_DATE.date()
   milliseconds_since_epoch = int(
-      (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**3)
+      old_div((td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6), 10**3))
   return milliseconds_since_epoch
 
 

@@ -21,6 +21,7 @@
 This module allows apps to flush logs, provide status messages, and
 programmatically access their request and application logs.
 """
+from __future__ import division
 
 
 
@@ -29,6 +30,9 @@ programmatically access their request and application logs.
 
 
 
+from builtins import str
+from past.utils import old_div
+from builtins import object
 import base64
 import collections
 import io
@@ -503,7 +507,7 @@ class _LogQueryResult(object):
       self._request.mutable_offset().CopyFrom(response.offset())
     self._last_end_time = None
     if response.has_last_end_time():
-      self._last_end_time = response.last_end_time() / 1e6
+      self._last_end_time = old_div(response.last_end_time(), 1e6)
 
 
 class RequestLog(object):
@@ -600,7 +604,7 @@ class RequestLog(object):
         A float representing the time this request began processing in seconds
         since the Unix epoch.
     """
-    return self.__pb.start_time() / 1e6
+    return old_div(self.__pb.start_time(), 1e6)
 
   @property
   def end_time(self):
@@ -610,12 +614,12 @@ class RequestLog(object):
         A float representing the request completion time in seconds since the
         Unix epoch.
     """
-    return self.__pb.end_time() / 1e6
+    return old_div(self.__pb.end_time(), 1e6)
 
   @property
   def latency(self):
     """Time required to process request in seconds, as a float."""
-    return self.__pb.latency() / 1e6
+    return old_div(self.__pb.latency(), 1e6)
 
   @property
   def mcycles(self):
@@ -768,7 +772,7 @@ class RequestLog(object):
     Returns:
         A float representing the time in seconds that this request was pending.
     """
-    return self.__pb.pending_time() / 1e6
+    return old_div(self.__pb.pending_time(), 1e6)
 
   @property
   def replica_index(self):
@@ -802,7 +806,7 @@ class RequestLog(object):
        an empty list if none were emitted or the query did not request them.
     """
     if not self.__lines and self.__pb.line_size():
-      self.__lines = [AppLog(time=line.time() / 1e6, level=line.level(),
+      self.__lines = [AppLog(time=old_div(line.time(), 1e6), level=line.level(),
                              message=line.log_message())
                       for line in self.__pb.line_list()]
     return self.__lines

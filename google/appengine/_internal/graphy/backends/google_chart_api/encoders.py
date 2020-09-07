@@ -17,8 +17,12 @@
 """Display objects for the different kinds of charts.
 
 Not intended for end users, use the methods in __init__ instead."""
+from __future__ import division
 
 
+from builtins import str
+from builtins import object
+from past.utils import old_div
 import warnings
 from google.appengine._internal.graphy.backends.google_chart_api import util
 
@@ -199,13 +203,13 @@ class BaseChartEncoder(object):
       assert(chart.bottom.min is not None)
       assert(chart.bottom.max is not None)
       total = float(chart.bottom.max - chart.bottom.min)
-      x = 100 * chart.bottom.grid_spacing / total
+      x = old_div(100 * chart.bottom.grid_spacing, total)
     if chart.left.grid_spacing:
       # min/max must be set for this to make sense.
       assert(chart.left.min is not None)
       assert(chart.left.max is not None)
       total = float(chart.left.max - chart.left.min)
-      y = 100 * chart.left.grid_spacing / total
+      y = old_div(100 * chart.left.grid_spacing, total)
     if x or y:
       return dict(grid = '%.3g,%.3g,1,0' % (x, y))
     return {}
@@ -310,7 +314,7 @@ class BarChartEncoder(BaseChartEncoder):
                                            chart.style.group_gap)
     # Auto-size bar/group gaps
     if bar_gap is None and group_gap is not None:
-        bar_gap = max(0, group_gap / 2)
+        bar_gap = max(0, old_div(group_gap, 2))
         if not chart.style.use_fractional_gap_spacing:
           bar_gap = int(bar_gap)
     if group_gap is None and bar_gap is not None:

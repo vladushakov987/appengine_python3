@@ -37,6 +37,9 @@ Example:
 
 
 
+from builtins import str
+from builtins import range
+from builtins import object
 from google.appengine.tools import os_compat
 
 import six.moves.builtins
@@ -3357,7 +3360,7 @@ def LoadAppConfig(root_path,
       'Could not find app.yaml in "%s".' % (root_path,))
 
 
-class ReservedPathFilter():
+class ReservedPathFilter(object):
   """Checks a path against a set of inbound_services."""
 
   reserved_paths = {

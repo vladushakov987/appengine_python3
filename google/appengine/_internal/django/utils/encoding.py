@@ -1,4 +1,6 @@
 
+from builtins import str
+from builtins import object
 import types
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 import locale

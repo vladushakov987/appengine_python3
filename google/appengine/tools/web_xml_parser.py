@@ -26,6 +26,7 @@ SecurityConstraint: Contains information about specified security constraints.
 """
 
 
+from builtins import object
 import logging
 
 from xml.etree import ElementTree

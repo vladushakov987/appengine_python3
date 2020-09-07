@@ -44,7 +44,7 @@ provides an approximation to the API for local testing with dev_appserver.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import math
 
@@ -283,7 +283,7 @@ class ExpressionEvaluator(object):
     terms = self._tokenizer.TokenizeText(
         query_parser.GetQueryNodeText(query).strip('"'))
     for term in terms:
-      search_token = tokens.Token(chars=u'%s:%s' % (field, term.chars))
+      search_token = tokens.Token(chars='%s:%s' % (field, term.chars))
       postings = self._inverted_index.GetPostingsForToken(search_token)
       for posting in postings:
         if posting.doc_id != self._doc_pb.id() or not posting.positions:

@@ -46,6 +46,8 @@ directly instead of this class.
 
 
 from __future__ import absolute_import
+from builtins import zip
+from builtins import object
 import sys
 
 from google.net.proto2.python.public import descriptor
@@ -274,7 +276,7 @@ class DescriptorPool(object):
         scope.update(self._ExtractSymbols(
             list(dependency.message_types_by_name.values())))
         scope.update((_PrefixWithDot(enum.full_name), enum)
-                     for enum in dependency.enum_types_by_name.values())
+                     for enum in list(dependency.enum_types_by_name.values()))
 
       for message_type in file_proto.message_type:
         message_desc = self._ConvertMessageDescriptor(

@@ -28,6 +28,7 @@
 
 
 
+from builtins import object
 import collections
 import os
 import sys

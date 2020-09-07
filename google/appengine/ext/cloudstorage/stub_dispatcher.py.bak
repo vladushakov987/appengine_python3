@@ -16,7 +16,6 @@
 #
 """Dispatcher to handle Google Cloud Storage stub requests."""
 
-from __future__ import with_statement
 
 
 
@@ -27,7 +26,8 @@ from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six.moves.http_client
 import re
 import threading

@@ -37,6 +37,10 @@
 
 
 
+from past.builtins import cmp
+from builtins import next
+from builtins import str
+from builtins import range
 from six.moves import range
 __all__ = [
     "ShufflePipeline",

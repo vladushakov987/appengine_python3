@@ -68,6 +68,7 @@ is stored in memory before it is written.
 
 
 
+from builtins import str
 import logging
 import os
 

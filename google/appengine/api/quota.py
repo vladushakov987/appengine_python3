@@ -20,6 +20,7 @@
 
 
 """Access to quota usage for this application."""
+from __future__ import division
 
 
 
@@ -30,6 +31,7 @@
 
 
 
+from past.utils import old_div
 import os
 import warnings
 
@@ -84,7 +86,7 @@ def megacycles_to_cpu_seconds(mcycles):
   Returns a double representing the CPU-seconds the input megacycle value
   converts to.
   """
-  return mcycles / MCYCLES_PER_SECOND
+  return old_div(mcycles, MCYCLES_PER_SECOND)
 
 def cpu_seconds_to_megacycles(cpu_secs):
   """Convert an input value in CPU-seconds to megacycles.

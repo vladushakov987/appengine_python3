@@ -10,6 +10,7 @@ Next time you're at slashdot.org, watch out for X-Fry and X-Bender. :)
 """
 
 
+from builtins import str
 def populate_xheaders(request, response, model, object_id):
     """
     Adds the "X-Object-Type" and "X-Object-Id" headers to the given

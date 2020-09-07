@@ -23,6 +23,7 @@
 
 
 
+from builtins import str
 import six.moves.http_client
 import json
 import logging

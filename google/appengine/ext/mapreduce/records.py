@@ -81,6 +81,7 @@ C will be stored as a FULL record in the fourth block.
 """
 
 
+from builtins import object
 __all__ = ['RecordsWriter',
            'RecordsReader']
 

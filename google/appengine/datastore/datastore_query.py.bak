@@ -36,7 +36,7 @@ only and should not be used by developers!
 
 
 
-from __future__ import absolute_import
+
 from six.moves import filter
 from six.moves import zip
 __all__ = ['Batch',
@@ -2885,7 +2885,7 @@ class Batcher(object):
     self.__initial_offset = QueryOptions.offset(query_options) or 0
     self.__skipped_results = 0
 
-  def next(self):
+  def __next__(self):
     """Get the next batch. See .next_batch()."""
     return self.next_batch(self.AT_LEAST_ONE)
 
@@ -3029,7 +3029,7 @@ class ResultsIterator(object):
     return self._ensure_current_batch()._compiled_query()
 
 
-  def next(self):
+  def __next__(self):
     """Returns the next query result."""
     while (not self.__current_batch or
         self.__current_pos >= len(self.__current_batch.results)):

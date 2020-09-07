@@ -1,6 +1,7 @@
 """HTML utilities suitable for global use."""
 
 
+from builtins import range
 import re
 import string
 

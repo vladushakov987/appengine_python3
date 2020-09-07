@@ -5,6 +5,9 @@ Used internally by Django and not intended for external use.
 This is not, and is not intended to be, a complete reg-exp decompiler. It
 should be good enough for a large class of URLS, however.
 """
+from builtins import zip
+from builtins import next
+from builtins import range
 import six
 from six.moves import range
 from six.moves import zip

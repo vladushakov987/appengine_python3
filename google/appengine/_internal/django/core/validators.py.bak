@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import re
 import six.moves.urllib.parse
 
@@ -19,7 +19,7 @@ except ImportError:
 
 class RegexValidator(object):
     regex = ''
-    message = _(u'Enter a valid value.')
+    message = _('Enter a valid value.')
     code = 'invalid'
 
     def __init__(self, regex=None, message=None, code=None):
@@ -86,9 +86,9 @@ class URLValidator(RegexValidator):
                 req = six.moves.urllib.request.Request(url, None, headers)
                 u = six.moves.urllib.request.urlopen(req)
             except ValueError:
-                raise ValidationError(_(u'Enter a valid URL.'), code='invalid')
+                raise ValidationError(_('Enter a valid URL.'), code='invalid')
             except: # urllib2.URLError, httplib.InvalidURL, etc.
-                raise ValidationError(_(u'This URL appears to be a broken link.'), code='invalid_link')
+                raise ValidationError(_('This URL appears to be a broken link.'), code='invalid_link')
 
 
 def validate_integer(value):
@@ -104,14 +104,14 @@ class EmailValidator(RegexValidator):
             super(EmailValidator, self).__call__(value)
         except ValidationError as e:
             # Trivial case failed. Try for possible IDN domain-part
-            if value and u'@' in value:
-                parts = value.split(u'@')
+            if value and '@' in value:
+                parts = value.split('@')
                 domain_part = parts[-1]
                 try:
                     parts[-1] = parts[-1].encode('idna')
                 except UnicodeError:
                     raise e
-                super(EmailValidator, self).__call__(u'@'.join(parts))
+                super(EmailValidator, self).__call__('@'.join(parts))
             else:
                 raise
 
@@ -119,22 +119,22 @@ email_re = re.compile(
     r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"  # dot-atom
     r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-011\013\014\016-\177])*"' # quoted-string
     r')@(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?$', re.IGNORECASE)  # domain
-validate_email = EmailValidator(email_re, _(u'Enter a valid e-mail address.'), 'invalid')
+validate_email = EmailValidator(email_re, _('Enter a valid e-mail address.'), 'invalid')
 
 slug_re = re.compile(r'^[-\w]+$')
-validate_slug = RegexValidator(slug_re, _(u"Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."), 'invalid')
+validate_slug = RegexValidator(slug_re, _("Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."), 'invalid')
 
 ipv4_re = re.compile(r'^(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}$')
-validate_ipv4_address = RegexValidator(ipv4_re, _(u'Enter a valid IPv4 address.'), 'invalid')
+validate_ipv4_address = RegexValidator(ipv4_re, _('Enter a valid IPv4 address.'), 'invalid')
 
 comma_separated_int_list_re = re.compile('^[\d,]+$')
-validate_comma_separated_integer_list = RegexValidator(comma_separated_int_list_re, _(u'Enter only digits separated by commas.'), 'invalid')
+validate_comma_separated_integer_list = RegexValidator(comma_separated_int_list_re, _('Enter only digits separated by commas.'), 'invalid')
 
 
 class BaseValidator(object):
     compare = lambda self, a, b: a is not b
     clean   = lambda self, x: x
-    message = _(u'Ensure this value is %(limit_value)s (it is %(show_value)s).')
+    message = _('Ensure this value is %(limit_value)s (it is %(show_value)s).')
     code = 'limit_value'
 
     def __init__(self, limit_value):
@@ -152,23 +152,23 @@ class BaseValidator(object):
 
 class MaxValueValidator(BaseValidator):
     compare = lambda self, a, b: a > b
-    message = _(u'Ensure this value is less than or equal to %(limit_value)s.')
+    message = _('Ensure this value is less than or equal to %(limit_value)s.')
     code = 'max_value'
 
 class MinValueValidator(BaseValidator):
     compare = lambda self, a, b: a < b
-    message = _(u'Ensure this value is greater than or equal to %(limit_value)s.')
+    message = _('Ensure this value is greater than or equal to %(limit_value)s.')
     code = 'min_value'
 
 class MinLengthValidator(BaseValidator):
     compare = lambda self, a, b: a < b
     clean   = lambda self, x: len(x)
-    message = _(u'Ensure this value has at least %(limit_value)d characters (it has %(show_value)d).')
+    message = _('Ensure this value has at least %(limit_value)d characters (it has %(show_value)d).')
     code = 'min_length'
 
 class MaxLengthValidator(BaseValidator):
     compare = lambda self, a, b: a > b
     clean   = lambda self, x: len(x)
-    message = _(u'Ensure this value has at most %(limit_value)d characters (it has %(show_value)d).')
+    message = _('Ensure this value has at most %(limit_value)d characters (it has %(show_value)d).')
     code = 'max_length'
 

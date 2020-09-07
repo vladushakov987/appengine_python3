@@ -23,6 +23,7 @@
 
 
 from __future__ import absolute_import
+from builtins import str
 from google.appengine.api import apiproxy_stub_map
 from google.appengine.runtime import apiproxy_errors
 from google.storage.speckle.proto import sql_pb2

@@ -48,7 +48,7 @@ u'<html><h1>Hello</h1></html>'
 >>> t.render(c)
 u'<html></html>'
 """
-from __future__ import absolute_import
+
 import imp
 import re
 from inspect import getargspec

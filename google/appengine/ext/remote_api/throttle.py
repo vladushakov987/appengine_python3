@@ -61,10 +61,15 @@ Throttles can also be constructed directly for more control over the limits
 for different operations.  See the Throttle class and the constants following
 it for details.
 """
+from __future__ import division
 
 
 
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
+from past.utils import old_div
 import logging
 import os
 import threading
@@ -310,7 +315,7 @@ class Throttle(object):
     """
     if not limit:
       return 0.0
-    return max(0.0, (total / limit) - duration)
+    return max(0.0, (old_div(total, limit)) - duration)
 
   def _RotateCounts(self, throttle_name):
     """Rotate the transfer counters.

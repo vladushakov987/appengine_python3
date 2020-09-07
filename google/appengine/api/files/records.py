@@ -88,6 +88,7 @@ C will be stored as a FULL record in the fourth block.
 
 
 
+from builtins import object
 import logging
 import struct
 

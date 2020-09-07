@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from types import GeneratorType
 
 from google.appengine._internal.django.utils.copycompat import deepcopy
@@ -194,7 +194,7 @@ class SortedDict(dict):
         Replaces the normal dict.__repr__ with a version that returns the keys
         in their sorted order.
         """
-        return '{%s}' % ', '.join(['%r: %r' % (k, v) for k, v in self.items()])
+        return '{%s}' % ', '.join(['%r: %r' % (k, v) for k, v in list(self.items())])
 
     def clear(self):
         super(SortedDict, self).clear()
@@ -266,7 +266,7 @@ class MultiValueDict(dict):
 
     def __setstate__(self, obj_dict):
         data = obj_dict.pop('_data', {})
-        for k, v in data.items():
+        for k, v in list(data.items()):
             self.setlist(k, v)
         self.__dict__.update(obj_dict)
 
@@ -316,14 +316,14 @@ class MultiValueDict(dict):
         Returns a list of (key, value) pairs, where value is the last item in
         the list associated with the key.
         """
-        return [(key, self[key]) for key in self.keys()]
+        return [(key, self[key]) for key in list(self.keys())]
 
     def iteritems(self):
         """
         Yields (key, value) pairs, where value is the last item in the list
         associated with the key.
         """
-        for key in self.keys():
+        for key in list(self.keys()):
             yield (key, self[key])
 
     def lists(self):
@@ -336,7 +336,7 @@ class MultiValueDict(dict):
 
     def values(self):
         """Returns a list of the last value on every key list."""
-        return [self[key] for key in self.keys()]
+        return [self[key] for key in list(self.keys())]
 
     def itervalues(self):
         """Yield the last value on every key list."""
@@ -361,7 +361,7 @@ class MultiValueDict(dict):
                     self.setlistdefault(key, []).extend(value_list)
             else:
                 try:
-                    for key, value in other_dict.items():
+                    for key, value in list(other_dict.items()):
                         self.setlistdefault(key, []).append(value)
                 except TypeError:
                     raise ValueError("MultiValueDict.update() takes either a MultiValueDict or dictionary")
@@ -390,7 +390,7 @@ class DotExpandedDict(dict):
     {'c': 1}
     """
     def __init__(self, key_to_list_mapping):
-        for k, v in key_to_list_mapping.items():
+        for k, v in list(key_to_list_mapping.items()):
             current = self
             bits = k.split('.')
             for bit in bits[:-1]:

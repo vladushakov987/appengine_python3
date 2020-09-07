@@ -41,7 +41,7 @@ Clients can also manually Read() and Write() the file themselves.
 
 
 
-from __future__ import absolute_import
+
 import collections
 import logging
 import os
@@ -203,7 +203,7 @@ class PropertyPseudoKind(object):
 
 
 
-        for entity in entities[app_kind].values():
+        for entity in list(entities[app_kind].values()):
           for prop in entity.protobuf.property_list():
             prop_name = prop.name()
 
@@ -511,8 +511,8 @@ class DatastoreFileStub(datastore_stub_util.BaseDatastore,
     """
     if self.__IsSaveable():
       encoded = []
-      for kind_dict in self.__entities_by_kind.values():
-        encoded.extend(entity.encoded_protobuf for entity in kind_dict.values())
+      for kind_dict in list(self.__entities_by_kind.values()):
+        encoded.extend(entity.encoded_protobuf for entity in list(kind_dict.values()))
 
       self.__WritePickled(encoded, self.__datastore_file)
 
@@ -671,7 +671,7 @@ class DatastoreFileStub(datastore_stub_util.BaseDatastore,
         (results, filters, orders) = pseudo_kind.Query(query, filters, orders)
       elif query.has_kind():
         results = [entity.protobuf for entity in
-                   self.__entities_by_kind[app_ns, query.kind()].values()]
+                   list(self.__entities_by_kind[app_ns, query.kind()].values())]
       else:
         results = []
         for (cur_app_ns, _), entities in six.iteritems(self.__entities_by_kind):

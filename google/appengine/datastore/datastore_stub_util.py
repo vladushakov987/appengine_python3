@@ -22,6 +22,7 @@
 
 This module is internal and should not be used by client applications.
 """
+from __future__ import division
 
 
 
@@ -34,6 +35,12 @@ This module is internal and should not be used by client applications.
 
 
 
+from past.builtins import cmp
+from builtins import filter
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import six
 from six.moves import filter
 from six.moves import range
@@ -523,7 +530,7 @@ def CheckPropertyValue(name, value, max_length, meaning):
 
     s16 = value.stringvalue().decode('utf-8', 'replace').encode('utf-16')
 
-    Check((len(s16) - 2) / 2 <= max_length,
+    Check(old_div((len(s16) - 2), 2) <= max_length,
           'Property %s is too long. Maximum length is %d.' % (name, max_length))
     if (meaning not in _BLOB_MEANINGS and
         meaning != entity_pb.Property.BYTESTRING):

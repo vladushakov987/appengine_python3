@@ -22,7 +22,7 @@
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api.search import search_util
 import six
 

@@ -19,6 +19,7 @@
 
 
 """Generate Datastore Stats over Dev mode appserver's datastore."""
+from __future__ import division
 
 
 
@@ -30,6 +31,9 @@
 
 
 
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import datetime
 import logging
 
@@ -397,7 +401,7 @@ class DatastoreStatsProcessor(object):
 
     index_only_size = 0
     for i in range(len(property_size)):
-      index_only_size += property_size[i] * (index_count / property_count[i])
+      index_only_size += property_size[i] * (old_div(index_count, property_count[i]))
 
 
 

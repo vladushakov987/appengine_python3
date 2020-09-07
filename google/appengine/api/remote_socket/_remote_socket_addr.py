@@ -25,6 +25,7 @@ normally provided by the system:
 """
 
 
+from builtins import hex
 import errno
 import os
 import re

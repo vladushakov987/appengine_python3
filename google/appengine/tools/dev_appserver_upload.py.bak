@@ -26,9 +26,9 @@ Contents:
 
 
 
-from __future__ import absolute_import
+
 import base64
-import cStringIO
+import io
 import datetime
 import random
 import time
@@ -202,7 +202,7 @@ class UploadCGIHandler(object):
     blob_file = form_item.file
     if 'Content-Transfer-Encoding' in form_item.headers:
       if form_item.headers['Content-Transfer-Encoding'] == 'base64':
-        blob_file = cStringIO.StringIO(
+        blob_file = io.StringIO(
             base64.urlsafe_b64decode(blob_file.read()))
     self.__blob_storage.StoreBlob(blob_key, blob_file)
     content_type_formatter = base.MIMEBase(main_type, sub_type,
@@ -272,7 +272,7 @@ class UploadCGIHandler(object):
         datastore.
     """
     message = multipart.MIMEMultipart('form-data', boundary)
-    for name, value in form.headers.items():
+    for name, value in list(form.headers.items()):
       if name.lower() not in STRIPPED_HEADERS:
         message.add_header(name, value)
 
@@ -452,7 +452,7 @@ class UploadCGIHandler(object):
                                         max_bytes_per_blob=max_bytes_per_blob,
                                         max_bytes_total=max_bytes_total,
                                         bucket_name=bucket_name)
-    message_out = cStringIO.StringIO()
+    message_out = io.StringIO()
     gen = generator.Generator(message_out, maxheaderlen=0)
     gen.flatten(message, unixfrom=False)
     return message_out.getvalue()

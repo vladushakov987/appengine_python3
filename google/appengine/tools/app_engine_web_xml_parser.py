@@ -36,6 +36,7 @@ AppEngineConfigException - generically reports illegal inputs.
 """
 
 
+from builtins import object
 import os
 import re
 from xml.etree import ElementTree

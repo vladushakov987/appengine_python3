@@ -39,6 +39,7 @@ this file*.
 
 
 from __future__ import absolute_import
+from builtins import str
 from google.net.proto2.python.internal import api_implementation
 from google.net.proto2.python.public import descriptor as descriptor_mod
 from google.net.proto2.python.public import message
@@ -187,7 +188,7 @@ def MakeClass(descriptor):
     The Message class object described by the descriptor.
   """
   attributes = {}
-  for name, nested_type in descriptor.nested_types_by_name.items():
+  for name, nested_type in list(descriptor.nested_types_by_name.items()):
     attributes[name] = MakeClass(nested_type)
 
   attributes[GeneratedProtocolMessageType._DESCRIPTOR_KEY] = descriptor

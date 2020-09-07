@@ -24,10 +24,12 @@ To use, add this to app.yaml:
   builtins:
   - datastore_admin: on
 """
+from __future__ import division
 
 
 
 
+from past.utils import old_div
 import logging
 import operator
 import os
@@ -137,7 +139,7 @@ def _PresentatableKindStats(kind_ent):
   count = kind_ent.count
   entity_bytes = kind_ent.entity_bytes
   total_bytes = kind_ent.bytes
-  average_bytes = entity_bytes / count
+  average_bytes = old_div(entity_bytes, count)
   return {'kind_name': kind_ent.kind_name,
           'count': utils.FormatThousands(kind_ent.count),
           'entity_bytes_str': utils.GetPrettyBytes(entity_bytes),

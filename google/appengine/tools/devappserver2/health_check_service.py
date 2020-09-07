@@ -28,6 +28,7 @@ will stop itself automatically.
 
 
 
+from builtins import object
 import logging
 import threading
 import time

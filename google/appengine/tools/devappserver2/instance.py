@@ -15,10 +15,13 @@
 # limitations under the License.
 #
 """Manage the lifecycle of runtime processes and dispatch requests to them."""
+from __future__ import division
 
 
 
 
+from past.utils import old_div
+from builtins import object
 import collections
 import logging
 import threading
@@ -221,7 +224,7 @@ class Instance(object):
       else:
         total_latency = sum(
             end - start for (start, end) in self._request_history)
-        return total_latency / len(self._request_history)
+        return old_div(total_latency, len(self._request_history))
 
   def get_qps_60s(self):
     """Returns the average queries-per-second over the last 60 seconds."""

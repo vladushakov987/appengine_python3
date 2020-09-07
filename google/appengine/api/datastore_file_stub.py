@@ -42,6 +42,9 @@ Clients can also manually Read() and Write() the file themselves.
 
 
 
+from past.builtins import cmp
+from builtins import filter
+from builtins import object
 import collections
 import logging
 import os

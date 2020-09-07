@@ -1,5 +1,6 @@
 """Base email backend class."""
 
+from builtins import object
 class BaseEmailBackend(object):
     """
     Base class for email backend implementations.

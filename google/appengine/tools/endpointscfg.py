@@ -41,6 +41,7 @@ Example:
   endpointscfg.py gen_api_config -o . -a /path/to/app \
     --hostname myhost.appspot.com postservice.GreetingsV1
 """
+from __future__ import print_function
 
 
 

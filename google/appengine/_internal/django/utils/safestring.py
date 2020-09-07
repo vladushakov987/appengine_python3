@@ -5,6 +5,8 @@ that the producer of the string has already turned characters that should not
 be interpreted by the HTML engine (e.g. '<') into the appropriate entities.
 """
 
+from builtins import str
+from builtins import object
 from google.appengine._internal.django.utils.functional import curry, Promise
 import six
 

@@ -24,6 +24,7 @@ Cron: describes a single cron specified in cron.xml
 """
 
 
+from builtins import object
 from xml.etree import ElementTree
 
 from google.appengine.cron import groc

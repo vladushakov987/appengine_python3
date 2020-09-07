@@ -29,6 +29,7 @@
 
 
 
+from builtins import str
 import hashlib
 import logging
 import random

@@ -47,6 +47,8 @@ builder.  See yaml_object.py.
 
 
 
+from builtins import str
+from builtins import object
 import re
 
 import google

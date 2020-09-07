@@ -47,6 +47,7 @@ Example usage:
 
 
 from __future__ import absolute_import
+from builtins import object
 from google.net.proto2.python.public import descriptor_pool
 
 

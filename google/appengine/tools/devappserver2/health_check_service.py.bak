@@ -27,7 +27,7 @@ will stop itself automatically.
 """
 
 
-from __future__ import absolute_import
+
 import logging
 import threading
 import time

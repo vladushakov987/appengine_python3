@@ -35,6 +35,7 @@
 
 
 
+from builtins import str
 __all__ = [
     "create_datastore_write_config",
     "for_name",

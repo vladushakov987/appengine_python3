@@ -1,5 +1,7 @@
+from __future__ import print_function
 
 
+from builtins import str
 from google.appengine._internal.django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
 import os

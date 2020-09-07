@@ -36,6 +36,7 @@ These model classes are describing mapreduce, its current state and
 communication messages. They are either stored in the datastore or
 serialized to/from json and passed around with other means.
 """
+from __future__ import division
 
 
 
@@ -43,6 +44,10 @@ serialized to/from json and passed around with other means.
 
 
 
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 from six.moves import range
 __all__ = ["MapreduceState",
            "MapperSpec",
@@ -661,7 +666,7 @@ class MapreduceState(db.Model):
 
     if shards_processed:
 
-      stride_length = max(1, shard_count / 16)
+      stride_length = max(1, old_div(shard_count, 16))
       chart.bottom.labels = []
       for x in range(shard_count):
         if (x % stride_length == 0 or

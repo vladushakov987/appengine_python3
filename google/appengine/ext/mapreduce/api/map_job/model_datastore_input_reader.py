@@ -16,6 +16,7 @@
 #
 """Model Datastore Input Reader implementation for the map_job API."""
 
+from builtins import zip
 import copy
 
 from google.appengine.ext import ndb

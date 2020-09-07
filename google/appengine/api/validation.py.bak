@@ -46,7 +46,7 @@ builder.  See yaml_object.py.
 
 
 
-from __future__ import absolute_import
+
 import re
 
 import google
@@ -269,7 +269,7 @@ class Validated(ValidatedBase):
           % self.__class__)
 
 
-    for key in self.ATTRIBUTES.keys():
+    for key in list(self.ATTRIBUTES.keys()):
       object.__setattr__(self, key, self.GetValidator(key).default)
 
     self.SetMultiple(attributes)

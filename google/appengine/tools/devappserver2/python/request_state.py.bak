@@ -16,7 +16,7 @@
 #
 """Tracking of active requests."""
 
-from __future__ import absolute_import
+
 import ctypes
 import threading
 

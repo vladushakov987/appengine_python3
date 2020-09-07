@@ -28,6 +28,7 @@
 
 
 
+from builtins import object
 import six
 __all__ = [
            'ApiTemporaryUnavailableError',

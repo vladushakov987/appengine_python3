@@ -80,7 +80,7 @@ C will be stored as a FULL record in the fourth block.
 
 """
 
-from __future__ import absolute_import
+
 __all__ = ['RecordsWriter',
            'RecordsReader']
 

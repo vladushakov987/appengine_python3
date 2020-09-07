@@ -33,6 +33,7 @@ class representing a blob-key.  Contains API part that forward to apiproxy.
 
 
 
+from builtins import str
 import datetime
 import time
 

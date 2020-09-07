@@ -29,10 +29,16 @@
 
 
 """Defines input readers for MapReduce."""
+from __future__ import division
 
 
 
 
+from builtins import next
+from builtins import zip
+from builtins import str
+from builtins import range
+from past.utils import old_div
 import six
 from six.moves import range
 from six.moves import zip
@@ -2384,7 +2390,7 @@ class LogInputReader(InputReader):
 
     start_time = params[cls.START_TIME_PARAM]
     end_time = params[cls.END_TIME_PARAM]
-    seconds_per_shard = (end_time - start_time) / shard_count
+    seconds_per_shard = old_div((end_time - start_time), shard_count)
 
 
     shards = []

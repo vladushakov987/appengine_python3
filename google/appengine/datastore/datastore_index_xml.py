@@ -24,6 +24,7 @@ Index: describes a single index specified in datastore-indexes.xml
 """
 
 
+from builtins import object
 from xml.etree import ElementTree
 
 from google.appengine.api.validation import ValidationError

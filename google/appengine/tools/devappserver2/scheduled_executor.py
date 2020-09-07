@@ -17,6 +17,7 @@
 """Schedule callables to run at a particular time."""
 
 
+from builtins import object
 import heapq
 import threading
 import time

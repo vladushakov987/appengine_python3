@@ -67,6 +67,9 @@ is stored in memory before it is written.
 
 
 
+from builtins import str
+from builtins import range
+from builtins import object
 import cgi
 import logging
 import re

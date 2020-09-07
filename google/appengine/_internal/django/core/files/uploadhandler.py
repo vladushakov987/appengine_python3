@@ -3,6 +3,7 @@ Base file upload handler classes, and the built-in concrete subclasses
 """
 
 
+from builtins import object
 try:
     from io import StringIO
 except ImportError:

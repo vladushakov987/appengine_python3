@@ -36,6 +36,8 @@ Handle the CSV format specified in a bulkloader.yaml file.
 
 
 
+from builtins import zip
+from builtins import object
 import codecs
 import io
 import csv

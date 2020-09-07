@@ -4,6 +4,8 @@ ORM.
 """
 
 
+from builtins import str
+from builtins import object
 from google.appengine._internal.django.utils.copycompat import deepcopy
 
 class Node(object):

@@ -31,6 +31,7 @@
 # end[licence]
 
 
+from builtins import object
 import codecs
 from io import StringIO
 

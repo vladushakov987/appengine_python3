@@ -19,6 +19,8 @@
 
 
 """Helper file to manipulate entity keys and names."""
+from builtins import map
+from builtins import str
 from six.moves import map
 
 

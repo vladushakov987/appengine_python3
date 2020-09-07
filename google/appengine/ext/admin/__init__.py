@@ -19,6 +19,7 @@
 
 
 """Simple datastore view and interactive console, for use in dev_appserver."""
+from __future__ import division
 
 
 
@@ -30,6 +31,13 @@
 
 
 
+from builtins import zip
+from builtins import map
+from builtins import filter
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import cgi
 import collections
 import csv
@@ -1037,8 +1045,8 @@ class MemcachePageHandler(BaseRequestHandler):
                           'bytes': 0, 'oldest_item_age': 0}
       values['stats'] = memcache_stats
       try:
-        hitratio = memcache_stats['hits'] * 100 / (memcache_stats['hits']
-                                                   + memcache_stats['misses'])
+        hitratio = old_div(memcache_stats['hits'] * 100, (memcache_stats['hits']
+                                                   + memcache_stats['misses']))
       except ZeroDivisionError:
         hitratio = 0
       values['hitratio'] = hitratio
@@ -1246,9 +1254,9 @@ class DatastoreQueryHandler(DatastoreRequestHandler):
 
   _ONE_MILLION = decimal.Decimal(1000000)
 
-  _DOLLARS_PER_WRITE = 1/_ONE_MILLION
+  _DOLLARS_PER_WRITE = old_div(1,_ONE_MILLION)
 
-  _PENNIES_PER_WRITE = _DOLLARS_PER_WRITE/100
+  _PENNIES_PER_WRITE = old_div(_DOLLARS_PER_WRITE,100)
 
   def _writes_to_pennies(self, writes):
     return self._PENNIES_PER_WRITE * writes
@@ -1386,9 +1394,9 @@ class DatastoreQueryHandler(DatastoreRequestHandler):
     start = self.start()
     num = self.num()
     max_pager_links = 8
-    current_page = start / num
+    current_page = old_div(start, num)
     num_pages = int(math.ceil(total * 1.0 / num))
-    page_start = max(int(math.floor(current_page - max_pager_links / 2)), 0)
+    page_start = max(int(math.floor(current_page - old_div(max_pager_links, 2))), 0)
     page_end = min(page_start + max_pager_links, num_pages)
 
     pages = []
@@ -1688,7 +1696,7 @@ class SearchIndexesListHandler(BaseRequestHandler):
     has_more = len(resp.results) > limit
     indexes = resp.results[:limit]
 
-    current_page = start / limit + 1
+    current_page = old_div(start, limit) + 1
     values = {
         'request': self.request,
         'namespace': namespace,
@@ -1766,7 +1774,7 @@ class SearchIndexHandler(BaseRequestHandler):
         options=search.QueryOptions(offset=start, limit=limit)))
     has_more = resp.number_found > start + limit
 
-    current_page = start / limit + 1
+    current_page = old_div(start, limit) + 1
     values = {
         'request': self.request,
         'namespace': namespace,

@@ -27,7 +27,7 @@ information. Java, PHP and Python map types in inconsistent ways, see:
 
 
 
-from __future__ import absolute_import
+
 import datetime
 import logging
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
@@ -98,7 +98,7 @@ class StringValueConverter(object):
 class UnicodeValueConverter(object):
   memcache_type = memcache.TYPE_UNICODE
   # Hello world in Japanese.
-  placeholder = u'\u3053\u3093\u306b\u3061\u306f\u4e16\u754c'
+  placeholder = '\u3053\u3093\u306b\u3061\u306f\u4e16\u754c'
   can_edit = True
   friendly_type_name = 'Unicode String'
 

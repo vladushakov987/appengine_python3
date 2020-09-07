@@ -19,6 +19,8 @@
 """Wrapper for QueryParser."""
 
 
+from builtins import map
+from builtins import range
 from google.appengine._internal import antlr3
 from google.appengine._internal.antlr3 import tree
 from google.appengine.api.search import QueryLexer

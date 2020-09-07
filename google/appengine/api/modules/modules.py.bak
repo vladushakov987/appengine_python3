@@ -16,7 +16,7 @@
 #
 """Exposes methods to control modules and versions of an app."""
 
-from __future__ import absolute_import
+
 __all__ = [
     'Error',
     'InvalidModuleError',
@@ -449,7 +449,7 @@ def get_hostname(module=None,
   if version:
     request.set_version(version)
   if instance:
-    if not isinstance(instance, (six.string_types, int, int)):
+    if not isinstance(instance, (six.string_types, int)):
       raise TypeError(
           "'instance' arg must be of type basestring, long or int.")
     request.set_instance(str(instance))

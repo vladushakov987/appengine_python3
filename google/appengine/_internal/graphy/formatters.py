@@ -28,6 +28,11 @@ should take the chart to format as its only argument.
 (The formatters work on a deepcopy of the user's chart, so modifications
 shouldn't leak back into the user's original chart)
 """
+from __future__ import division
+from builtins import zip
+from builtins import range
+from past.utils import old_div
+from builtins import object
 from six.moves import range
 from six.moves import zip
 
@@ -142,7 +147,7 @@ class LabelSeparator(object):
     if axis.max is not None and axis.min is not None:
       # Find the spacing required to fit all labels evenly.
       # Don't try to push them farther apart than that.
-      maximum_possible_spacing = (axis.max - axis.min) / (len(axis.labels) - 1)
+      maximum_possible_spacing = old_div((axis.max - axis.min), (len(axis.labels) - 1))
       if minimum_label_spacing > maximum_possible_spacing:
         minimum_label_spacing = maximum_possible_spacing
 

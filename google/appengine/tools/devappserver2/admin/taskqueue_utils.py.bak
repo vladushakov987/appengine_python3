@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import datetime
 
 from google.appengine.api import apiproxy_stub_map

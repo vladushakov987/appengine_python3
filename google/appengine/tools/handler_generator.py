@@ -30,6 +30,7 @@ In this module:
 """
 
 
+from builtins import object
 from google.appengine.api import appinfo
 from google.appengine.tools import handler
 from google.appengine.tools.app_engine_config_exception import AppEngineConfigException

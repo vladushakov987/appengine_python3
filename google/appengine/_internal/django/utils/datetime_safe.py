@@ -8,6 +8,7 @@
 # '1850/08/02 was a Friday'
 
 
+from builtins import str
 from datetime import date as real_date, datetime as real_datetime
 import re
 import time

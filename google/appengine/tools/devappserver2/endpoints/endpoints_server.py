@@ -32,6 +32,7 @@ configuration has changed.
 
 
 
+from builtins import object
 import six.moves.http_client
 import json
 import logging

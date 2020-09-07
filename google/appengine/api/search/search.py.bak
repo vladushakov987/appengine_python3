@@ -29,7 +29,7 @@ Contains API classes that forward to apiproxy.
 
 
 
-from __future__ import absolute_import
+
 import base64
 import datetime
 import logging
@@ -50,7 +50,7 @@ from google.appengine.api.search import search_util
 from google.appengine.datastore import datastore_rpc
 from google.appengine.runtime import apiproxy_errors
 import six
-from six import unichr
+from six import chr
 from six.moves import zip
 
 
@@ -483,7 +483,7 @@ def _CheckNumber(value, name):
   Raises:
     TypeError: If the value is not a number.
   """
-  if not isinstance(value, (int, int, float)):
+  if not isinstance(value, (int, float)):
     raise TypeError('%s must be a int, long or float, got %s' %
                     (name, value.__class__.__name__))
   return value
@@ -760,7 +760,7 @@ def _CheckSortLimit(limit):
 
 def _Repr(class_instance, ordered_dictionary):
   """Generates an unambiguous representation for instance and ordered dict."""
-  return u'search.%s(%s)' % (class_instance.__class__.__name__, ', '.join(
+  return 'search.%s(%s)' % (class_instance.__class__.__name__, ', '.join(
       ['%s=%r' % (key, value) for (key, value) in ordered_dictionary
        if value is not None and value != []]))
 
@@ -828,7 +828,7 @@ def get_indexes_async(namespace='', offset=None, limit=20,
   if namespace is None:
     namespace = namespace_manager.get_namespace()
   if namespace is None:
-    namespace = u''
+    namespace = ''
   namespace_manager.validate_namespace(namespace, exception=ValueError)
   params.set_namespace(namespace)
   if offset is not None:
@@ -2123,12 +2123,12 @@ class SortExpression(object):
 
 
   try:
-    MAX_FIELD_VALUE = unichr(0x10ffff) * 80
+    MAX_FIELD_VALUE = chr(0x10ffff) * 80
   except ValueError:
 
-    MAX_FIELD_VALUE = unichr(0xffff) * 80
+    MAX_FIELD_VALUE = chr(0xffff) * 80
 
-  MIN_FIELD_VALUE = u''
+  MIN_FIELD_VALUE = ''
 
 
   ASCENDING, DESCENDING = ('ASCENDING', 'DESCENDING')
@@ -2172,7 +2172,7 @@ class SortExpression(object):
         self._default_value = _ConvertToUnicode(default_value)
         _CheckText(self._default_value, 'default_value')
       elif not isinstance(self._default_value,
-                          (int, int, float, datetime.date, datetime.datetime)):
+                          (int, float, datetime.date, datetime.datetime)):
         raise TypeError('default_value must be text, numeric or datetime, got '
                         '%s' % self._default_value.__class__.__name__)
 
@@ -2940,7 +2940,7 @@ def _CopyQueryOptionsToProtocolBuffer(
     for field in returned_fields:
       field_spec_pb.add_name(field.encode('utf-8'))
     for snippeted_field in snippeted_fields:
-      expression = u'snippet(%s, %s)' % (_QuoteString(query), snippeted_field)
+      expression = 'snippet(%s, %s)' % (_QuoteString(query), snippeted_field)
       _CopyFieldExpressionToProtocolBuffer(
           FieldExpression(
               name=snippeted_field, expression=expression.encode('utf-8')),
@@ -3195,7 +3195,7 @@ class Index(object):
     if self._namespace is None:
       self._namespace = _ConvertToUnicode(namespace_manager.get_namespace())
     if self._namespace is None:
-      self._namespace = u''
+      self._namespace = ''
     namespace_manager.validate_namespace(self._namespace, exception=ValueError)
     self._schema = None
     self._storage_usage = None
@@ -3861,8 +3861,8 @@ def _MakeSyncSearchServiceCall(call, request, response, deadline):
 def _ValidateDeadline(deadline):
   if deadline is None:
     return
-  if (not isinstance(deadline, (int, int, float))
-      or isinstance(deadline, (bool,))):
+  if (not isinstance(deadline, (int, float))
+      or isinstance(deadline, bool)):
     raise TypeError('deadline argument should be int/long/float (%r)'
                     % (deadline,))
   if deadline <= 0:

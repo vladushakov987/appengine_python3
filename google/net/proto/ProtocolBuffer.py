@@ -38,6 +38,10 @@
 
 
 from __future__ import absolute_import
+from builtins import str
+from builtins import zip
+from builtins import range
+from builtins import object
 import array
 import six.moves.http_client
 import re
@@ -67,7 +71,7 @@ __all__ = ['ProtocolMessage', 'Encoder', 'Decoder',
 URL_RE = re.compile('^(https?)://([^/]+)(/.*)$')
 
 
-class ProtocolMessage:
+class ProtocolMessage(object):
 
 
 
@@ -473,7 +477,7 @@ _TYPE_TO_DEBUG_STRING = {
 
 
 
-class Encoder:
+class Encoder(object):
 
 
   NUMERIC     = 0
@@ -633,7 +637,7 @@ class Encoder:
       TYPE_FIXED32: 4,
       TYPE_BOOL:    1 }
 
-class Decoder:
+class Decoder(object):
   def __init__(self, buf, idx, limit):
     self.buf = buf
     self.idx = idx
@@ -1017,7 +1021,7 @@ class ExtendableProtocolMessage(ProtocolMessage):
                          self.__class__.__name__))
 
   def _MergeExtensionFields(self, x):
-    for ext, val in x._extension_fields.items():
+    for ext, val in list(x._extension_fields.items()):
       if ext.is_repeated:
         for i in range(len(val)):
           if ext.composite_cls is None:
@@ -1031,7 +1035,7 @@ class ExtendableProtocolMessage(ProtocolMessage):
           self.MutableExtension(ext).MergeFrom(val)
 
   def _ListExtensions(self):
-    result = [ext for ext in self._extension_fields.keys()
+    result = [ext for ext in list(self._extension_fields.keys())
               if (not ext.is_repeated) or self.ExtensionSize(ext) > 0]
     result.sort(key = lambda item: item.number)
     return result
@@ -1140,7 +1144,7 @@ class ExtendableProtocolMessage(ProtocolMessage):
 
   def _ExtensionByteSize(self, partial):
     size = 0
-    for extension, value in self._extension_fields.items():
+    for extension, value in list(self._extension_fields.items()):
       ftype = extension.field_type
       tag_size = self.lengthVarInt64(extension.wire_tag)
       if ftype == TYPE_GROUP:

@@ -24,6 +24,8 @@ one important one being a simple integration point for OAuth2 integration.
 
 
 
+from builtins import str
+from builtins import object
 import io
 import logging
 import os

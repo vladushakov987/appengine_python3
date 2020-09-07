@@ -1,4 +1,5 @@
 
+from builtins import object
 import os
 import sys
 
@@ -53,7 +54,7 @@ else:
         else:
             sys.stdout = NullDevice()
 
-    class NullDevice:
+    class NullDevice(object):
         "A writeable object that writes to nowhere -- like /dev/null."
         def write(self, s):
             pass

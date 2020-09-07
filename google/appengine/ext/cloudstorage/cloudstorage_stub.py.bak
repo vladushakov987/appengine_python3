@@ -20,12 +20,12 @@
 
 
 
-from __future__ import absolute_import
+
 import calendar
 import datetime
 import hashlib
 import six.moves.http_client
-import StringIO
+import io
 
 from google.appengine.api import datastore
 from google.appengine.api import namespace_manager
@@ -274,7 +274,7 @@ class CloudStorageStub(object):
           content = content[gcs_file.next_offset - start:]
           start = gcs_file.next_offset
           blobkey = '%s-%d-%d' % (token, start, end)
-          self.blob_storage.StoreBlob(blobkey, StringIO.StringIO(content))
+          self.blob_storage.StoreBlob(blobkey, io.StringIO(content))
           new_content = _AE_GCSPartialFile_(
               parent=gcs_file,
 
@@ -377,7 +377,7 @@ class CloudStorageStub(object):
     blob_info['size'] = gcs_file.size
     datastore.Put(blob_info)
 
-    self.blob_storage.StoreBlob(token, StringIO.StringIO(content))
+    self.blob_storage.StoreBlob(token, io.StringIO(content))
 
     gcs_file.finalized = True
 

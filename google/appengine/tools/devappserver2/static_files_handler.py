@@ -19,6 +19,7 @@
 
 
 
+from builtins import str
 import base64
 import errno
 import six.moves.http_client

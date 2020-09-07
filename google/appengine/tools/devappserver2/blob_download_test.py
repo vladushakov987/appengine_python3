@@ -17,6 +17,7 @@
 """Tests for devappserver2.blob_download."""
 
 
+from builtins import str
 import base64
 import io
 import datetime

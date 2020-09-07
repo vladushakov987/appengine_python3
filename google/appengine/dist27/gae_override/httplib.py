@@ -5,6 +5,8 @@
 """Copyright 2008 Python Software Foundation, Ian Bicking, and Google."""
 
 
+from builtins import str
+from builtins import object
 import io
 import inspect
 import mimetools
@@ -250,7 +252,7 @@ class HTTPMessage(mimetools.Message):
           self.status = self.status + '; bad seek'
         break
 
-class HTTPResponse:
+class HTTPResponse(object):
   # App Engine Note: The public interface is identical to the interface provided
   #    in Python 2.7 except __init__ takes a
   #    google.appengine.api.urlfetch.Response instance rather than a socket.
@@ -333,7 +335,7 @@ class HTTPResponse:
       raise ResponseNotReady()
     return list(self.msg.items())
 
-class HTTPConnection:
+class HTTPConnection(object):
   # App Engine Note: The public interface is identical to the interface provided
   #    in Python 2.7.2 but the implementation uses
   #    google.appengine.api.urlfetch. Some methods are no-ops and set_tunnel
@@ -559,7 +561,7 @@ class HTTPSConnection(HTTPConnection):
 
     HTTPConnection.__init__(self, host, port, strict, timeout, source_address)
 
-class HTTP:
+class HTTP(object):
   "Compatibility class with httplib.py from 1.5."
 
   # App Engine Note: The public interface is identical to the interface provided
@@ -749,7 +751,7 @@ class LineTooLong(HTTPException):
 # for backwards compatibility
 error = HTTPException
 
-class LineAndFileWrapper:
+class LineAndFileWrapper(object):
   """A limited file-like object for HTTP/0.9 responses."""
 
   # App Engine Note: This class has been copied unchanged from Python 2.7.2

@@ -17,6 +17,7 @@
 
 
 
+from builtins import range
 import sys
 from antlr3 import *
 from antlr3.compat import set, frozenset

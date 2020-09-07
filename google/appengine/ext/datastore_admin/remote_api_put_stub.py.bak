@@ -39,7 +39,7 @@ the (SDK only) appengine_rpc with urlfetch.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import pickle
 import random

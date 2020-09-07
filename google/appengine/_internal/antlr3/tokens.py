@@ -31,6 +31,8 @@
 # end[licence]
 
 
+from builtins import str
+from builtins import object
 from google.appengine._internal.antlr3.constants import EOF, DEFAULT_CHANNEL, INVALID_TOKEN_TYPE
 
 ############################################################################

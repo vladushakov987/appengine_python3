@@ -26,6 +26,7 @@ on proto classes.  For usage, see:
 
 
 
+from builtins import object
 class EnumTypeWrapper(object):
   """A utility for finding the names of enum values."""
 

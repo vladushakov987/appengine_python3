@@ -47,6 +47,7 @@ Functions defined in this module:
 
 
 
+from builtins import object
 import six
 __all__ = ['get_document',
            'get_subscription',
@@ -91,7 +92,7 @@ _schema_type = prospective_search_pb.SchemaEntry
 _entity_meaning = entity_pb.Property
 
 
-class SubscriptionState:
+class SubscriptionState(object):
   OK = 0
   PENDING = 1
   ERROR = 2

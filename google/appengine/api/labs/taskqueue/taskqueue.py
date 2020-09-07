@@ -40,6 +40,9 @@ base path. A default queue is also provided for simple usage.
 
 
 
+from builtins import zip
+from builtins import str
+from builtins import object
 import six
 from six.moves import zip
 __all__ = [

@@ -16,7 +16,7 @@
 #
 """GCS related input readers."""
 
-from __future__ import absolute_import
+
 import six
 from six.moves import range
 __all__ = [
@@ -291,7 +291,7 @@ class GCSInputReader(map_job.InputReader):
       self._bucket_itr = before_iter
       self._slice_ctx = before_slice_ctx
 
-  def next(self):
+  def __next__(self):
     """Returns a handler to the next file.
 
     Non existent files will be logged and skipped. The file might have been
@@ -381,7 +381,7 @@ class GCSRecordInputReader(GCSInputReader):
       result.pop("_record_reader")
     return result
 
-  def next(self):
+  def __next__(self):
     """Returns the next input from this input reader, a record.
 
     Returns:

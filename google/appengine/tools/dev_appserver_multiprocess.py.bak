@@ -35,10 +35,10 @@ or return with a HTTP 503 error if no free instance is available.
 
 
 
-from __future__ import absolute_import
+
 import six.moves.BaseHTTPServer
 import copy
-import cStringIO
+import io
 import errno
 import six.moves.http_client
 import logging
@@ -951,7 +951,7 @@ class ForwardResponse(six.moves.http_client.HTTPResponse):
   def __init__(self, sock, debuglevel=0, strict=0, method=None):
     six.moves.http_client.HTTPResponse.__init__(self, sock, debuglevel, strict, method)
     self.data = self.fp.read()
-    self.fp = cStringIO.StringIO(self.data)
+    self.fp = io.StringIO(self.data)
 
 
 

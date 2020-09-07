@@ -57,6 +57,7 @@ sizer rather than when calling them.  In particular:
 
 
 from __future__ import absolute_import
+from builtins import bytes
 import struct
 import sys
 _PY2 = sys.version_info[0] < 3

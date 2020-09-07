@@ -1,6 +1,10 @@
 """Default tags used by the template system, available to all templates."""
+from __future__ import division
 
 
+from builtins import str
+from builtins import zip
+from past.utils import old_div
 import sys
 import re
 from itertools import groupby, cycle as itertools_cycle
@@ -412,7 +416,7 @@ class WidthRatioNode(Node):
         try:
             value = float(value)
             maxvalue = float(maxvalue)
-            ratio = (value / maxvalue) * max_width
+            ratio = (old_div(value, maxvalue)) * max_width
         except (ValueError, ZeroDivisionError):
             return ''
         return str(int(round(ratio)))

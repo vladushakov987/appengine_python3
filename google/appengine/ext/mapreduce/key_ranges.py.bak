@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.ext import key_range
 from google.appengine.ext.mapreduce import namespace_range
 
@@ -81,7 +81,7 @@ class KeyRanges(object):
   def __iter__(self):
     return self
 
-  def next(self):
+  def __next__(self):
     """Iterator iteraface."""
     raise NotImplementedError()
 
@@ -110,7 +110,7 @@ class _KeyRangesFromList(KeyRanges):
       return False
     return self._key_ranges == other._key_ranges
 
-  def next(self):
+  def __next__(self):
     if self._key_ranges:
       return self._key_ranges.pop()
     raise StopIteration()
@@ -152,7 +152,7 @@ class _KeyRangesFromNSRange(KeyRanges):
   def __str__(self):
     return str(self._ns_range)
 
-  def next(self):
+  def __next__(self):
     if self._ns_range is None:
       raise StopIteration()
 

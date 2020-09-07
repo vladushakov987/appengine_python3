@@ -1,4 +1,5 @@
 
+from builtins import object
 import sys
 
 from google.appengine._internal.django import http

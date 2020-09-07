@@ -18,6 +18,8 @@
 """
 
 
+from builtins import str
+from builtins import object
 import logging
 import os
 import shutil

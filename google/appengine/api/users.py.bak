@@ -41,7 +41,7 @@ Classes defined here:
 
 
 
-from __future__ import absolute_import
+
 import os
 from google.appengine.api import apiproxy_stub_map
 from google.appengine.api import user_service_pb

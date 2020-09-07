@@ -1,4 +1,6 @@
 
+from builtins import str
+from builtins import object
 import mimetypes
 import os
 import random

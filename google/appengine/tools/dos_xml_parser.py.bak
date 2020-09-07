@@ -23,7 +23,7 @@ DosXmlParser: converts XML to list of BlackListEntrys.
 BlacklistEntry: describes a blacklisted IP.
 """
 
-from __future__ import absolute_import
+
 import re
 from xml.etree import ElementTree
 

@@ -30,7 +30,7 @@
 
 
 
-from __future__ import absolute_import
+
 import base64
 import bisect
 import copy
@@ -209,7 +209,7 @@ class _DocumentStatistics(object):
     self._term_stats = {}
 
   def __iter__(self):
-    for item in self._term_stats.items():
+    for item in list(self._term_stats.items()):
       yield item
 
   def IncrementTermCount(self, term):
@@ -605,7 +605,7 @@ class SimpleIndex(object):
     query = query.strip()
     score = _ScoreRequested(search_request)
     if not query:
-      docs = [_ScoredDocument(doc, 0.0) for doc in self._documents.values()]
+      docs = [_ScoredDocument(doc, 0.0) for doc in list(self._documents.values())]
     else:
       if not isinstance(query, six.text_type):
         query = six.text_type(query, 'utf-8')

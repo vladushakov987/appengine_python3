@@ -30,6 +30,7 @@
 
 
 
+from builtins import object
 import sys
 import six
 

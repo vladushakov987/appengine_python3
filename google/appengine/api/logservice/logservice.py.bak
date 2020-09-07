@@ -27,11 +27,11 @@ programmatically access their request and application logs.
 
 
 
-from __future__ import with_statement
-from __future__ import absolute_import
+
+
 import base64
 import collections
-import cStringIO
+import io
 import logging
 import os
 import re
@@ -174,7 +174,7 @@ class LogsBufferNew(object):
       return sys.stderr
 
 
-    return cStringIO.StringIO(self.contents())
+    return io.StringIO(self.contents())
 
   def lines(self):
     """Returns the number of log lines currently buffered."""
@@ -931,12 +931,12 @@ def fetch(start_time=None,
   request.set_app_id(os.environ['APPLICATION_ID'])
 
   if start_time is not None:
-    if not isinstance(start_time, (float, int, int)):
+    if not isinstance(start_time, (float, int)):
       raise InvalidArgumentError('start_time must be a float or integer')
     request.set_start_time(int(start_time * 1000000))
 
   if end_time is not None:
-    if not isinstance(end_time, (float, int, int)):
+    if not isinstance(end_time, (float, int)):
       raise InvalidArgumentError('end_time must be a float or integer')
     request.set_end_time(int(end_time * 1000000))
 
@@ -1033,7 +1033,7 @@ def fetch(start_time=None,
 
   timeout = kwargs.get('timeout')
   if timeout is not None:
-    if not isinstance(timeout, (float, int, int)):
+    if not isinstance(timeout, (float, int)):
       raise InvalidArgumentError('timeout must be a float or integer')
 
   batch_size = kwargs.get('batch_size')
@@ -1082,7 +1082,7 @@ class LogsBufferOld(object):
     if self._stderr:
       assert stream is None
     else:
-      self._stream = stream or cStringIO.StringIO()
+      self._stream = stream or io.StringIO()
     self._lock = threading.RLock()
     self._reset()
 

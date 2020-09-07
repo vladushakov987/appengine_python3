@@ -17,6 +17,7 @@
 """A datastore indexes viewer UI."""
 
 
+from builtins import str
 import collections
 
 from google.appengine.api import datastore

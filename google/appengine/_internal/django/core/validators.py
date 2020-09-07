@@ -1,4 +1,5 @@
 
+from builtins import object
 import re
 import six.moves.urllib.parse
 

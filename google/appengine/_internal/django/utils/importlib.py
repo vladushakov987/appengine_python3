@@ -1,5 +1,6 @@
 # Taken from Python 2.7 with permission from/by the original author.
 
+from builtins import range
 import sys
 from six.moves import range
 

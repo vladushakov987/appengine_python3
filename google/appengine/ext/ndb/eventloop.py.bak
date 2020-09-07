@@ -10,7 +10,7 @@ enforcement of this requirement.
 The API here is inspired by Monocle.
 """
 
-from __future__ import absolute_import
+
 import collections
 import logging
 import os

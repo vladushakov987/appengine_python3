@@ -19,6 +19,9 @@
 
 
 
+from builtins import chr
+from builtins import range
+from builtins import object
 import errno
 import functools
 import inspect

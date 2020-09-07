@@ -39,7 +39,7 @@ Extensions to be considered:
 
 
 
-from __future__ import absolute_import
+
 import calendar
 import datetime
 from six.moves import range

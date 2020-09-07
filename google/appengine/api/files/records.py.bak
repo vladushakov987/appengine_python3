@@ -87,7 +87,7 @@ C will be stored as a FULL record in the fourth block.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import struct
 

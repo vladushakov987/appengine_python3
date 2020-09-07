@@ -17,6 +17,7 @@
 """A helper file with a helper class for opening ports."""
 
 
+from builtins import object
 import logging
 
 from google.appengine.client.services import vme_errors

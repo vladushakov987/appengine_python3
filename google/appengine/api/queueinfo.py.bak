@@ -135,7 +135,7 @@ available to an app, it is clamped.
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api import appinfo
 from google.appengine.api import validation
 from google.appengine.api import yaml_builder

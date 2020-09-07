@@ -19,6 +19,7 @@
 
 
 
+from builtins import str
 import logging
 
 from google.appengine.api import apiproxy_stub_map

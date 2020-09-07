@@ -71,11 +71,14 @@ Example library use:
   def add_middleware(app):
     return config_handle.add_middleware(app)
 """
+from __future__ import print_function
 
 
 
 
 
+from builtins import str
+from builtins import object
 import six
 __all__ = ['DEFAULT_MODNAME',
            'LibConfigRegistry',
@@ -401,7 +404,7 @@ def main():
     if not users.is_current_user_admin():
       if users.get_current_user() is None:
         print('Status: 302')
-        print('Location:', users.create_login_url(os.getenv('PATH_INFO', '')))
+        print(('Location:', users.create_login_url(os.getenv('PATH_INFO', ''))))
       else:
         print('Status: 403')
         print()

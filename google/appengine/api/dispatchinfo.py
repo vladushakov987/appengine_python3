@@ -29,6 +29,7 @@ Library for parsing dispatch.yaml files and working with these in memory.
 
 
 
+from builtins import object
 import re
 
 from google.appengine.api import appinfo

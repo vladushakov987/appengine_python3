@@ -19,6 +19,7 @@
 
 
 
+from builtins import str
 import logging
 import os
 import os.path

@@ -34,7 +34,7 @@
 
 
 
-from __future__ import absolute_import
+
 __all__ = [
     "create_datastore_write_config",
     "for_name",
@@ -277,7 +277,7 @@ def handler_for_name(fq_name):
     handler instance which is ready to be called.
   """
   resolved_name = for_name(fq_name)
-  if isinstance(resolved_name, (type, type)):
+  if isinstance(resolved_name, type):
 
     return resolved_name()
   elif isinstance(resolved_name, types.MethodType):

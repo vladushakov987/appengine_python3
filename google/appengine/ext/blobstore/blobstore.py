@@ -36,6 +36,8 @@ class representing a blob-key.
 
 
 
+from builtins import str
+from builtins import object
 import base64
 import email
 import email.message

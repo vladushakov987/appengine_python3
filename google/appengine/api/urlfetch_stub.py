@@ -26,6 +26,8 @@
 
 
 
+from builtins import str
+from builtins import range
 import six
 from six.moves import range
 _successfully_imported_fancy_urllib = False

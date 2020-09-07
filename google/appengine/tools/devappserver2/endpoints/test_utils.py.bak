@@ -22,8 +22,8 @@
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import unittest
 import six.moves.urllib.parse
 
@@ -45,7 +45,7 @@ def build_request(path, body='', http_headers=None):
    unused_fragment) = six.moves.urllib.parse.urlsplit(path)
   env = {'SERVER_PORT': 42, 'REQUEST_METHOD': 'GET',
          'SERVER_NAME': 'localhost', 'HTTP_CONTENT_TYPE': 'application/json',
-         'PATH_INFO': path, 'wsgi.input': cStringIO.StringIO(body)}
+         'PATH_INFO': path, 'wsgi.input': io.StringIO(body)}
   if query:
     env['QUERY_STRING'] = query
 

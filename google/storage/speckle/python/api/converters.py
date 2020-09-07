@@ -56,6 +56,7 @@ Decoder
 
 
 from __future__ import absolute_import
+from builtins import str
 import datetime
 import decimal
 import functools

@@ -35,7 +35,7 @@ data stored.
 
 
 
-from __future__ import absolute_import
+
 import calendar
 import datetime
 import itertools
@@ -324,7 +324,7 @@ class GQL(object):
       object if the GQL query will require multiple backend queries to statisfy.
     """
     num_args = len(args)
-    input_args = frozenset(range(num_args))
+    input_args = frozenset(list(range(num_args)))
     used_args = set()
 
     queries = []

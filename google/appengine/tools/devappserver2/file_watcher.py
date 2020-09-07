@@ -19,6 +19,7 @@
 
 
 
+from builtins import object
 import logging
 import sys
 import types

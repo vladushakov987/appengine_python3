@@ -20,7 +20,6 @@
 
 """Utilities for generating and updating index.yaml."""
 
-from __future__ import with_statement
 
 
 
@@ -29,7 +28,8 @@ from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six
 from six.moves import zip
 __all__ = ['GenerateIndexFromHistory',

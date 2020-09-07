@@ -15,10 +15,14 @@
 # limitations under the License.
 #
 """A base class for all Admin UI request handlers and related utilities."""
+from __future__ import division
 
 
 
 
+from builtins import str
+from builtins import range
+from past.utils import old_div
 import os.path
 import random
 import string
@@ -49,9 +53,9 @@ def _byte_size_format(value):
   elif byte_count < 1024 ** 2:
     return '%.1f KiB (%d Bytes)' % (byte_count/1024.0, byte_count)
   elif byte_count < 1024 ** 3:
-    return '%.1f MiB (%d Bytes)' % (byte_count/1024.0 ** 2, byte_count)
+    return '%.1f MiB (%d Bytes)' % (old_div(byte_count,1024.0 ** 2), byte_count)
   else:
-    return '%.1f GiB (%d Bytes)' % (byte_count/1024.0 ** 3, byte_count)
+    return '%.1f GiB (%d Bytes)' % (old_div(byte_count,1024.0 ** 3), byte_count)
 
 
 TEMPLATE_PATH = os.path.abspath(

@@ -1,4 +1,7 @@
 
+from builtins import str
+from builtins import next
+from builtins import chr
 import re
 from google.appengine._internal.django.utils.encoding import force_unicode
 from google.appengine._internal.django.utils.functional import allow_lazy

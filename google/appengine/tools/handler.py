@@ -35,6 +35,8 @@ In this module:
 """
 
 
+from builtins import range
+from builtins import object
 import fnmatch
 import itertools
 import re

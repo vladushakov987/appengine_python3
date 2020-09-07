@@ -37,6 +37,8 @@ to be compatible) library to replace db.py is also under development.
 
 
 
+from builtins import zip
+from builtins import object
 from six.moves import zip
 __all__ = ['AbstractAdapter',
            'BaseConfiguration',

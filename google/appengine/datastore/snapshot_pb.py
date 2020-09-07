@@ -18,6 +18,7 @@
 
 
 
+from builtins import range
 from google.net.proto import ProtocolBuffer
 import array
 import six.moves._dummy_thread as thread

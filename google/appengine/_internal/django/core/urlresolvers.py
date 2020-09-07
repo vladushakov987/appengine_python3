@@ -8,6 +8,9 @@ a string) and returns a tuple in this format:
 """
 
 
+from builtins import str
+from builtins import zip
+from builtins import object
 import re
 
 from google.appengine._internal.django.http import Http404

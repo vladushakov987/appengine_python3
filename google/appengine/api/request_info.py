@@ -28,6 +28,9 @@ capabilities.
 """
 
 
+from builtins import map
+from builtins import zip
+from builtins import object
 import logging
 import operator
 import os

@@ -17,6 +17,7 @@
 """Tests for google.appengine.tools.devappserver2.scheduled_executor."""
 
 
+from builtins import object
 import threading
 import time
 import unittest

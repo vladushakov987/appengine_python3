@@ -29,6 +29,7 @@ compiler at compile-time.
 
 
 
+from builtins import object
 class GeneratedServiceType(type):
 
   """Metaclass for service classes created at runtime from ServiceDescriptors.

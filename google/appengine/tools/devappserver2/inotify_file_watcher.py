@@ -22,6 +22,8 @@ See http://linux.die.net/man/7/inotify.
 
 
 
+from builtins import hex
+from builtins import object
 import ctypes
 import ctypes.util
 import errno

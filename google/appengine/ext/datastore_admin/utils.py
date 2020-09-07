@@ -19,10 +19,16 @@
 
 
 """Used render templates for datastore admin."""
+from __future__ import division
 
 
 
 
+from builtins import chr
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import base64
 import datetime
 import logging
@@ -765,6 +771,6 @@ class Put(mr_operation.Operation):
     pool = ctx.get_pool(PutPool.POOL_NAME)
     if not pool:
       pool = PutPool(
-          max_entity_count=(context.MAX_ENTITY_COUNT/(2**ctx.task_retry_count)))
+          max_entity_count=(old_div(context.MAX_ENTITY_COUNT,(2**ctx.task_retry_count))))
       ctx.register_pool(PutPool.POOL_NAME, pool)
     pool.Put(self.entity)

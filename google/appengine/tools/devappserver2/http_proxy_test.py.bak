@@ -16,8 +16,8 @@
 #
 """Tests for google.appengine.tools.devappserver2.http_proxy."""
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import six.moves.http_client
 import os
 import re
@@ -168,7 +168,7 @@ class HttpProxyTest(wsgi_test_utils.WSGITestCase):
     six.moves.http_client.HTTPConnection.getresponse().AndReturn(response)
     six.moves.http_client.HTTPConnection.close()
     environ = {'HTTP_HEADER': 'value', 'PATH_INFO': '/post',
-               'wsgi.input': cStringIO.StringIO('post data'),
+               'wsgi.input': io.StringIO('post data'),
                'CONTENT_LENGTH': '9',
                'CONTENT_TYPE': 'text/plain',
                'REQUEST_METHOD': 'POST',
@@ -450,7 +450,7 @@ class HttpProxyTest(wsgi_test_utils.WSGITestCase):
                           url_map=self.url_map,
                           match=re.match(self.url_map.url, '/get%20error'),
                           request_id='request id',
-                          request_type=instance.NORMAL_REQUEST).next)
+                          request_type=instance.NORMAL_REQUEST).__next__)
     self.mox.VerifyAll()
 
   def test_connection_error_process_quit(self):

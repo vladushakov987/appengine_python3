@@ -23,6 +23,8 @@ module is the sandboxed version.
 
 
 
+from builtins import str
+from builtins import object
 import io
 import os
 import sys

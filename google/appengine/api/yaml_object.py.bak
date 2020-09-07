@@ -33,7 +33,7 @@ using the validation mechanism (see google.appengine.api.validation.py).
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api import validation
 from google.appengine.api import yaml_listener
 from google.appengine.api import yaml_builder

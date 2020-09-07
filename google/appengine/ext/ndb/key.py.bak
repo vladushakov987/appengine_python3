@@ -68,7 +68,7 @@ namespace manager.  To explicitly select the empty namespace pass
 namespace=''.
 """
 
-from __future__ import absolute_import
+
 from six.moves import range
 __author__ = 'guido@google.com (Guido van Rossum)'
 
@@ -247,7 +247,7 @@ class Key(object):
           raise datastore_errors.BadArgumentError(
             'Incomplete Key entry must be last')
       else:
-        if not isinstance(id, (int, int, str)):
+        if not isinstance(id, (int, str)):
           raise TypeError('Key id must be a string or a number; received %r' %
                           id)
       if isinstance(kind, type):

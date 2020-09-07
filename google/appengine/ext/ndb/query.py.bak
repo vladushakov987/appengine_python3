@@ -122,8 +122,8 @@ in a tasklet, properly yielding when appropriate:
     print emp.name, emp.age
 """
 
-from __future__ import with_statement
-from __future__ import absolute_import
+
+
 import six
 from six.moves import map
 from six.moves import range
@@ -243,7 +243,7 @@ class RepeatedStructuredPropertyPredicate(datastore_query.FilterPredicate):
         return False  # If any column is empty there can be no match.
       columns.append(column)
     # Use izip to transpose the columns into rows.
-    return self.match_values in zip(*columns)
+    return self.match_values in list(zip(*columns))
 
   # Don't implement _prune()!  It would mess up the row correspondence
   # within columns.
@@ -279,7 +279,7 @@ class Parameter(ParameterizedThing):
     Args:
       key: The Parameter key, must be either an integer or a string.
     """
-    if not isinstance(key, (int, int, six.string_types)):
+    if not isinstance(key, (int, six.string_types)):
       raise TypeError('Parameter key must be an integer or string, not %s' %
                       (key,))
     self.__key = key
@@ -684,7 +684,7 @@ def _args_to_val(func, args):
   from .google_imports import gql  # Late import, to avoid name conflict.
   vals = []
   for arg in args:
-    if isinstance(arg, (int, int, six.string_types)):
+    if isinstance(arg, (int, six.string_types)):
       val = Parameter(arg)
     elif isinstance(arg, gql.Literal):
       val = arg.Get()
@@ -1747,7 +1747,7 @@ class QueryIterator(object):
       flag = False
     raise tasklets.Return(flag)
 
-  def next(self):
+  def __next__(self):
     """Iterator protocol: get next item or raise StopIteration."""
     if self._fut is None:
       self._fut = self._iter.getq()

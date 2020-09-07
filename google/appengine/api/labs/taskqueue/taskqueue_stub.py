@@ -27,6 +27,7 @@ As well as implementing Task Queue API functions, the stub exposes various other
 functions that are used by the dev_appserver's admin console to display the
 application's queues and tasks.
 """
+from __future__ import division
 
 
 
@@ -39,6 +40,11 @@ application's queues and tasks.
 
 
 
+from builtins import zip
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import io
 import base64
 import bisect
@@ -324,13 +330,13 @@ def _CompareTasksByEta(a, b):
 
 def _FormatEta(eta_usec):
   """Formats a task ETA as a date string in UTC."""
-  eta = datetime.datetime.fromtimestamp(eta_usec/1000000)
+  eta = datetime.datetime.fromtimestamp(old_div(eta_usec,1000000))
   return eta.strftime('%Y/%m/%d %H:%M:%S')
 
 
 def _EtaDelta(eta_usec):
   """Formats a task ETA as a relative time string."""
-  eta = datetime.datetime.fromtimestamp(eta_usec/1000000)
+  eta = datetime.datetime.fromtimestamp(old_div(eta_usec,1000000))
   now = datetime.datetime.utcnow()
   if eta > now:
     return str(eta - now) + ' from now'
@@ -419,7 +425,7 @@ class TaskQueueServiceStub(apiproxy_stub.APIProxyStub):
     if request.eta_usec() < 0:
       return taskqueue_service_pb.TaskQueueServiceError.INVALID_ETA
 
-    eta = datetime.datetime.utcfromtimestamp(request.eta_usec() / 1e6)
+    eta = datetime.datetime.utcfromtimestamp(old_div(request.eta_usec(), 1e6))
     max_eta = (datetime.datetime.utcnow() +
                datetime.timedelta(days=MAX_ETA_DELTA_DAYS))
     if eta > max_eta:

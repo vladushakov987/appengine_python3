@@ -32,6 +32,11 @@ representing an App Engine runtime.
 
 
 
+from builtins import next
+from builtins import str
+from builtins import chr
+from builtins import range
+from builtins import object
 import calendar
 import io
 import email

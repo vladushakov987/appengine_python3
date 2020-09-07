@@ -17,6 +17,7 @@
 """User API for controlling Map job execution."""
 
 
+from builtins import object
 from google.appengine.api import taskqueue
 from google.appengine.datastore import datastore_rpc
 from google.appengine.ext import db

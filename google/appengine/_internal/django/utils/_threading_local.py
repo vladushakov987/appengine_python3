@@ -136,6 +136,10 @@ affects what we see:
 # Threading import is at end
 
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import object
 class _localbase(object):
     __slots__ = '_local__key', '_local__args', '_local__lock'
 

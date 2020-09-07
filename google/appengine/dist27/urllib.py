@@ -21,9 +21,19 @@ The info() method returns a mimetools.Message object which can be
 used to query various info about the object, if available.
 (mimetools.Message objects are queried with the getheader() method.)
 """
+from __future__ import print_function
 
 
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import zip
+from builtins import chr
+from builtins import input
+from builtins import map
+from builtins import str
+from builtins import range
+from builtins import object
 import string
 from . import socket
 import os
@@ -116,7 +126,7 @@ class ContentTooShortError(IOError):
         self.content = content
 
 ftpcache = {}
-class URLopener:
+class URLopener(object):
     """Class to open URLs.
     This is a class rather than just a subroutine because we may need
     more than one set of global protocol-specific options.
@@ -848,7 +858,7 @@ def noheaders():
 
 # Utility classes
 
-class ftpwrapper:
+class ftpwrapper(object):
     """Class used by open_ftp() for cache of open FTP connections."""
 
     def __init__(self, user, passwd, host, port, dirs,
@@ -943,7 +953,7 @@ class ftpwrapper:
         except ftperrors():
             pass
 
-class addbase:
+class addbase(object):
     """Base class for addinfo and addclosehook."""
 
     def __init__(self, fp):
@@ -1596,7 +1606,7 @@ def test1():
     print(repr(s))
     print(repr(qs))
     print(repr(uqs))
-    print(round(t1 - t0, 3), 'sec')
+    print((round(t1 - t0, 3), 'sec'))
 
 
 def reporthook(blocknum, blocksize, totalsize):

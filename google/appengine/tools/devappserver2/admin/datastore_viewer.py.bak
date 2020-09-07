@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import cgi
 import datetime
 import math
@@ -172,7 +172,7 @@ class DataType(object):
       return ''
 
   def format(self, value):
-    if isinstance(value, (str,)):
+    if isinstance(value, str):
       return value
     else:
       return str(value)
@@ -539,7 +539,7 @@ _DATA_TYPES = {
 }
 
 _NAMED_DATA_TYPES = {}
-for _data_type in _DATA_TYPES.values():
+for _data_type in list(_DATA_TYPES.values()):
   _NAMED_DATA_TYPES[_data_type.name()] = _data_type
 
 
@@ -551,7 +551,7 @@ class DatastoreRequestHandler(admin_request_handler.AdminRequestHandler):
   @staticmethod
   def _calculate_writes_for_built_in_indices(entity):
     writes = 0
-    for prop_name in entity.keys():
+    for prop_name in list(entity.keys()):
       if not prop_name in entity.unindexed_properties():
         # 2 writes per property value, one for EntitiesByProperty and one for
         # EntitiesbyPropertyDesc

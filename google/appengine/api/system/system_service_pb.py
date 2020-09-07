@@ -18,6 +18,9 @@
 
 
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import range
 from google.net.proto import ProtocolBuffer
 import array
 import six.moves._dummy_thread as thread

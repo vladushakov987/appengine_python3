@@ -26,6 +26,8 @@ file, in types that make this information accessible in Python.
 
 
 from __future__ import absolute_import
+from builtins import str
+from builtins import object
 from google.net.proto2.python.internal import api_implementation
 
 

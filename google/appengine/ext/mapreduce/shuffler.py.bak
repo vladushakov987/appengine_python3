@@ -31,12 +31,12 @@
 
 """Mapreduce shuffler implementation."""
 
-from __future__ import with_statement
 
 
 
 
-from __future__ import absolute_import
+
+
 from six.moves import range
 __all__ = [
     "ShufflePipeline",

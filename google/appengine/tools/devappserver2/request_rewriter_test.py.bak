@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import functools
 import sys
 import time
@@ -46,15 +46,15 @@ class RewriterMiddlewareTest(wsgi_test_utils.RewriterTestCase):
     self.test_body = True
 
     def check_initial_response(state):
-      self.assertEquals('Environ value', state.environ['ENVIRON_KEY'])
+      self.assertEqual('Environ value', state.environ['ENVIRON_KEY'])
       if self.test_status:
-        self.assertEquals('200 Good to go', state.status)
-      self.assertEquals('Some value', state.headers['SomeHeader'])
+        self.assertEqual('200 Good to go', state.status)
+      self.assertEqual('Some value', state.headers['SomeHeader'])
 
       # Convert state.body into a list to allow multiple traversals.
       state.body = list(state.body)
       if self.test_body:
-        self.assertEquals('Original content', ''.join(state.body))
+        self.assertEqual('Original content', ''.join(state.body))
 
       self.initial_calls += 1
 
@@ -63,24 +63,24 @@ class RewriterMiddlewareTest(wsgi_test_utils.RewriterTestCase):
 
     def modify_status(state):
       if self.test_status:
-        self.assertEquals('200 Good to go', state.status)
+        self.assertEqual('200 Good to go', state.status)
       if not state.status.startswith('500 '):
         state.status = '400 Not so good'
       self.modify_calls += 1
 
     def modify_headers(state):
       if self.test_status:
-        self.assertEquals('400 Not so good', state.status)
-      self.assertEquals('Some value', state.headers['SomeHeader'])
+        self.assertEqual('400 Not so good', state.status)
+      self.assertEqual('Some value', state.headers['SomeHeader'])
       state.headers.add_header('AnotherHeader', 'Another value')
       self.modify_calls += 1
 
     def modify_body(state):
       body = ''.join(state.body)
-      self.assertEquals('Another value', state.headers['AnotherHeader'])
-      self.assertEquals('Some value', state.headers['SomeHeader'])
+      self.assertEqual('Another value', state.headers['AnotherHeader'])
+      self.assertEqual('Some value', state.headers['SomeHeader'])
       if self.test_body:
-        self.assertEquals('Original content', body)
+        self.assertEqual('Original content', body)
 
       state.body = ('%s%say ' % (w[1:], w[:1].lower()) for w in body.split())
       self.modify_calls += 1
@@ -118,9 +118,9 @@ class RewriterMiddlewareTest(wsgi_test_utils.RewriterTestCase):
     self.assert_rewritten_response(expected_status, expected_headers,
                                    expected_body, application, environ)
 
-    self.assertEquals(1, self.initial_calls)
-    self.assertEquals(2, self.chain_calls)
-    self.assertEquals(3, self.modify_calls)
+    self.assertEqual(1, self.initial_calls)
+    self.assertEqual(2, self.chain_calls)
+    self.assertEqual(3, self.modify_calls)
 
   def test_body_no_yields(self):
     """Tests an application that yields 0 body blocks."""
@@ -242,7 +242,7 @@ class RewriterMiddlewareTest(wsgi_test_utils.RewriterTestCase):
 
     environ = {'ENVIRON_KEY': 'Environ value'}
 
-    self.assertRaisesRegexp(ValueError, 'A problem happened$',
+    self.assertRaisesRegex(ValueError, 'A problem happened$',
                             self.assert_rewritten_response, None, None, None,
                             application, environ)
 

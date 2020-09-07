@@ -18,6 +18,9 @@
 """Command line tool for generating ProtoRPC definitions from descriptors."""
 
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
 import errno
 import logging
 import optparse

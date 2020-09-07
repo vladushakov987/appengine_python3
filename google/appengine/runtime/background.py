@@ -25,6 +25,7 @@ request context and do not need to end before the creator request completes.
 
 
 
+from builtins import object
 import logging
 import sys
 import six.moves._thread

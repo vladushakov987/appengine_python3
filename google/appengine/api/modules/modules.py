@@ -17,6 +17,7 @@
 """Exposes methods to control modules and versions of an app."""
 
 
+from builtins import str
 __all__ = [
     'Error',
     'InvalidModuleError',

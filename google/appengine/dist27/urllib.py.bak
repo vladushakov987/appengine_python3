@@ -22,8 +22,8 @@ used to query various info about the object, if available.
 (mimetools.Message objects are queried with the getheader() method.)
 """
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import string
 from . import socket
 import os
@@ -34,7 +34,7 @@ import base64
 from six.moves.urllib.parse import urljoin as basejoin
 from six.moves import map
 import six
-from six import unichr
+from six import chr
 from six.moves import range
 from six.moves import zip
 from six.moves import input
@@ -469,9 +469,9 @@ class URLopener:
         """Use local file."""
         import mimetypes, mimetools, email.utils
         try:
-            from cStringIO import StringIO
+            from io import StringIO
         except ImportError:
-            from StringIO import StringIO
+            from io import StringIO
         host, file = splithost(url)
         localname = url2pathname(file)
         try:
@@ -507,9 +507,9 @@ class URLopener:
             raise IOError('ftp error', 'proxy support for ftp protocol currently not implemented')
         import mimetypes, mimetools
         try:
-            from cStringIO import StringIO
+            from io import StringIO
         except ImportError:
-            from StringIO import StringIO
+            from io import StringIO
         host, path = splithost(url)
         if not host: raise IOError('ftp error', 'no host given')
         host, port = splitport(host)
@@ -535,7 +535,7 @@ class URLopener:
         # XXX thread unsafe!
         if len(self.ftpcache) > MAXFTPCACHE:
             # Prune the cache, rather arbitrarily
-            for k in self.ftpcache.keys():
+            for k in list(self.ftpcache.keys()):
                 if k != key:
                     v = self.ftpcache[k]
                     del self.ftpcache[k]
@@ -574,9 +574,9 @@ class URLopener:
         # parameter := attribute "=" value
         import mimetools
         try:
-            from cStringIO import StringIO
+            from io import StringIO
         except ImportError:
-            from StringIO import StringIO
+            from io import StringIO
         try:
             [type, data] = url.split(',', 1)
         except ValueError:
@@ -794,8 +794,8 @@ class FancyURLopener(URLopener):
         """Override this in a GUI environment!"""
         import getpass
         try:
-            user = input("Enter username for %s at %s: " % (realm,
-                                                                host))
+            user = eval(input("Enter username for %s at %s: " % (realm,
+                                                                host)))
             passwd = getpass.getpass("Enter password for %s in %s at %s: " %
                 (user, realm, host))
             return user, passwd
@@ -838,9 +838,9 @@ def noheaders():
     if _noheaders is None:
         import mimetools
         try:
-            from cStringIO import StringIO
+            from io import StringIO
         except ImportError:
-            from StringIO import StringIO
+            from io import StringIO
         _noheaders = mimetools.Message(StringIO(), 0)
         _noheaders.fp.close()   # Recycle file descriptor
     return _noheaders
@@ -958,7 +958,7 @@ class addbase:
         if hasattr(self.fp, "__iter__"):
             self.__iter__ = self.fp.__iter__
             if hasattr(self.fp, "next"):
-                self.next = self.fp.next
+                self.next = self.fp.__next__
 
     def __repr__(self):
         return '<%s at %r whose fp = %r>' % (self.__class__.__name__,
@@ -1213,7 +1213,7 @@ def unquote(s):
         except KeyError:
             s += '%' + item
         except UnicodeDecodeError:
-            s += unichr(int(item[:2], 16)) + item[2:]
+            s += chr(int(item[:2], 16)) + item[2:]
     return s
 
 def unquote_plus(s):
@@ -1225,7 +1225,7 @@ always_safe = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                'abcdefghijklmnopqrstuvwxyz'
                '0123456789' '_.-')
 _safe_map = {}
-for i, c in zip(range(256), str(bytearray(range(256)))):
+for i, c in zip(list(range(256)), str(bytearray(list(range(256))))):
     # NOTE(guido): The original code here used Python 2.7 syntax, but
     # in App Engine we want to support Python 2.6 as well.
     _safe_map[c] = c if (i < 128 and c in always_safe) else '%%%02X' % i
@@ -1351,7 +1351,7 @@ def getproxies_environment():
 
     """
     proxies = {}
-    for name, value in os.environ.items():
+    for name, value in list(os.environ.items()):
         name = name.lower()
         if value and name[-6:] == '_proxy':
             proxies[name[:-6]] = value

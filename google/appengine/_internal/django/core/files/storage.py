@@ -1,4 +1,6 @@
 
+from builtins import next
+from builtins import object
 import os
 import errno
 import six.moves.urllib.parse

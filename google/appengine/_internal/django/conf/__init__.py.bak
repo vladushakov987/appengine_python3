@@ -6,7 +6,7 @@ variable, and then from google.appengine._internal.django.conf.global_settings; 
 a list of all possible variables.
 """
 
-from __future__ import absolute_import
+
 import os
 import re
 import threading
@@ -39,7 +39,7 @@ class LazySettings(threading.local):
         argument must support attribute access (__getattr__)).
         """
         self.holder = UserSettingsHolder(default_settings)
-        for name, value in options.items():
+        for name, value in list(options.items()):
             setattr(self.holder, name, value)
 
     configured = True

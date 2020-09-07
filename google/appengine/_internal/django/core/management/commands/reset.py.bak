@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from optparse import make_option
 
 from google.appengine._internal.django.conf import settings
@@ -32,13 +32,13 @@ class Command(AppCommand):
         sql_list = sql_reset(app, self.style, connection)
 
         if options.get('interactive'):
-            confirm = input("""
+            confirm = eval(input("""
 You have requested a database reset.
 This will IRREVERSIBLY DESTROY any data for
 the "%s" application in the database "%s".
 Are you sure you want to do this?
 
-Type 'yes' to continue, or 'no' to cancel: """ % (app_name, connection.settings_dict['NAME']))
+Type 'yes' to continue, or 'no' to cancel: """ % (app_name, connection.settings_dict['NAME'])))
         else:
             confirm = 'yes'
 

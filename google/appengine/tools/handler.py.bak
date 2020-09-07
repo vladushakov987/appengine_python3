@@ -34,7 +34,7 @@ In this module:
     written directly to Yaml.
 """
 
-from __future__ import absolute_import
+
 import fnmatch
 import itertools
 import re
@@ -353,7 +353,7 @@ def _ReorderHandlers(handler_list):
   Args:
     handler_list: Unordered list of handlers.
   """
-  for i, j in itertools.combinations(range(len(handler_list)), 2):
+  for i, j in itertools.combinations(list(range(len(handler_list))), 2):
     if handler_list[i].MatchesAll(handler_list[j]):
       handler_list[i], handler_list[j] = handler_list[j], handler_list[i]
 
@@ -374,7 +374,7 @@ def _GivePropertiesFromGeneralToSpecific(handler_list):
   Args:
     handler_list: List of ordered Handlers.
   """
-  for i, j in itertools.combinations(range(len(handler_list)), 2):
+  for i, j in itertools.combinations(list(range(len(handler_list))), 2):
     if handler_list[j].MatchesAll(handler_list[i]):
       if isinstance(handler_list[i], SimpleHandler):
         handler_list[i] = handler_list[i].CreateOverlappedHandler()

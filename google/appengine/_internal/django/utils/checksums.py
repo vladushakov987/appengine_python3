@@ -1,6 +1,7 @@
 """
 Common checksum routines (used in multiple localflavor/ cases, for example).
 """
+from builtins import str
 import six
 
 __all__ = ['luhn',]

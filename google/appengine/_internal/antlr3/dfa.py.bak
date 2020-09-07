@@ -30,7 +30,7 @@
 #
 # end[licensc]
 
-from __future__ import absolute_import
+
 from google.appengine._internal.antlr3.constants import EOF
 from google.appengine._internal.antlr3.exceptions import NoViableAltException, BacktrackingFailed
 from six.moves import range

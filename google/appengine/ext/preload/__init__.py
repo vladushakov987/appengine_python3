@@ -36,6 +36,8 @@
 
 
 
+from future import standard_library
+standard_library.install_aliases()
 import os
 _original_os_urandom = os.urandom
 def os_urandom_replacement(n):
@@ -66,7 +68,7 @@ import UserDict
 import collections
 import collections
 import aifc
-import dbm
+import dbm.ndbm
 
 
 import atexit
@@ -230,7 +232,7 @@ import warnings
 import wave
 import weakref
 
-import dbm
+import dbm.ndbm
 import xdrlib
 import xml.parsers.expat
 import xml.dom

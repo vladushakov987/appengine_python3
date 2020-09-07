@@ -21,7 +21,7 @@ to the local emulation layer.
 """
 
 
-from __future__ import absolute_import
+
 import six.moves.http_client
 import webob
 

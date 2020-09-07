@@ -16,7 +16,7 @@
 
 """Code common to all chart types."""
 
-from __future__ import absolute_import
+
 import copy
 import warnings
 

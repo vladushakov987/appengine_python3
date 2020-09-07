@@ -36,7 +36,7 @@ See <http://www.antlr.org/wiki/display/~admin/2007/07/02/Exploring+Concept+of+Tr
 #
 # end[licence]
 
-from __future__ import absolute_import
+
 from google.appengine._internal.antlr3.constants import INVALID_TOKEN_TYPE
 from google.appengine._internal.antlr3.tokens import CommonToken
 from google.appengine._internal.antlr3.tree import CommonTree, CommonTreeAdaptor

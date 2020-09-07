@@ -17,6 +17,7 @@
 """Tests for google.appengine.tools.devappserver2.dispatcher."""
 
 
+from builtins import object
 import logging
 import socket
 import unittest

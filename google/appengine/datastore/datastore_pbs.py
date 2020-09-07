@@ -40,6 +40,8 @@ This module is internal and should not be used by client applications.
 
 
 
+from builtins import str
+from builtins import object
 from google.appengine.datastore import entity_pb
 
 from google.appengine.datastore import entity_v4_pb

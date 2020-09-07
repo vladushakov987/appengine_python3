@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 
 import os
@@ -178,7 +179,7 @@ def emit_post_sync_signal(created_models, verbosity, interactive, db):
     for app in models.get_apps():
         app_name = app.__name__.split('.')[-2]
         if verbosity >= 2:
-            print("Running post-sync handlers for application", app_name)
+            print(("Running post-sync handlers for application", app_name))
         models.signals.post_syncdb.send(sender=app, app=app,
             created_models=created_models, verbosity=verbosity,
             interactive=interactive, db=db)

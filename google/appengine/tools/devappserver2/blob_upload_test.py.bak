@@ -18,10 +18,10 @@
 
 
 
-from __future__ import absolute_import
+
 import base64
 import cgi
-import cStringIO
+import io
 import datetime
 import email
 import email.message
@@ -29,7 +29,7 @@ import hashlib
 import os
 import re
 import shutil
-import StringIO
+import io
 import tempfile
 import unittest
 import six.moves.urllib.parse
@@ -359,7 +359,7 @@ class GenerateBlobKeyTest(UploadTestBase):
     digester.update(str(expected_time))
     digester.update(str(expected_random))
     actual_digest = base64.urlsafe_b64decode(blob_key)
-    self.assertEquals(digester.digest(), actual_digest)
+    self.assertEqual(digester.digest(), actual_digest)
 
   def test_generate_key(self):
     """Basic test of key generation."""
@@ -491,7 +491,7 @@ class UploadHandlerUnitTest(UploadTestBase):
     self.mox.ReplayAll()
     content_type, blob_file, filename = self.handler._preprocess_data(
         'image/png; a="b"; m="n"',
-        StringIO.StringIO(blob_content),
+        io.StringIO(blob_content),
         'stuff.png',
         base64_encoding)
     self.handler.store_blob(content_type=content_type,
@@ -500,16 +500,16 @@ class UploadHandlerUnitTest(UploadTestBase):
                             blob_file=blob_file,
                             creation=expected_creation)
 
-    self.assertEquals(expected_result,
+    self.assertEqual(expected_result,
                       self.storage.OpenBlob(expected_key).read())
 
     blob_info = blobstore.get(expected_key)
     self.assertFalse(blob_info is None)
-    self.assertEquals(('image/png', {'a': 'b', 'm': 'n'}),
+    self.assertEqual(('image/png', {'a': 'b', 'm': 'n'}),
                       cgi.parse_header(blob_info.content_type))
-    self.assertEquals(expected_creation, blob_info.creation)
-    self.assertEquals('stuff.png', blob_info.filename)
-    self.assertEquals(len(expected_result), blob_info.size)
+    self.assertEqual(expected_creation, blob_info.creation)
+    self.assertEqual('stuff.png', blob_info.filename)
+    self.assertEqual(len(expected_result), blob_info.size)
 
     self.mox.VerifyAll()
 
@@ -529,7 +529,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('file1'),
+                           file=io.StringIO('file1'),
                            type='image/png',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='stuff.png',
@@ -537,13 +537,13 @@ class UploadHandlerUnitTest(UploadTestBase):
                                     'h2': 'v2',
                                    }),
         'field2': [FakeForm(name='field2',
-                            file=StringIO.StringIO('file2'),
+                            file=io.StringIO('file2'),
                             type='application/pdf',
                             type_options={},
                             filename='stuff.pdf',
                             headers={}),
                    FakeForm(name='field2',
-                            file=StringIO.StringIO('file3 extra'),
+                            file=io.StringIO('file3 extra'),
                             type='text/plain',
                             type_options={},
                             filename='stuff.txt',
@@ -565,17 +565,17 @@ class UploadHandlerUnitTest(UploadTestBase):
     self.assertMessageEqual(EXPECTED_GENERATED_MIME_MESSAGE, content_text)
 
     blob1 = blobstore.get('item1')
-    self.assertEquals('stuff.png', blob1.filename)
-    self.assertEquals(('image/png', {'a': 'b', 'x': 'y'}),
+    self.assertEqual('stuff.png', blob1.filename)
+    self.assertEqual(('image/png', {'a': 'b', 'x': 'y'}),
                       cgi.parse_header(blob1.content_type))
 
     blob2 = blobstore.get('item2')
-    self.assertEquals('stuff.pdf', blob2.filename)
-    self.assertEquals('application/pdf', blob2.content_type)
+    self.assertEqual('stuff.pdf', blob2.filename)
+    self.assertEqual('application/pdf', blob2.content_type)
 
     blob3 = blobstore.get('item3')
-    self.assertEquals('stuff.txt', blob3.filename)
-    self.assertEquals('text/plain', blob3.content_type)
+    self.assertEqual('stuff.txt', blob3.filename)
+    self.assertEqual('text/plain', blob3.content_type)
 
   def test_store_and_build_forward_message_with_gs_bucket(self):
     """Test the high-level method to store a blob and build a MIME message."""
@@ -587,7 +587,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('file1'),
+                           file=io.StringIO('file1'),
                            type='image/png',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='stuff.png',
@@ -619,7 +619,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('file1'),
+                           file=io.StringIO('file1'),
                            type='text/plain',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='chinese_char_name_\xe6\xb1\x89.txt',
@@ -638,7 +638,7 @@ class UploadHandlerUnitTest(UploadTestBase):
                             content_text)
 
     blob1 = blobstore.get('item1')
-    self.assertEquals(u'chinese_char_name_\u6c49.txt', blob1.filename)
+    self.assertEqual('chinese_char_name_\u6c49.txt', blob1.filename)
 
   def test_store_and_build_forward_message_latin1_values(self):
     """Test store and build message method with Latin-1 values."""
@@ -650,7 +650,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('file1'),
+                           file=io.StringIO('file1'),
                            type='text/plain',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='german_char_name_f\xfc\xdfe.txt',
@@ -677,7 +677,7 @@ class UploadHandlerUnitTest(UploadTestBase):
     self.mox.ReplayAll()
 
     form = FakeForm({'field1': FakeForm(name='field1',
-                                        file=StringIO.StringIO('file1'),
+                                        file=io.StringIO('file1'),
                                         type=None,
                                         type_options={},
                                         filename='file1',
@@ -710,7 +710,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('file1'),
+                           file=io.StringIO('file1'),
                            type='image/png',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='stuff.png',
@@ -718,7 +718,7 @@ class UploadHandlerUnitTest(UploadTestBase):
                                     'h2': 'v2',
                                    }),
         'field2': FakeForm(name='field2',
-                           file=StringIO.StringIO(''),
+                           file=io.StringIO(''),
                            type='application/pdf',
                            type_options={},
                            filename='stuff.pdf',
@@ -736,10 +736,10 @@ class UploadHandlerUnitTest(UploadTestBase):
                             content_text)
 
     blob1 = blobstore.get('item1')
-    self.assertEquals('stuff.png', blob1.filename)
+    self.assertEqual('stuff.png', blob1.filename)
 
     blob2 = blobstore.get('item2')
-    self.assertEquals('stuff.pdf', blob2.filename)
+    self.assertEqual('stuff.pdf', blob2.filename)
 
   def test_store_and_build_forward_message_no_filename(self):
     """Test upload with no filename in content disposition."""
@@ -751,7 +751,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('file1'),
+                           file=io.StringIO('file1'),
                            type='image/png',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='stuff.png',
@@ -759,7 +759,7 @@ class UploadHandlerUnitTest(UploadTestBase):
                                     'h2': 'v2',
                                    }),
         'field2': FakeForm(name='field2',
-                           file=StringIO.StringIO(''),
+                           file=io.StringIO(''),
                            type='application/pdf',
                            type_options={},
                            filename='',
@@ -776,9 +776,9 @@ class UploadHandlerUnitTest(UploadTestBase):
                             content_text)
 
     blob1 = blobstore.get('item1')
-    self.assertEquals('stuff.png', blob1.filename)
+    self.assertEqual('stuff.png', blob1.filename)
 
-    self.assertEquals(None, blobstore.get('item2'))
+    self.assertEqual(None, blobstore.get('item2'))
 
   def test_store_and_build_forward_message_bad_mimes(self):
     """Test upload with no headers provided."""
@@ -790,14 +790,14 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     for mime_type in BAD_MIMES:
       form = FakeForm({'field1': FakeForm(name='field1',
-                                          file=StringIO.StringIO('file1'),
+                                          file=io.StringIO('file1'),
                                           type=mime_type,
                                           type_options={},
                                           filename='file',
                                           headers={}),
                       })
 
-      self.assertRaisesRegexp(
+      self.assertRaisesRegex(
           webob.exc.HTTPClientError,
           'Incorrectly formatted MIME type: %s' % mime_type,
           self.handler.store_and_build_forward_message,
@@ -816,7 +816,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('a'),
+                           file=io.StringIO('a'),
                            type='image/png',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='stuff.png',
@@ -824,7 +824,7 @@ class UploadHandlerUnitTest(UploadTestBase):
                                     'h2': 'v2',
                                    }),
         'field2': FakeForm(name='field2',
-                           file=StringIO.StringIO('longerfile'),
+                           file=io.StringIO('longerfile'),
                            type='application/pdf',
                            type_options={},
                            filename='stuff.pdf',
@@ -850,7 +850,7 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('a'),
+                           file=io.StringIO('a'),
                            type='image/png',
                            type_options={'a': 'b', 'x': 'y'},
                            filename='stuff.png',
@@ -858,7 +858,7 @@ class UploadHandlerUnitTest(UploadTestBase):
                                     'h2': 'v2',
                                    }),
         'field2': FakeForm(name='field2',
-                           file=StringIO.StringIO('longerfile'),
+                           file=io.StringIO('longerfile'),
                            type='application/pdf',
                            type_options={},
                            filename='stuff.pdf',
@@ -890,14 +890,14 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('a'),
+                           file=io.StringIO('a'),
                            type='image/png',
                            type_options={'a': 'b', 'x': 'y'},
                            filename=filename,
                            headers={}),
         })
 
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         webob.exc.HTTPClientError,
         'The filename exceeds the maximum allowed length of 500.',
         self.handler.store_and_build_forward_message,
@@ -914,14 +914,14 @@ class UploadHandlerUnitTest(UploadTestBase):
 
     form = FakeForm({
         'field1': FakeForm(name='field1',
-                           file=StringIO.StringIO('a'),
+                           file=io.StringIO('a'),
                            type=content_type,
                            type_options={'a': 'b', 'x': 'y'},
                            filename='foobar.txt',
                            headers={}),
         })
 
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         webob.exc.HTTPClientError,
         'The Content-Type exceeds the maximum allowed length of 500.',
         self.handler.store_and_build_forward_message,
@@ -1031,9 +1031,9 @@ class UploadHandlerWSGITest(UploadTestBase):
         'headers_already_sent': False,
     }
 
-    self.environ['wsgi.input'] = cStringIO.StringIO(request_body)
+    self.environ['wsgi.input'] = io.StringIO(request_body)
 
-    body = cStringIO.StringIO()
+    body = io.StringIO()
 
     def write_body(text):
       if not text:
@@ -1079,32 +1079,32 @@ class UploadHandlerWSGITest(UploadTestBase):
     status, _, response_body, forward_environ, forward_body = (
         self.run_dispatcher(upload_data))
 
-    self.assertEquals('200 OK', status)
-    self.assertEquals('Forwarded successfully.', response_body)
+    self.assertEqual('200 OK', status)
+    self.assertEqual('Forwarded successfully.', response_body)
 
-    self.assertNotEquals(None, forward_environ)
+    self.assertNotEqual(None, forward_environ)
 
     # These must NOT be unicode strings.
     self.assertIsInstance(forward_environ['PATH_INFO'], str)
     if 'QUERY_STRING' in forward_environ:
       self.assertIsInstance(forward_environ['QUERY_STRING'], str)
-    self.assertRegexpMatches(forward_environ['CONTENT_TYPE'],
+    self.assertRegex(forward_environ['CONTENT_TYPE'],
                              r'multipart/form-data; boundary="[^"]+"')
-    self.assertEquals(len(forward_body), int(forward_environ['CONTENT_LENGTH']))
+    self.assertEqual(len(forward_body), int(forward_environ['CONTENT_LENGTH']))
     self.assertIn(constants.FAKE_IS_ADMIN_HEADER, forward_environ)
-    self.assertEquals('1', forward_environ[constants.FAKE_IS_ADMIN_HEADER])
+    self.assertEqual('1', forward_environ[constants.FAKE_IS_ADMIN_HEADER])
 
     new_request = email.message_from_string(
         'Content-Type: %s\n\n%s' % (forward_environ['CONTENT_TYPE'],
                                     forward_body))
     (upload,) = new_request.get_payload()
-    self.assertEquals('message/external-body', upload.get_content_type())
+    self.assertEqual('message/external-body', upload.get_content_type())
 
     message = email.message.Message()
     message.add_header('Content-Type', upload['Content-Type'])
     blob_key = message.get_param('blob-key')
     blob_contents = blobstore.BlobReader(blob_key).read()
-    self.assertEquals('value', blob_contents)
+    self.assertEqual('value', blob_contents)
 
     self.assertRaises(datastore_errors.EntityNotFoundError,
                       datastore.Get,
@@ -1129,9 +1129,9 @@ value
     upload, forward_environ, _ = self._run_test_success(
         upload_data, upload_url)
 
-    self.assertEquals('/success', forward_environ['PATH_INFO'])
-    self.assertEquals('foo=bar', forward_environ['QUERY_STRING'])
-    self.assertEquals(
+    self.assertEqual('/success', forward_environ['PATH_INFO'])
+    self.assertEqual('foo=bar', forward_environ['QUERY_STRING'])
+    self.assertEqual(
         ('form-data', {'filename': 'stuff.txt', 'name': 'field1'}),
         cgi.parse_header(upload['content-disposition']))
 
@@ -1153,9 +1153,9 @@ value
     upload, forward_environ, forward_body = self._run_test_success(
         upload_data, upload_url)
 
-    self.assertEquals('/success', forward_environ['PATH_INFO'])
-    self.assertEquals('foo=bar', forward_environ['QUERY_STRING'])
-    self.assertEquals(
+    self.assertEqual('/success', forward_environ['PATH_INFO'])
+    self.assertEqual('foo=bar', forward_environ['QUERY_STRING'])
+    self.assertEqual(
         ('form-data', {'filename': 'stuff.txt', 'name': 'field1'}),
         cgi.parse_header(upload['content-disposition']))
     self.assertIn('X-AppEngine-Cloud-Storage-Object: /gs/%s' % 'my_test_bucket',
@@ -1180,9 +1180,9 @@ value
     upload, forward_environ, _ = self._run_test_success(
         upload_data, upload_url)
 
-    self.assertEquals('/success', forward_environ['PATH_INFO'])
-    self.assertEquals('foo=bar', forward_environ['QUERY_STRING'])
-    self.assertEquals(
+    self.assertEqual('/success', forward_environ['PATH_INFO'])
+    self.assertEqual('foo=bar', forward_environ['QUERY_STRING'])
+    self.assertEqual(
         ('form-data', {'filename': 'stuff.txt', 'name': 'field1'}),
         cgi.parse_header(upload['content-disposition']))
 
@@ -1204,8 +1204,8 @@ Content-Transfer-Encoding: base64
     upload, forward_environ, _ = self._run_test_success(
         upload_data, upload_url)
 
-    self.assertEquals('/success', forward_environ['PATH_INFO'])
-    self.assertEquals(
+    self.assertEqual('/success', forward_environ['PATH_INFO'])
+    self.assertEqual(
         ('form-data', {'filename': 'stuff.txt', 'name': 'field1'}),
         cgi.parse_header(upload['content-disposition']))
 
@@ -1215,10 +1215,10 @@ Content-Transfer-Encoding: base64
 
     status, _, _, forward_environ, forward_body = self.run_dispatcher()
 
-    self.assertEquals('405 Method Not Allowed', status)
+    self.assertEqual('405 Method Not Allowed', status)
     # Test that it did not forward.
-    self.assertEquals(None, forward_environ)
-    self.assertEquals(None, forward_body)
+    self.assertEqual(None, forward_environ)
+    self.assertEqual(None, forward_body)
 
   def test_bad_session(self):
     """Using a non-existant upload session causes an error."""
@@ -1233,11 +1233,11 @@ Content-Transfer-Encoding: base64
     status, _, response_body, forward_environ, forward_body = (
         self.run_dispatcher())
 
-    self.assertEquals('404 Not Found', status)
+    self.assertEqual('404 Not Found', status)
     self.assertIn('No such upload session: %s' % session_key, response_body)
     # Test that it did not forward.
-    self.assertEquals(None, forward_environ)
-    self.assertEquals(None, forward_body)
+    self.assertEqual(None, forward_environ)
+    self.assertEqual(None, forward_body)
 
   def test_bad_mime_format(self):
     """Using a bad mime type format causes an error."""
@@ -1261,12 +1261,12 @@ value
     status, _, response_body, forward_environ, forward_body = (
         self.run_dispatcher(upload_data))
 
-    self.assertEquals('400 Bad Request', status)
+    self.assertEqual('400 Bad Request', status)
     self.assertIn('Incorrectly formatted MIME type: text/plain/error',
                   response_body)
     # Test that it did not forward.
-    self.assertEquals(None, forward_environ)
-    self.assertEquals(None, forward_body)
+    self.assertEqual(None, forward_environ)
+    self.assertEqual(None, forward_body)
 
   def test_check_line_endings(self):
     """Ensure the upload message uses correct RFC-2821 line terminators."""
@@ -1289,7 +1289,7 @@ value
 
     status, _, _, _, forward_body = self.run_dispatcher(upload_data)
 
-    self.assertEquals('200 OK', status)
+    self.assertEqual('200 OK', status)
     forward_body = forward_body.replace('\r\n', '')
     self.assertEqual(forward_body.rfind('\n'), -1)
 
@@ -1319,20 +1319,20 @@ value
     status, _, response_body, forward_environ, forward_body = (
         self.run_dispatcher(upload_data))
 
-    self.assertEquals('200 OK', status)
-    self.assertEquals('Forwarded successfully.', response_body)
+    self.assertEqual('200 OK', status)
+    self.assertEqual('Forwarded successfully.', response_body)
     self.assertIn('HTTP_PLEASE_COPY_ME', forward_environ)
-    self.assertEquals('I get copied', forward_environ['HTTP_PLEASE_COPY_ME'])
+    self.assertEqual('I get copied', forward_environ['HTTP_PLEASE_COPY_ME'])
     self.assertNotIn('HTTP_CONTENT_TYPE', forward_environ)
     self.assertNotIn('HTTP_CONTENT_LENGTH', forward_environ)
     self.assertNotIn('HTTP_CONTENT_MD5', forward_environ)
     # These ones should have been modified.
     self.assertIn('CONTENT_TYPE', forward_environ)
-    self.assertNotEquals(
+    self.assertNotEqual(
         'multipart/form-data; boundary="================1234=="',
         forward_environ['CONTENT_TYPE'])
     self.assertIn('CONTENT_LENGTH', forward_environ)
-    self.assertEquals(str(len(forward_body)), forward_environ['CONTENT_LENGTH'])
+    self.assertEqual(str(len(forward_body)), forward_environ['CONTENT_LENGTH'])
 
   def test_entity_too_large(self):
     """Ensure a 413 response is generated when upload size limit exceeded."""
@@ -1356,10 +1356,10 @@ Lots and Lots of Stuff
     status, _, _, forward_environ, forward_body = (
         self.run_dispatcher(upload_data))
 
-    self.assertEquals('413 Request Entity Too Large', status)
+    self.assertEqual('413 Request Entity Too Large', status)
     # Test that it did not forward.
-    self.assertEquals(None, forward_environ)
-    self.assertEquals(None, forward_body)
+    self.assertEqual(None, forward_environ)
+    self.assertEqual(None, forward_body)
 
   def test_filename_too_long(self):
     """Ensure a 400 response is generated when filename size limit exceeded."""
@@ -1386,12 +1386,12 @@ Lots and Lots of Stuff
     status, _, response_body, forward_environ, forward_body = (
         self.run_dispatcher(upload_data))
 
-    self.assertEquals('400 Bad Request', status)
+    self.assertEqual('400 Bad Request', status)
     self.assertIn('The filename exceeds the maximum allowed length of 500.',
                   response_body)
     # Test that it did not forward.
-    self.assertEquals(None, forward_environ)
-    self.assertEquals(None, forward_body)
+    self.assertEqual(None, forward_environ)
+    self.assertEqual(None, forward_body)
 
   def test_content_type_too_long(self):
     """Ensure a 400 response when content-type size limit exceeded."""
@@ -1418,12 +1418,12 @@ Lots and Lots of Stuff
     status, _, response_body, forward_environ, forward_body = (
         self.run_dispatcher(upload_data))
 
-    self.assertEquals('400 Bad Request', status)
+    self.assertEqual('400 Bad Request', status)
     self.assertIn('The Content-Type exceeds the maximum allowed length of 500.',
                   response_body)
     # Test that it did not forward.
-    self.assertEquals(None, forward_environ)
-    self.assertEquals(None, forward_body)
+    self.assertEqual(None, forward_environ)
+    self.assertEqual(None, forward_body)
 
   def test_raise_uncaught_http_error(self):
     """Ensure that an uncaught HTTPError is not inadvertently caught."""

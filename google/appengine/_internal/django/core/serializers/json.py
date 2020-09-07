@@ -3,6 +3,7 @@ Serialize data to/from JSON
 """
 
 
+from builtins import str
 import datetime
 import decimal
 from io import StringIO

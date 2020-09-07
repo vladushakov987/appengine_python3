@@ -28,6 +28,11 @@ active workers, or increasing the number when requests latency reduces.
 
 
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import range
+from builtins import object
 import logging
 import six.moves.queue
 import sys

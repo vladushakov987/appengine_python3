@@ -17,6 +17,7 @@
 """Manage the lifecycle of modules and dispatch requests to them."""
 
 
+from builtins import object
 import collections
 import logging
 import socket

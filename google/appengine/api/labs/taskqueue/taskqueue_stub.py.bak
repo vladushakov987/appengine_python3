@@ -38,8 +38,8 @@ application's queues and tasks.
 
 
 
-from __future__ import absolute_import
-import StringIO
+
+import io
 import base64
 import bisect
 import datetime
@@ -638,8 +638,8 @@ class TaskQueueServiceStub(apiproxy_stub.APIProxyStub):
 
     class FakeConnection(object):
       def __init__(self, input_buffer):
-        self.rfile = StringIO.StringIO(input_buffer)
-        self.wfile = StringIO.StringIO()
+        self.rfile = io.StringIO(input_buffer)
+        self.wfile = io.StringIO()
         self.wfile_close = self.wfile.close
         self.wfile.close = self.connection_done
 
@@ -677,7 +677,7 @@ class TaskQueueServiceStub(apiproxy_stub.APIProxyStub):
         else:
           return self.rfile
 
-    payload = StringIO.StringIO()
+    payload = io.StringIO()
     payload.write('%s %s HTTP/1.1\r\n' % (task['method'], task['url']))
     for key, value in task['headers']:
       payload.write('%s: %s\r\n' % (key, value))

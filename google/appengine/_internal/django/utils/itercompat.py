@@ -5,6 +5,7 @@ these implementations if necessary.
 """
 
 
+from builtins import map
 import itertools
 from six.moves import map
 

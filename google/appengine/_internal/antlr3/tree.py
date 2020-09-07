@@ -39,6 +39,9 @@ This module contains all support classes for AST construction and tree parsers.
 # pylint: disable-msg=C0111
 
 
+from builtins import str
+from builtins import range
+from builtins import object
 from google.appengine._internal.antlr3.constants import UP, DOWN, EOF, INVALID_TOKEN_TYPE
 from google.appengine._internal.antlr3.recognizers import BaseRecognizer, RuleReturnScope
 from google.appengine._internal.antlr3.streams import IntStream

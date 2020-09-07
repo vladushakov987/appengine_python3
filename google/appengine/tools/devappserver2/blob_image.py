@@ -15,8 +15,11 @@
 # limitations under the License.
 #
 """Handles dynamic serving of images from blobstore."""
+from __future__ import division
 
 
+from builtins import object
+from past.utils import old_div
 import six.moves.http_client
 import logging
 import re
@@ -86,13 +89,13 @@ class Application(object):
       if width > height:
         # landscape: slice the sides
         crop_xform = images_service_pb.Transform()
-        delta = (width - height) / (width * 2.0)
+        delta = old_div((width - height), (width * 2.0))
         crop_xform.set_crop_left_x(delta)
         crop_xform.set_crop_right_x(1.0 - delta)
       elif width < height:
         # portrait: slice the top and bottom with bias
         crop_xform = images_service_pb.Transform()
-        delta = (height - width) / (height * 2.0)
+        delta = old_div((height - width), (height * 2.0))
         top_delta = max(0.0, delta - 0.25)
         bottom_delta = 1.0 - (2.0 * delta) + top_delta
         crop_xform.set_crop_top_y(top_delta)

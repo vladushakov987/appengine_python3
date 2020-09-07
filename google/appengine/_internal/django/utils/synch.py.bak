@@ -6,7 +6,7 @@ Synchronization primitives:
 (Contributed to Django by eugene@lazutkin.com)
 """
 
-from __future__ import absolute_import
+
 try:
     import threading
 except ImportError:

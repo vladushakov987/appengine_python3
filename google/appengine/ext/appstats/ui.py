@@ -34,6 +34,8 @@ The templates are written to work with either Django 0.96 or Django
 
 
 
+from builtins import str
+from builtins import object
 import cgi
 import io
 import email.Utils

@@ -31,6 +31,8 @@ send real email via SMTP or sendmail."""
 
 
 
+from builtins import str
+from builtins import filter
 from email import encoders
 from email import MIMEBase
 from email import MIMEMultipart

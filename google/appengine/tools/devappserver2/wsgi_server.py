@@ -19,6 +19,8 @@
 
 
 
+from builtins import range
+from builtins import object
 import collections
 import errno
 import six.moves.http_client

@@ -1,6 +1,6 @@
 """Default tags used by the template system, available to all templates."""
 
-from __future__ import absolute_import
+
 import sys
 import re
 from itertools import groupby, cycle as itertools_cycle
@@ -42,9 +42,9 @@ class CsrfTokenNode(Node):
         csrf_token = context.get('csrf_token', None)
         if csrf_token:
             if csrf_token == 'NOTPROVIDED':
-                return mark_safe(u"")
+                return mark_safe("")
             else:
-                return mark_safe(u"<div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='%s' /></div>" % csrf_token)
+                return mark_safe("<div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='%s' /></div>" % csrf_token)
         else:
             # It's very probable that the token is missing because of
             # misconfiguration, so we raise a warning
@@ -52,7 +52,7 @@ class CsrfTokenNode(Node):
             if settings.DEBUG:
                 import warnings
                 warnings.warn("A {% csrf_token %} was used in a template, but the context did not provide the value.  This is usually caused by not using RequestContext.")
-            return u''
+            return ''
 
 class CycleNode(Node):
     def __init__(self, cyclevars, variable_name=None):
@@ -97,7 +97,7 @@ class FirstOfNode(Node):
             value = var.resolve(context, True)
             if value:
                 return smart_unicode(value)
-        return u''
+        return ''
 
 class ForNode(Node):
     child_nodelists = ('nodelist_loop', 'nodelist_empty')
@@ -363,7 +363,7 @@ class URLNode(Node):
         from google.appengine._internal.django.core.urlresolvers import reverse, NoReverseMatch
         args = [arg.resolve(context) for arg in self.args]
         kwargs = dict([(smart_str(k,'ascii'), v.resolve(context))
-                       for k, v in self.kwargs.items()])
+                       for k, v in list(self.kwargs.items())])
 
         # Try to look up the URL twice: once given the view name, and again
         # relative to what we guess is the "main" app. If they both fail,
@@ -443,7 +443,7 @@ def autoescape(parser, token):
     if len(args) != 2:
         raise TemplateSyntaxError("'autoescape' tag requires exactly one argument.")
     arg = args[1]
-    if arg not in (u'on', u'off'):
+    if arg not in ('on', 'off'):
         raise TemplateSyntaxError("'autoescape' argument should be 'on' or 'off'")
     nodelist = parser.parse(('endautoescape',))
     parser.delete_first_token()

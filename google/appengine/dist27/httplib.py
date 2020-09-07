@@ -3,6 +3,8 @@
 
 
 
+from future import standard_library
+standard_library.install_aliases()
 import os
 
 if 'GAE_USE_SOCKETS_HTTPLIB' in os.environ:

@@ -36,10 +36,15 @@ Extensions to be considered:
 
   allowing a comma separated list of times to run
 """
+from __future__ import division
 
 
 
 
+from builtins import next
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import calendar
 import datetime
 from six.moves import range
@@ -277,7 +282,7 @@ class IntervalTimeSpecification(TimeSpecification):
 
     t_delta = t - start_time
     t_delta_seconds = (t_delta.days * 60 * 24 + t_delta.seconds)
-    num_intervals = (t_delta_seconds + self.seconds) / self.seconds
+    num_intervals = old_div((t_delta_seconds + self.seconds), self.seconds)
     interval_time = (
         start_time + datetime.timedelta(seconds=(num_intervals * self.seconds)))
     if self.timezone:

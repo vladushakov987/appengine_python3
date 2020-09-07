@@ -23,7 +23,12 @@
 
 
 from __future__ import absolute_import
-import cStringIO
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import next
+from builtins import object
+import io
 import re
 
 from google.net.proto2.python.internal import type_checkers
@@ -77,7 +82,7 @@ def MessageToString(message, as_utf8=False, as_one_line=False,
   Returns:
     A string of the text formatted protocol buffer message.
   """
-  out = cStringIO.StringIO()
+  out = io.StringIO()
   PrintMessage(message, out, as_utf8=as_utf8, as_one_line=as_one_line,
                pointy_brackets=pointy_brackets,
                use_index_order=use_index_order,

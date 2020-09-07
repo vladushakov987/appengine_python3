@@ -23,11 +23,11 @@
 .. deprecated:: 1.8.1
    Use Google Cloud Storage Client library instead."""
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six
 __all__ = [
            'ApiTemporaryUnavailableError',
@@ -67,7 +67,7 @@ __all__ = [
 
 import os
 import sys
-import StringIO
+import io
 
 from google.appengine.api import apiproxy_stub_map
 from google.appengine.api.files import file_service_pb
@@ -379,7 +379,7 @@ class _File(object):
       raise UnsupportedContentTypeError(
           'Unsupported content type: %s' % self._content_type)
 
-    buf = StringIO.StringIO()
+    buf = io.StringIO()
     original_offset = self._offset
 
     try:
@@ -645,7 +645,7 @@ def _create(filesystem, content_type=RAW, filename=None, params=None):
   if params:
     if not isinstance(params, dict):
       raise InvalidArgumentError('Parameters should be a dictionary')
-    for k,v in params.items():
+    for k,v in list(params.items()):
       param = request.add_parameters()
       param.set_name(k)
       param.set_value(v)

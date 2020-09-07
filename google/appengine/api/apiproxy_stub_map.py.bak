@@ -37,7 +37,7 @@ Classes/variables/functions defined here:
 
 
 
-from __future__ import absolute_import
+
 import inspect
 import sys
 import threading

@@ -15,10 +15,16 @@
 # limitations under the License.
 #
 """Manage the lifecycle of runtime processes and dispatch requests to them."""
+from __future__ import division
 
 
 
 
+from builtins import zip
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import collections
 import io
 import functools
@@ -1402,8 +1408,8 @@ class AutoScalingModule(Module):
             current_requests
             for (t, current_requests)
             in self._outstanding_request_history)
-        return int(math.ceil(peak_concurrent_requests /
-                             self.max_instance_concurrent_requests))
+        return int(math.ceil(old_div(peak_concurrent_requests,
+                             self.max_instance_concurrent_requests)))
 
   def _split_instances(self):
     """Returns a 2-tuple representing the required and extra Instances.

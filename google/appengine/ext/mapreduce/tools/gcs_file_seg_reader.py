@@ -17,6 +17,8 @@
 """A simple reader for file segs produced by GCS output writer."""
 
 
+from builtins import str
+from builtins import object
 from google.appengine.ext.mapreduce import output_writers
 
 

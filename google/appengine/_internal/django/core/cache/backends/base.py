@@ -1,6 +1,7 @@
 "Base Cache class."
 
 
+from builtins import object
 import warnings
 
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured, DjangoRuntimeWarning

@@ -15,8 +15,11 @@
 # limitations under the License.
 #
 """Stub implementation for Log Service that uses sqlite."""
+from __future__ import division
 
 
+from builtins import str
+from past.utils import old_div
 import atexit
 import codecs
 import logging
@@ -305,7 +308,7 @@ class LogServiceStub(apiproxy_stub.APIProxyStub):
     log.set_mcycles(log_row['mcycles'])
     log.set_finished(log_row['finished'])
     log.mutable_offset().set_request_id(str(log_row['id']))
-    time_seconds = (log_row['end_time'] or log_row['start_time']) / 10**6
+    time_seconds = old_div((log_row['end_time'] or log_row['start_time']), 10**6)
     date_string = time.strftime('%d/%b/%Y:%H:%M:%S %z',
                                 time.localtime(time_seconds))
     log.set_combined('%s - %s [%s] "%s %s %s" %d %d - "%s"' %

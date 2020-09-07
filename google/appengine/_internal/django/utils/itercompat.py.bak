@@ -4,7 +4,7 @@ Where possible, we try to use the system-native version and only fall back to
 these implementations if necessary.
 """
 
-from __future__ import absolute_import
+
 import itertools
 from six.moves import map
 

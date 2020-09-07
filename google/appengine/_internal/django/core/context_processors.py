@@ -8,6 +8,8 @@ RequestContext.
 """
 
 
+from builtins import str
+from builtins import object
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.middleware.csrf import get_token
 from google.appengine._internal.django.utils.functional import lazy

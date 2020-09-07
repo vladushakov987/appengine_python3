@@ -16,7 +16,7 @@
 #
 """A handler that allows the user to see and test cron tasks."""
 
-from __future__ import absolute_import
+
 import datetime
 import os.path
 import traceback

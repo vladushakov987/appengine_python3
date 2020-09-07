@@ -28,6 +28,8 @@
 
 
 
+from builtins import str
+from builtins import object
 import six.moves.http_client
 import re
 import threading

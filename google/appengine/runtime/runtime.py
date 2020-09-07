@@ -32,6 +32,7 @@ WSGI interface.
 
 
 
+from builtins import str
 import io
 import six.moves._thread
 import threading

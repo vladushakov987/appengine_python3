@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import types
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 import locale
@@ -48,7 +48,7 @@ def is_protected_type(obj):
     """
     return isinstance(obj, (
         type(None),
-        int, int,
+        int,
         datetime.datetime, datetime.date, datetime.time,
         float, Decimal)
     )

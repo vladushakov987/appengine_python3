@@ -39,6 +39,8 @@ similar API.  The main API differences:
 # TODO: Refactor ext.blobstore to reduce duplication of code.
 
 
+from builtins import map
+from builtins import str
 import base64
 import email
 

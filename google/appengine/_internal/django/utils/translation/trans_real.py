@@ -1,6 +1,8 @@
 """Translation helper functions."""
 
 
+from past.builtins import cmp
+from builtins import range
 import locale
 import os
 import re

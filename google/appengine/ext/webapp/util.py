@@ -19,6 +19,7 @@
 
 
 """Convience functions for the Webapp framework."""
+from __future__ import print_function
 
 
 

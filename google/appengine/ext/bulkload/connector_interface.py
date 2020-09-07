@@ -32,6 +32,7 @@
 
 
 
+from builtins import object
 class ConnectorInterface(object):
   """Abstract base class describing the external Connector interface.
 

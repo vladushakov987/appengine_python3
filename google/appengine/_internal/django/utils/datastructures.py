@@ -1,4 +1,7 @@
 
+from builtins import map
+from builtins import zip
+from builtins import object
 from types import GeneratorType
 
 from google.appengine._internal.django.utils.copycompat import deepcopy

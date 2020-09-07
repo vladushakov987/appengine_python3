@@ -39,6 +39,7 @@ Warning:
   Due to the way nested Protocol Buffers are encoded, this encoder will NOT
   preserve sorting characteristics for embedded protocol buffers!
 """
+from __future__ import division
 
 
 
@@ -54,6 +55,8 @@ Warning:
 
 
 
+from builtins import range
+from past.utils import old_div
 import array
 import struct
 
@@ -69,7 +72,7 @@ _MAX_LONG_BYTES = 8
 
 
 
-_MAX_INLINE = (_MAX_UNSIGNED_BYTE - (2 * _MAX_LONG_BYTES)) / 2
+_MAX_INLINE = old_div((_MAX_UNSIGNED_BYTE - (2 * _MAX_LONG_BYTES)), 2)
 _MIN_INLINE = -_MAX_INLINE
 _OFFSET = 1 + 8
 _POS_OFFSET = _OFFSET + _MAX_INLINE * 2

@@ -23,6 +23,8 @@
 
 
 
+from builtins import str
+from builtins import object
 from google.appengine.api.search import search_util
 import six
 

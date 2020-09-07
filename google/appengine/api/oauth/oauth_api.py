@@ -44,6 +44,7 @@ Classes defined here:
 
 
 
+from builtins import str
 import six.moves.cPickle
 import os
 

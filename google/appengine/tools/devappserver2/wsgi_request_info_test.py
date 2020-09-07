@@ -19,6 +19,7 @@
 
 
 
+from builtins import object
 import re
 import unittest
 import wsgiref.util

@@ -36,6 +36,7 @@
 
 
 
+from builtins import str
 import os
 import pkgutil
 import time

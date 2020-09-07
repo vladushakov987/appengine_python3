@@ -19,6 +19,7 @@
 
 
 
+from builtins import str
 import cgi
 import logging
 import os

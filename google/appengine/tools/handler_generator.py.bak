@@ -29,7 +29,7 @@ In this module:
     static files.
 """
 
-from __future__ import absolute_import
+
 from google.appengine.api import appinfo
 from google.appengine.tools import handler
 from google.appengine.tools.app_engine_config_exception import AppEngineConfigException

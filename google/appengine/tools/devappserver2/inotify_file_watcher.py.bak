@@ -21,7 +21,7 @@ See http://linux.die.net/man/7/inotify.
 
 
 
-from __future__ import absolute_import
+
 import ctypes
 import ctypes.util
 import errno

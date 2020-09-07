@@ -31,6 +31,9 @@
 # end[licence]
 
 
+from builtins import str
+from builtins import chr
+from builtins import object
 import sys
 import inspect
 

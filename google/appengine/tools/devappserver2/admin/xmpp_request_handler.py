@@ -19,6 +19,8 @@
 
 
 
+from builtins import range
+from builtins import object
 import io
 import random
 import string

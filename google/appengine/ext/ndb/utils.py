@@ -4,6 +4,8 @@ These are not meant for use by code outside NDB.
 """
 
 
+from builtins import hex
+from builtins import str
 import functools
 import logging
 import os

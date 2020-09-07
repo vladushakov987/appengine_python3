@@ -31,7 +31,7 @@ messaging functionality and a command handler for commands such as "/foo bar"
 
 
 
-from __future__ import absolute_import
+
 import logging
 from google.appengine.api import xmpp
 from google.appengine.ext import webapp

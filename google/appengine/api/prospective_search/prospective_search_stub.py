@@ -28,6 +28,7 @@
 
 
 
+from builtins import range
 import base64
 import bisect
 

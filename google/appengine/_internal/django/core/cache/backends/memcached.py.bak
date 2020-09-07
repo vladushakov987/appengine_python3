@@ -1,6 +1,6 @@
 "Memcached cache backend"
 
-from __future__ import absolute_import
+
 import time
 
 from google.appengine._internal.django.core.cache.backends.base import BaseCache, InvalidCacheBackendError
@@ -94,7 +94,7 @@ class CacheClass(BaseCache):
 
     def set_many(self, data, timeout=0):
         safe_data = {}
-        for key, value in data.items():
+        for key, value in list(data.items()):
             if isinstance(value, six.text_type):
                 value = value.encode('utf-8')
             safe_data[smart_str(key)] = value

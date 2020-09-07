@@ -29,11 +29,11 @@
 
 
 
-from __future__ import absolute_import
+
 import cgi
 import collections
 import csv
-import cStringIO
+import io
 import datetime
 import decimal
 import logging
@@ -357,7 +357,7 @@ class InteractiveExecuteHandler(BaseRequestHandler):
       if self.interactive_console_enabled():
 
         save_stdout = sys.stdout
-        results_io = cStringIO.StringIO()
+        results_io = io.StringIO()
         try:
           sys.stdout = results_io
 
@@ -1255,7 +1255,7 @@ class DatastoreQueryHandler(DatastoreRequestHandler):
 
   def _calculate_writes_for_built_in_indices(self, entity):
     writes = 0
-    for prop_name in entity.keys():
+    for prop_name in list(entity.keys()):
       if not prop_name in entity.unindexed_properties():
 
 
@@ -2288,7 +2288,7 @@ _DATA_TYPES = {
 }
 
 _NAMED_DATA_TYPES = {}
-for _data_type in _DATA_TYPES.values():
+for _data_type in list(_DATA_TYPES.values()):
   _NAMED_DATA_TYPES[_data_type.name()] = _data_type
 
 

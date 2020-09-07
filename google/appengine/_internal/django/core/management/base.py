@@ -5,6 +5,7 @@ be executed through ``django-admin.py`` or ``manage.py``).
 """
 
 
+from builtins import object
 import os
 import sys
 from optparse import make_option, OptionParser

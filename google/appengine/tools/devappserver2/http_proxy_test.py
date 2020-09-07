@@ -17,6 +17,8 @@
 """Tests for google.appengine.tools.devappserver2.http_proxy."""
 
 
+from builtins import str
+from builtins import object
 import io
 import six.moves.http_client
 import os

@@ -19,6 +19,9 @@
 Not intended for end users, use the methods in __init__ instead."""
 
 
+from builtins import map
+from builtins import str
+from builtins import object
 import cgi
 import string
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
@@ -83,7 +86,7 @@ JOIN_DELIMS = dict(
 )
 
 
-class SimpleDataEncoder:
+class SimpleDataEncoder(object):
 
   """Encode data using simple encoding.  Out-of-range data will
   be dropped (encoded as '_').
@@ -107,7 +110,7 @@ class SimpleDataEncoder:
     return self.code[int(x)]
 
 
-class EnhancedDataEncoder:
+class EnhancedDataEncoder(object):
 
   """Encode data using enhanced encoding.  Out-of-range data will
   be dropped (encoded as '_').

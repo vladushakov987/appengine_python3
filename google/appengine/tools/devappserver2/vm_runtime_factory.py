@@ -17,6 +17,7 @@
 """Manages creation of VM Runtime instances."""
 
 
+from builtins import str
 import logging
 
 import google

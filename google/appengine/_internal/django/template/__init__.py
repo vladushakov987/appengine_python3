@@ -49,6 +49,9 @@ u'<html><h1>Hello</h1></html>'
 u'<html></html>'
 """
 
+from builtins import next
+from builtins import map
+from builtins import object
 import imp
 import re
 from inspect import getargspec

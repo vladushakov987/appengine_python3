@@ -278,7 +278,7 @@ subclassed to suit various needs.  Documentation for writing a
 Property subclass is in the docstring for the Property class.
 """
 
-from __future__ import absolute_import
+
 from six.moves import map
 __author__ = 'guido@google.com (Guido van Rossum)'
 
@@ -1560,7 +1560,7 @@ class IntegerProperty(Property):
     return int(value)
 
   def _db_set_value(self, v, unused_p, value):
-    if not isinstance(value, (bool, int, int)):
+    if not isinstance(value, (bool, int)):
       raise TypeError('IntegerProperty %s can only be set to integer values; '
                       'received %r' % (self._name, value))
     v.set_int64value(value)
@@ -1578,13 +1578,13 @@ class FloatProperty(Property):
   """
 
   def _validate(self, value):
-    if not isinstance(value, (int, int, float)):
+    if not isinstance(value, (int, float)):
       raise datastore_errors.BadValueError('Expected float, got %r' %
                                            (value,))
     return float(value)
 
   def _db_set_value(self, v, unused_p, value):
-    if not isinstance(value, (bool, int, int, float)):
+    if not isinstance(value, (bool, int, float)):
       raise TypeError('FloatProperty %s can only be set to integer or float '
                       'values; received %r' % (self._name, value))
     v.set_doublevalue(float(value))
@@ -2210,7 +2210,7 @@ class StructuredProperty(_StructuredGetForDictMixin):
     # We're done if we have a hit and _code_name matches.
     if prop is None or prop._code_name != attrname:
       # Otherwise, use linear search looking for a matching _code_name.
-      for prop in self._modelclass._properties.values():
+      for prop in list(self._modelclass._properties.values()):
         if prop._code_name == attrname:
           break
       else:
@@ -3930,7 +3930,7 @@ def get_indexes(**ctx_options):
 
 
 # Update __all__ to contain all Property and Exception subclasses.
-for _name, _object in globals().items():
+for _name, _object in list(globals().items()):
   if ((_name.endswith('Property') and issubclass(_object, Property)) or
       (_name.endswith('Error') and issubclass(_object, Exception))):
     __all__.append(_name)

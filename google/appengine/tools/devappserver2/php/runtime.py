@@ -15,11 +15,14 @@
 # limitations under the License.
 #
 """A PHP devappserver2 runtime."""
+from __future__ import print_function
 
 
 
 
 
+from builtins import str
+from builtins import object
 import base64
 import io
 import six.moves.http_client

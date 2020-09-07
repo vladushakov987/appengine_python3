@@ -25,7 +25,7 @@ Classes:
 
 
 
-from __future__ import absolute_import
+
 import logging
 import re
 import six.moves.urllib.parse

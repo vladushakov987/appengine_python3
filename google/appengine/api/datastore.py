@@ -46,6 +46,12 @@ which needs BadValueError, so it can't be defined in datastore.
 
 
 
+from past.builtins import cmp
+from builtins import zip
+from builtins import next
+from builtins import str
+from builtins import range
+from builtins import object
 import heapq
 import itertools
 import logging

@@ -43,6 +43,7 @@ Public Exceptions (indentation indications class hierarchy):
 
 
 
+from builtins import str
 import cgi
 import collections
 import re

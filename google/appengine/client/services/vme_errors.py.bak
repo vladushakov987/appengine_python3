@@ -16,7 +16,7 @@
 #
 """Exceptions related to Managed VM deployments."""
 
-from __future__ import absolute_import
+
 import logging
 
 

@@ -23,6 +23,7 @@
 
 
 
+from builtins import str
 import os
 import types
 

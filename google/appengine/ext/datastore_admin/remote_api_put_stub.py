@@ -40,6 +40,8 @@ the (SDK only) appengine_rpc with urlfetch.
 
 
 
+from builtins import str
+from builtins import object
 import logging
 import pickle
 import random

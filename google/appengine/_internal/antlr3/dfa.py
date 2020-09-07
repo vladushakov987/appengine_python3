@@ -1,4 +1,5 @@
 """ANTLR3 runtime package"""
+from __future__ import division
 
 # begin[licence]
 #
@@ -31,6 +32,9 @@
 # end[licensc]
 
 
+from builtins import range
+from builtins import object
+from past.utils import old_div
 from google.appengine._internal.antlr3.constants import EOF
 from google.appengine._internal.antlr3.exceptions import NoViableAltException, BacktrackingFailed
 from six.moves import range
@@ -201,7 +205,7 @@ class DFA(object):
         """
 
         ret = []
-        for i in range(len(string) / 2):
+        for i in range(old_div(len(string), 2)):
             (n, v) = ord(string[i*2]), ord(string[i*2+1])
 
             # Is there a bitwise operation to do this?

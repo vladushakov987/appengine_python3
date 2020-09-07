@@ -1,4 +1,5 @@
 
+from builtins import range
 from google.appengine._internal.django.core.management.base import copy_helper, CommandError, LabelCommand
 from google.appengine._internal.django.utils.importlib import import_module
 import os

@@ -20,6 +20,7 @@
 
 
 
+from builtins import object
 class _ShardLifeCycle(object):
   """Abstract class for objects that live along shard's life cycle.
 

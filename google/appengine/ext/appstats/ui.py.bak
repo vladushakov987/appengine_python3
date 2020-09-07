@@ -33,9 +33,9 @@ The templates are written to work with either Django 0.96 or Django
 
 
 
-from __future__ import absolute_import
+
 import cgi
-import cStringIO
+import io
 import email.Utils
 import logging
 import mimetypes
@@ -460,8 +460,8 @@ class ShellHandler(webapp.RequestHandler):
   def execute_script(self, script):
     save_stdout = sys.stdout
     save_stderr = sys.stderr
-    new_stdout = cStringIO.StringIO()
-    new_stderr = cStringIO.StringIO()
+    new_stdout = io.StringIO()
+    new_stderr = io.StringIO()
     try:
       sys.stdout = new_stdout
       sys.stderr = new_stderr

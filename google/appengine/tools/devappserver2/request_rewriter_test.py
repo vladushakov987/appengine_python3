@@ -19,6 +19,7 @@
 
 
 
+from builtins import str
 import functools
 import sys
 import time

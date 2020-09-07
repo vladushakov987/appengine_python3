@@ -19,6 +19,8 @@
 """Encoding related utilities."""
 
 from __future__ import absolute_import
+from builtins import chr
+from builtins import range
 import re
 import sys
 import six

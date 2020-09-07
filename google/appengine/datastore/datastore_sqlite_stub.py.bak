@@ -40,7 +40,7 @@ when it begins and releases it when it commits or rolls back.
 
 
 
-from __future__ import absolute_import
+
 import array
 import itertools
 import logging
@@ -1130,7 +1130,7 @@ class DatastoreSqliteStub(datastore_stub_util.BaseDatastore,
       (query, params): An SQL query string and list of parameters for it.
     """
     filter_sets = []
-    for name, filter_ops in filter_info.items():
+    for name, filter_ops in list(filter_info.items()):
 
       filter_sets.extend((name, [x]) for x in filter_ops
                          if x[0] == datastore_pb.Query_Filter.EQUAL)
@@ -1191,7 +1191,7 @@ class DatastoreSqliteStub(datastore_stub_util.BaseDatastore,
     select_arg = 'Entities.__path__, Entities.entity '
 
     if query.property_name_list():
-      for value_i in join_name_map.values():
+      for value_i in list(join_name_map.values()):
         select_arg += ', %s.name, %s.value' % (value_i, value_i)
 
     params = []
@@ -1218,7 +1218,7 @@ class DatastoreSqliteStub(datastore_stub_util.BaseDatastore,
     if not query.has_kind():
       return None
 
-    for filter_ops in filter_info.values():
+    for filter_ops in list(filter_info.values()):
       for op, _ in filter_ops:
         if op != datastore_pb.Query_Filter.EQUAL:
           return None

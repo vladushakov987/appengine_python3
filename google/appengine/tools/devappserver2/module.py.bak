@@ -18,9 +18,9 @@
 
 
 
-from __future__ import absolute_import
+
 import collections
-import cStringIO
+import io
 import functools
 import six.moves.http_client
 import logging
@@ -327,7 +327,7 @@ class Module(object):
     for library in self._module_configuration.normalized_libraries:
       runtime_config.libraries.add(name=library.name, version=library.version)
 
-    for key, value in (self._module_configuration.env_variables or {}).items():
+    for key, value in list((self._module_configuration.env_variables or {}).items()):
       runtime_config.environ.add(key=str(key), value=str(value))
 
     if self._cloud_sql_config:
@@ -824,7 +824,7 @@ class Module(object):
     # urllib.urlencode does not handle those. Expand to a list of
     # key values.
     expanded_qs = []
-    for key, multivalue in parsed_qs.items():
+    for key, multivalue in list(parsed_qs.items()):
       for value in multivalue:
         expanded_qs.append((key, value))
     return six.moves.urllib.parse.urlencode(expanded_qs)
@@ -1004,10 +1004,10 @@ class Module(object):
                'SERVER_PROTOCOL': 'HTTP/1.1',
                'wsgi.version': (1, 0),
                'wsgi.url_scheme': 'http',
-               'wsgi.errors': cStringIO.StringIO(),
+               'wsgi.errors': io.StringIO(),
                'wsgi.multithread': True,
                'wsgi.multiprocess': True,
-               'wsgi.input': cStringIO.StringIO(body)}
+               'wsgi.input': io.StringIO(body)}
     if fake_login:
       environ[constants.FAKE_LOGGED_IN_HEADER] = '1'
     util.put_headers_in_environ(headers, environ)

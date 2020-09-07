@@ -21,7 +21,7 @@
   AppYamlTranslator: Class that facilitates xml-to-yaml translation
 """
 
-from __future__ import absolute_import
+
 import os
 import re
 
@@ -339,7 +339,7 @@ class AppYamlTranslator(object):
         'runtime': self.GetRuntime(),
         'threadsafe': self.app_engine_web_xml.threadsafe_value_provided,
     }
-    missing = [field for (field, value) in required.items() if not value]
+    missing = [field for (field, value) in list(required.items()) if not value]
     if missing:
       raise AppEngineConfigException('Missing required fields: %s' %
                                      ', '.join(missing))

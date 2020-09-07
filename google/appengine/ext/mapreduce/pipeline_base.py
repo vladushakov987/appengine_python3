@@ -17,6 +17,7 @@
 """Base pipelines."""
 
 
+from builtins import object
 import google
 
 from appengine_pipeline.src import pipeline

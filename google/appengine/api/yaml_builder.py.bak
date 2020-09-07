@@ -33,7 +33,7 @@ object so that it can construct a properly structured object.
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api import yaml_errors
 from google.appengine.api import yaml_listener
 

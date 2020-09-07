@@ -124,6 +124,12 @@ in a tasklet, properly yielding when appropriate:
 
 
 
+from builtins import zip
+from builtins import next
+from builtins import map
+from builtins import str
+from builtins import range
+from builtins import object
 import six
 from six.moves import map
 from six.moves import range

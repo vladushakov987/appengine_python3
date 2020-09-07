@@ -19,10 +19,13 @@
 
 
 """Main script for appstats analytics."""
+from __future__ import division
 
 
 
 
+from past.utils import old_div
+from builtins import object
 import email.Utils
 try:
   import json
@@ -351,19 +354,19 @@ class StatsPage(webapp.RequestHandler):
       else:
         elapsed = '%d seconds ago' %(seconds)
     elif seconds < 3600:
-      minutes = seconds/60
+      minutes = old_div(seconds,60)
       if int(minutes) == 1:
         elapsed = '%d minute ago' %(minutes)
       else:
         elapsed = '%d minutes ago' %(minutes)
     elif seconds < 86400:
-      hours = seconds/3600
+      hours = old_div(seconds,3600)
       if int(hours) == 1:
         elapsed = '%d hour ago' %(hours)
       else:
         elapsed = '%d hours ago' %(hours)
     else:
-      days = seconds/86400
+      days = old_div(seconds,86400)
       if int(days) == 1:
         elapsed = '%d day ago' %(days)
       else:

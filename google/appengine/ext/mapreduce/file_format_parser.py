@@ -35,6 +35,8 @@
 
 
 
+from builtins import next
+from builtins import object
 __all__ = ['parse']
 
 import re

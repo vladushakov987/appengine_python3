@@ -36,7 +36,7 @@ and conversions.
 
 
 
-from __future__ import absolute_import
+
 import copy
 import os
 import sys
@@ -96,7 +96,7 @@ def default_export_transform(value):
 
 
   if value is None:
-    return u''
+    return ''
   else:
     return six.text_type(value)
 

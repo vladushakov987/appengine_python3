@@ -16,7 +16,6 @@
 #
 """Cloud Endpoints API request-related data and functions."""
 
-from __future__ import with_statement
 
 
 
@@ -24,7 +23,8 @@ from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import cgi
 import copy
 import json

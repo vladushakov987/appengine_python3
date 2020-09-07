@@ -26,6 +26,7 @@
 
 
 
+from builtins import str
 import os
 import re
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error

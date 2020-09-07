@@ -5,6 +5,7 @@ Requires PyYaml (http://pyyaml.org/), but that's checked for in __init__.
 """
 
 
+from builtins import str
 from io import StringIO
 import decimal
 import yaml

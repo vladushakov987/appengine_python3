@@ -17,6 +17,8 @@
 """Code related to bar charts."""
 
 
+from builtins import range
+from builtins import object
 import copy
 import warnings
 

@@ -31,6 +31,7 @@ Classes:
 
 
 
+from builtins import str
 import cgi
 import io
 import logging

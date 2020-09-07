@@ -19,11 +19,11 @@
 A stub version of the Remote Socket API for the dev_appserver.
 """
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import binascii
 import errno
 import os

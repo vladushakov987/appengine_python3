@@ -17,6 +17,7 @@
 """Tests for devappserver2.admin.blobstore_viewer."""
 
 
+from builtins import range
 import unittest
 
 import google

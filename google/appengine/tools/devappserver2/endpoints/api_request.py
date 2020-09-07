@@ -25,6 +25,7 @@
 
 
 
+from builtins import object
 import cgi
 import copy
 import json

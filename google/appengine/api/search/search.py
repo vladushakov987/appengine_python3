@@ -30,6 +30,10 @@ Contains API classes that forward to apiproxy.
 
 
 
+from builtins import chr
+from builtins import zip
+from builtins import str
+from builtins import object
 import base64
 import datetime
 import logging

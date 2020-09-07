@@ -19,6 +19,7 @@
 
 
 
+from builtins import object
 import collections
 from contextlib import contextmanager
 import datetime

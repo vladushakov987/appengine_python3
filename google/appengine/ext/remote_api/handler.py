@@ -61,6 +61,8 @@ See the ConfigDefaults class below for the full set of options available.
 
 
 
+from builtins import zip
+from builtins import object
 import google
 import hashlib
 import logging

@@ -22,10 +22,17 @@
 
 
 """Key range representation and splitting."""
+from __future__ import division
 
 
 
 
+from past.builtins import cmp
+from builtins import str
+from builtins import chr
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import os
 import six
 from six import chr
@@ -579,7 +586,7 @@ class KeyRange(object):
         midpoint.append(start[i])
       else:
         ord_sum = ord(start[i]) + ord(end[i])
-        midpoint.append(chr(ord_sum / 2))
+        midpoint.append(chr(old_div(ord_sum, 2)))
         if ord_sum % 2:
           if len(start) > i + 1:
             ord_start = ord(start[i+1])
@@ -588,10 +595,10 @@ class KeyRange(object):
           if ord_start < expected_max:
 
 
-            ord_split = (expected_max + ord_start) / 2
+            ord_split = old_div((expected_max + ord_start), 2)
           else:
 
-            ord_split = (0xFFFF + ord_start) / 2
+            ord_split = old_div((0xFFFF + ord_start), 2)
           midpoint.append(chr(ord_split))
         break
     return "".join(midpoint)
@@ -638,7 +645,7 @@ class KeyRange(object):
     assert len1 % 2 == 0
     assert len2 % 2 == 0
     out_path = []
-    min_path_len = min(len1, len2) / 2
+    min_path_len = old_div(min(len1, len2), 2)
     for i in range(min_path_len):
       kind1 = path1[2*i]
       kind2 = path2[2*i]
@@ -691,7 +698,7 @@ class KeyRange(object):
     if (isinstance(id_or_name1, six.integer_types) and
         isinstance(id_or_name2, six.integer_types)):
       if not maintain_batches or id_or_name2 - id_or_name1 > batch_size:
-        return (id_or_name1 + id_or_name2) / 2
+        return old_div((id_or_name1 + id_or_name2), 2)
       else:
         return id_or_name1
     elif (isinstance(id_or_name1, six.string_types) and
@@ -705,7 +712,7 @@ class KeyRange(object):
 
       zero_ch = chr(0)
       if id_or_name2 == zero_ch:
-        return (id_or_name1 + 2**63 - 1) / 2
+        return old_div((id_or_name1 + 2**63 - 1), 2)
       return zero_ch
 
   @staticmethod

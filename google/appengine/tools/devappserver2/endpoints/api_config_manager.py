@@ -23,6 +23,8 @@
 
 
 
+from past.builtins import cmp
+from builtins import object
 import base64
 import json
 import logging

@@ -33,6 +33,7 @@ specified using this module.
 
 
 
+from builtins import object
 import os
 import re
 import warnings

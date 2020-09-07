@@ -21,6 +21,7 @@
 
 
 
+from builtins import object
 class Error(Exception):
   pass
 

@@ -30,6 +30,7 @@ are:
 
 
 
+from builtins import object
 class BaseContainer(object):
 
   """Base container class."""

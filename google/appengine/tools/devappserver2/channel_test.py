@@ -20,6 +20,8 @@
 
 
 
+from builtins import str
+from builtins import object
 import io
 import unittest
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error

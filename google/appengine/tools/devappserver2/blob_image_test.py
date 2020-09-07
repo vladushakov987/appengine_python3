@@ -17,6 +17,7 @@
 """Tests for google.appengine.tools.devappserver2.blob_image."""
 
 
+from builtins import object
 import six.moves.http_client
 import os
 import unittest

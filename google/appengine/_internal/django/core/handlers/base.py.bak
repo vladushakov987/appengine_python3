@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import sys
 
 from google.appengine._internal.django import http
@@ -213,10 +213,10 @@ def get_script_name(environ):
     # rewrites. Unfortunately not every Web server (lighttpd!) passes this
     # information through all the time, so FORCE_SCRIPT_NAME, above, is still
     # needed.
-    script_url = environ.get('SCRIPT_URL', u'')
+    script_url = environ.get('SCRIPT_URL', '')
     if not script_url:
-        script_url = environ.get('REDIRECT_URL', u'')
+        script_url = environ.get('REDIRECT_URL', '')
     if script_url:
         return force_unicode(script_url[:-len(environ.get('PATH_INFO', ''))])
-    return force_unicode(environ.get('SCRIPT_NAME', u''))
+    return force_unicode(environ.get('SCRIPT_NAME', ''))
 

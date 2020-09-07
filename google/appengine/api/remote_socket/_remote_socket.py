@@ -39,6 +39,8 @@ other things adds a buffered file-like interface.
 
 
 
+from builtins import range
+from builtins import object
 import errno
 import os
 import re

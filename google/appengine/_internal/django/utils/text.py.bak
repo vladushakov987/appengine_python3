@@ -1,10 +1,10 @@
-from __future__ import absolute_import
+
 import re
 from google.appengine._internal.django.utils.encoding import force_unicode
 from google.appengine._internal.django.utils.functional import allow_lazy
 from google.appengine._internal.django.utils.translation import ugettext_lazy
 from six.moves.html_entities import name2codepoint
-from six import unichr
+from six import chr
 import six
 
 # Capitalizes the first letter of a string.
@@ -36,7 +36,7 @@ def wrap(text, width):
                 if len(lines) > 1:
                     pos = len(lines[-1])
             yield word
-    return u''.join(_generator())
+    return ''.join(_generator())
 wrap = allow_lazy(wrap, six.text_type)
 
 def truncate_words(s, num, end_text='...'):
@@ -53,7 +53,7 @@ def truncate_words(s, num, end_text='...'):
         words = words[:length]
         if not words[-1].endswith(end_text):
             words.append(end_text)
-    return u' '.join(words)
+    return ' '.join(words)
 truncate_words = allow_lazy(truncate_words, six.text_type)
 
 def truncate_html_words(s, num, end_text='...'):
@@ -67,7 +67,7 @@ def truncate_html_words(s, num, end_text='...'):
     s = force_unicode(s)
     length = int(num)
     if length <= 0:
-        return u''
+        return ''
     html4_singlets = ('br', 'col', 'link', 'base', 'img', 'param', 'area', 'hr', 'input')
     # Set up regular expressions
     re_words = re.compile(r'&.*?;|<.*?>|(\w[\w-]*)', re.U)
@@ -136,7 +136,7 @@ def get_valid_filename(s):
     return re.sub(r'(?u)[^-\w.]', '', s)
 get_valid_filename = allow_lazy(get_valid_filename, six.text_type)
 
-def get_text_list(list_, last_word=ugettext_lazy(u'or')):
+def get_text_list(list_, last_word=ugettext_lazy('or')):
     """
     >>> get_text_list(['a', 'b', 'c', 'd'])
     u'a, b, c or d'
@@ -149,9 +149,9 @@ def get_text_list(list_, last_word=ugettext_lazy(u'or')):
     >>> get_text_list([])
     u''
     """
-    if len(list_) == 0: return u''
+    if len(list_) == 0: return ''
     if len(list_) == 1: return force_unicode(list_[0])
-    return u'%s %s %s' % (', '.join([force_unicode(i) for i in list_][:-1]), force_unicode(last_word), force_unicode(list_[-1]))
+    return '%s %s %s' % (', '.join([force_unicode(i) for i in list_][:-1]), force_unicode(last_word), force_unicode(list_[-1]))
 get_text_list = allow_lazy(get_text_list, six.text_type)
 
 def normalize_newlines(text):
@@ -180,14 +180,14 @@ phone2numeric = allow_lazy(phone2numeric)
 # From http://www.xhaus.com/alan/python/httpcomp.html#gzip
 # Used with permission.
 def compress_string(s):
-    import cStringIO, gzip
-    zbuf = cStringIO.StringIO()
+    import io, gzip
+    zbuf = io.StringIO()
     zfile = gzip.GzipFile(mode='wb', compresslevel=6, fileobj=zbuf)
     zfile.write(s)
     zfile.close()
     return zbuf.getvalue()
 
-ustring_re = re.compile(u"([\u0080-\uffff])")
+ustring_re = re.compile("([\u0080-\uffff])")
 
 def javascript_quote(s, quote_double_quotes=False):
 
@@ -242,19 +242,19 @@ smart_split = allow_lazy(smart_split, six.text_type)
 
 def _replace_entity(match):
     text = match.group(1)
-    if text[0] == u'#':
+    if text[0] == '#':
         text = text[1:]
         try:
-            if text[0] in u'xX':
+            if text[0] in 'xX':
                 c = int(text[1:], 16)
             else:
                 c = int(text)
-            return unichr(c)
+            return chr(c)
         except ValueError:
             return match.group(0)
     else:
         try:
-            return unichr(name2codepoint[text])
+            return chr(name2codepoint[text])
         except (ValueError, KeyError):
             return match.group(0)
 

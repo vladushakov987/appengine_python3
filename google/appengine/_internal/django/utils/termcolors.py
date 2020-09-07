@@ -1,6 +1,7 @@
 """
 termcolors.py
 """
+from builtins import range
 import six
 from six.moves import range
 

@@ -19,6 +19,7 @@
 
 
 
+from builtins import object
 import logging
 import six.moves.queue
 import threading

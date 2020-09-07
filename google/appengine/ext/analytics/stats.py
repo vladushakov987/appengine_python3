@@ -29,6 +29,8 @@ RPCStats holds data about a specific RPC category for each request.
 
 
 
+from builtins import range
+from builtins import object
 import logging
 from . import entity
 from six.moves import range

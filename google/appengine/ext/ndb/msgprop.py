@@ -118,6 +118,7 @@ The EnumProperty supports the following standard options:
 """
 
 
+from builtins import map
 from protorpc import messages
 from protorpc import remote
 

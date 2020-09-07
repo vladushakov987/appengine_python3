@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import collections
 from contextlib import contextmanager
 import datetime
@@ -116,7 +116,7 @@ class TestModuleConfiguration(unittest.TestCase):
     self.assertEqual('dev', config.partition)
     self.assertEqual('module1', config.module_name)
     self.assertEqual('1', config.major_version)
-    self.assertRegexpMatches(config.version_id, r'module1:1\.\d+')
+    self.assertRegex(config.version_id, r'module1:1\.\d+')
     self.assertEqual('python27', config.runtime)
     self.assertFalse(config.threadsafe)
     self.assertEqual(automatic_scaling, config.automatic_scaling)
@@ -163,7 +163,7 @@ class TestModuleConfiguration(unittest.TestCase):
     self.assertEqual('dev', config.partition)
     self.assertEqual('module1', config.module_name)
     self.assertEqual('1', config.major_version)
-    self.assertRegexpMatches(config.version_id, r'module1:1\.\d+')
+    self.assertRegex(config.version_id, r'module1:1\.\d+')
     self.assertEqual('vm', config.runtime)
     self.assertEqual(vm_settings['vm_runtime'], config.effective_runtime)
     self.assertItemsEqual(
@@ -364,7 +364,7 @@ class TestModuleConfiguration(unittest.TestCase):
     self.assertEqual('dev~app', config.application)
     self.assertEqual('default', config.module_name)
     self.assertEqual('version', config.major_version)
-    self.assertRegexpMatches(config.version_id, r'^version\.\d+$')
+    self.assertRegex(config.version_id, r'^version\.\d+$')
     self.assertEqual('python27', config.runtime)
     self.assertFalse(config.threadsafe)
     self.assertEqual(automatic_scaling1, config.automatic_scaling)
@@ -669,7 +669,7 @@ class TestBackendConfiguration(unittest.TestCase):
     self.assertEqual('dev', config.partition)
     self.assertEqual('static', config.module_name)
     self.assertEqual('1', config.major_version)
-    self.assertRegexpMatches(config.version_id, r'static:1\.\d+')
+    self.assertRegex(config.version_id, r'static:1\.\d+')
     self.assertEqual('python27', config.runtime)
     self.assertFalse(config.threadsafe)
     self.assertEqual(None, config.automatic_scaling)
@@ -736,7 +736,7 @@ class TestBackendConfiguration(unittest.TestCase):
     self.assertEqual('dev', config.partition)
     self.assertEqual('static', config.module_name)
     self.assertEqual('1', config.major_version)
-    self.assertRegexpMatches(config.version_id, r'static:1\.\d+')
+    self.assertRegex(config.version_id, r'static:1\.\d+')
     self.assertEqual('vm', config.runtime)
     self.assertEqual(vm_settings['vm_runtime'], config.effective_runtime)
     self.assertFalse(config.threadsafe)
@@ -788,7 +788,7 @@ class TestBackendConfiguration(unittest.TestCase):
     self.assertEqual('dev~app', config.application)
     self.assertEqual('dynamic', config.module_name)
     self.assertEqual('1', config.major_version)
-    self.assertRegexpMatches(config.version_id, r'dynamic:1\.\d+')
+    self.assertRegex(config.version_id, r'dynamic:1\.\d+')
     self.assertEqual('python27', config.runtime)
     self.assertFalse(config.threadsafe)
     self.assertEqual(None, config.automatic_scaling)

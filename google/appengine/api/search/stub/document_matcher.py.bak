@@ -20,7 +20,7 @@ DocumentMatcher provides an approximation of the Search API's query matching.
 """
 
 
-from __future__ import absolute_import
+
 from google.appengine.datastore import document_pb
 
 from google.appengine._internal.antlr3 import tree

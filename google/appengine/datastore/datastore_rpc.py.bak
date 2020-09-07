@@ -36,7 +36,7 @@ to be compatible) library to replace db.py is also under development.
 
 
 
-from __future__ import absolute_import
+
 from six.moves import zip
 __all__ = ['AbstractAdapter',
            'BaseConfiguration',
@@ -640,7 +640,7 @@ class Configuration(BaseConfiguration):
     Raises:
       BadArgumentError if value is not a number or is less than zero.
     """
-    if not isinstance(value, (int, int, float)):
+    if not isinstance(value, (int, float)):
       raise datastore_errors.BadArgumentError(
         'deadline argument should be int/long/float (%r)' % (value,))
     if value <= 0:

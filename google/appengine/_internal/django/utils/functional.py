@@ -51,6 +51,9 @@
 
 
 
+from past.builtins import cmp
+from builtins import str
+from builtins import object
 import six
 def curry(_curried_func, *args, **kwargs):
     def _curried(*moreargs, **morekwargs):

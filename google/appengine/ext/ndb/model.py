@@ -279,6 +279,9 @@ Property subclass is in the docstring for the Property class.
 """
 
 
+from builtins import str
+from builtins import map
+from builtins import object
 from six.moves import map
 __author__ = 'guido@google.com (Guido van Rossum)'
 

@@ -29,6 +29,7 @@ bulkloader_wizard.yaml.
 """
 
 
+from builtins import object
 PROPERTY_DUPE_WARNING = (
     '    # Warning: This property is a duplicate, but with a different type.\n'
     '    # TODO: Edit this transform so only one property with this name '

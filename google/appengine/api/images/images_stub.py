@@ -19,6 +19,7 @@
 
 
 """Stub version of the images API."""
+from __future__ import division
 
 
 
@@ -26,6 +27,8 @@
 
 
 
+from builtins import map
+from past.utils import old_div
 import datetime
 import logging
 import re
@@ -143,7 +146,7 @@ def _BackendPremultiplication(color):
   rgb = color[0:3]
   multiplied = [(x * (alpha + 1)) >> 8 for x in rgb]
   if alpha:
-    alpha_inverse = 0xffffff / alpha
+    alpha_inverse = old_div(0xffffff, alpha)
     unmultiplied = [(x * alpha_inverse) >> 16 for x in multiplied]
   else:
     unmultiplied = [0] * 3
@@ -214,7 +217,7 @@ class ImagesServiceStub(apiproxy_stub.APIProxyStub):
             images_service_pb.ImagesServiceError.BAD_TRANSFORM_DATA)
       source = sources[options.source_index()]
       x_anchor = (options.anchor() % 3) * 0.5
-      y_anchor = (options.anchor() / 3) * 0.5
+      y_anchor = (old_div(options.anchor(), 3)) * 0.5
       x_offset = int(options.x_offset() + x_anchor * (width - source.size[0]))
       y_offset = int(options.y_offset() + y_anchor * (height - source.size[1]))
       if source.mode == RGBA:
@@ -254,9 +257,9 @@ class ImagesServiceStub(apiproxy_stub.APIProxyStub):
 
 
     for pixel in image.getdata():
-      red[int((pixel[0] * pixel[3]) / 255)] += 1
-      green[int((pixel[1] * pixel[3]) / 255)] += 1
-      blue[int((pixel[2] * pixel[3]) / 255)] += 1
+      red[int(old_div((pixel[0] * pixel[3]), 255))] += 1
+      green[int(old_div((pixel[1] * pixel[3]), 255))] += 1
+      blue[int(old_div((pixel[2] * pixel[3]), 255))] += 1
     histogram = response.mutable_histogram()
     for value in red:
       histogram.add_red(value)

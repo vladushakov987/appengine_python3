@@ -32,7 +32,7 @@ This module also contains actual mapper code for copying data over.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 

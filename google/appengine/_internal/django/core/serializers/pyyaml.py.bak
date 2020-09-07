@@ -4,8 +4,8 @@ YAML serializer.
 Requires PyYaml (http://pyyaml.org/), but that's checked for in __init__.
 """
 
-from __future__ import absolute_import
-from StringIO import StringIO
+
+from io import StringIO
 import decimal
 import yaml
 

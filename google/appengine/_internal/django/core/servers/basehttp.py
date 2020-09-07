@@ -8,6 +8,8 @@ been reviewed for security issues. Don't use it for production use.
 """
 
 
+from builtins import str
+from builtins import object
 from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import mimetypes
 import os

@@ -2,7 +2,7 @@
 
 
 
-from __future__ import absolute_import
+
 import os
 
 if 'GAE_USE_SOCKETS_HTTPLIB' in os.environ:

@@ -21,6 +21,8 @@ only. Static files are handled separately.
 """
 
 
+from builtins import str
+from builtins import object
 import contextlib
 import six.moves.http_client
 import logging
@@ -34,7 +36,7 @@ from google.appengine.tools.devappserver2 import login
 from google.appengine.tools.devappserver2 import util
 
 
-class HttpProxy:
+class HttpProxy(object):
   """Forwards HTTP requests to an application instance."""
   def __init__(self, host, port, instance_died_unexpectedly,
                instance_logs_getter, error_handler_file, prior_error=None):

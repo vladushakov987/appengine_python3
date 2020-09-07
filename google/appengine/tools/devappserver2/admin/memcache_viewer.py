@@ -24,10 +24,14 @@ information. Java, PHP and Python map types in inconsistent ways, see:
 - google/appengine/api/memcache/MemcacheSerialization.java
 - google/appengine/runtime/MemcacheUtils.php
 """
+from __future__ import division
 
 
 
 
+from builtins import str
+from past.utils import old_div
+from builtins import object
 import datetime
 import logging
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
@@ -263,8 +267,8 @@ class MemcacheViewerRequestHandler(admin_request_handler.AdminRequestHandler):
                           'bytes': 0, 'oldest_item_age': 0}
       values['stats'] = memcache_stats
       try:
-        hitratio = memcache_stats['hits'] * 100 / (memcache_stats['hits']
-                                                   + memcache_stats['misses'])
+        hitratio = old_div(memcache_stats['hits'] * 100, (memcache_stats['hits']
+                                                   + memcache_stats['misses']))
       except ZeroDivisionError:
         hitratio = 0
       values['hitratio'] = hitratio

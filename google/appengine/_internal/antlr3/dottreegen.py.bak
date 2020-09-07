@@ -38,7 +38,7 @@ This module contains all support classes for AST construction and tree parsers.
 # lot's of docstrings are missing, don't complain for now...
 # pylint: disable-msg=C0111
 
-from __future__ import absolute_import
+
 from google.appengine._internal.antlr3.tree import CommonTreeAdaptor
 import stringtemplate3
 from six.moves import range

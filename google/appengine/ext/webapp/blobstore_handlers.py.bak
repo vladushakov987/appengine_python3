@@ -42,7 +42,7 @@ Public Exceptions (indentation indications class hierarchy):
 
 
 
-from __future__ import absolute_import
+
 import cgi
 import collections
 import re
@@ -375,7 +375,7 @@ class BlobstoreUploadHandler(webapp.RequestHandler):
     """
     if self.__uploads is None:
       self.__uploads = collections.defaultdict(list)
-      for key, value in self.request.params.items():
+      for key, value in list(self.request.params.items()):
         if isinstance(value, cgi.FieldStorage):
           if 'blob-key' in value.type_options:
             self.__uploads[key].append(blobstore.parse_blob_info(value))
@@ -401,7 +401,7 @@ class BlobstoreUploadHandler(webapp.RequestHandler):
     """
     if self.__file_infos is None:
       self.__file_infos = collections.defaultdict(list)
-      for key, value in self.request.params.items():
+      for key, value in list(self.request.params.items()):
         if isinstance(value, cgi.FieldStorage):
           if 'blob-key' in value.type_options:
             self.__file_infos[key].append(blobstore.parse_file_info(value))

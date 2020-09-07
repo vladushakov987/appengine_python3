@@ -11,6 +11,7 @@ The API here is inspired by Monocle.
 """
 
 
+from builtins import object
 import collections
 import logging
 import os

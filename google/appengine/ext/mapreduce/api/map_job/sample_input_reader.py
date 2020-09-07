@@ -16,6 +16,7 @@
 #
 """Sample Input Reader for map job."""
 
+from builtins import range
 import random
 import string
 import time

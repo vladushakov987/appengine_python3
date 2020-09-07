@@ -27,6 +27,7 @@ As well as implementing Task Queue API functions, the stub exposes various other
 functions that are used by the dev_appserver's admin console to display the
 application's queues and tasks.
 """
+from __future__ import division
 
 
 
@@ -42,6 +43,11 @@ application's queues and tasks.
 
 
 
+from builtins import zip
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import six
 from six.moves import range
 from six.moves import zip
@@ -162,7 +168,7 @@ def _UsecToSec(t):
   Returns:
     A float containing the number of seconds since the unix epoch.
   """
-  return t / 1e6
+  return old_div(t, 1e6)
 
 
 

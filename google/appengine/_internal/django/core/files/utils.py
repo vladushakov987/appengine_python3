@@ -1,3 +1,4 @@
+from builtins import object
 class FileProxyMixin(object):
     """
     A mixin class used to forward file methods to an underlaying file

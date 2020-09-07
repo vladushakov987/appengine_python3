@@ -39,6 +39,9 @@ Classes defined in this module:
 
 
 
+from builtins import str
+from builtins import range
+from builtins import object
 import struct
 import six
 from six.moves import range

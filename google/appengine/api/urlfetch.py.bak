@@ -34,10 +34,10 @@ Methods defined in this module:
 
 
 
-from __future__ import absolute_import
+
 import six.moves.http_client
 import os
-import StringIO
+import io
 import threading
 import UserDict
 import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
@@ -456,7 +456,7 @@ class _URLFetchResult(object):
     self.content_was_truncated = response_proto.contentwastruncated()
     self.final_url = response_proto.finalurl() or None
     self.header_msg = six.moves.http_client.HTTPMessage(
-        StringIO.StringIO(''.join(['%s: %s\n' % (h.key(), h.value())
+        io.StringIO(''.join(['%s: %s\n' % (h.key(), h.value())
                           for h in response_proto.header_list()] + ['\n'])))
     self.headers = _CaselessDict(list(self.header_msg.items()))
 

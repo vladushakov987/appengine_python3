@@ -26,10 +26,12 @@ unpickling. The script is envisioned to be extensible in the future to allow
 reading/writing to/from datastore, storing data in alternate file formats such
 as SQLLite etc.
 """
+from __future__ import division
 
 
 
 
+from past.utils import old_div
 import six.moves.cPickle as pickle
 import logging
 import time
@@ -90,7 +92,7 @@ def FromMemcache(filter_timestamp=0, java_application=False):
   else:
     end_time = time.time()
     elapsed = max(end_time - start_time, 0)
-    time_per_record = elapsed/len(records)
+    time_per_record = old_div(elapsed,len(records))
     logging.info('Done. %d full records downloaded in %.2f secs '
                  '[%.2f secs per full record]',
                  len(records), elapsed, time_per_record)

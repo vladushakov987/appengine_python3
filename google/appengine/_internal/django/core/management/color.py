@@ -3,6 +3,7 @@ Sets up the terminal color scheme.
 """
 
 
+from builtins import object
 import os
 import sys
 
@@ -28,7 +29,7 @@ def color_style():
         DJANGO_COLORS = os.environ.get('DJANGO_COLORS', '')
         color_settings = termcolors.parse_color_setting(DJANGO_COLORS)
         if color_settings:
-            class dummy: pass
+            class dummy(object): pass
             style = dummy()
             # The nocolor palette has all available roles.
             # Use that pallete as the basis for populating
@@ -45,7 +46,7 @@ def color_style():
 
 def no_style():
     """Returns a Style object that has no colors."""
-    class dummy:
+    class dummy(object):
         def __getattr__(self, attr):
             return lambda x: x
     return dummy()

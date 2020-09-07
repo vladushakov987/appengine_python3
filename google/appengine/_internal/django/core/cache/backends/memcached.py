@@ -1,6 +1,7 @@
 "Memcached cache backend"
 
 
+from builtins import map
 import time
 
 from google.appengine._internal.django.core.cache.backends.base import BaseCache, InvalidCacheBackendError

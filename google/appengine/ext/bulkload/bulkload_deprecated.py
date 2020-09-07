@@ -33,6 +33,8 @@ Please use the new bulkloader.
 
 
 
+from builtins import zip
+from builtins import object
 import six.moves.http_cookies
 import io
 import csv

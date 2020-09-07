@@ -19,6 +19,9 @@
 
 
 
+from builtins import next
+from builtins import str
+from builtins import object
 from google.appengine.ext import key_range
 from google.appengine.ext.mapreduce import namespace_range
 

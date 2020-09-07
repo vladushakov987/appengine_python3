@@ -3,6 +3,7 @@ Email message and email sending related helper functions.
 """
 
 
+from builtins import object
 import socket
 
 

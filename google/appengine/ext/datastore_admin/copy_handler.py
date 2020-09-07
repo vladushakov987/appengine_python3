@@ -33,6 +33,8 @@ This module also contains actual mapper code for copying data over.
 
 
 
+from builtins import str
+from builtins import object
 import logging
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 

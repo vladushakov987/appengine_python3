@@ -16,6 +16,7 @@
 #
 """Json related utilities."""
 
+from builtins import object
 import copy
 import datetime
 import logging

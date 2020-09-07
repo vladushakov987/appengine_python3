@@ -30,7 +30,7 @@ send real email via SMTP or sendmail."""
 
 
 
-from __future__ import absolute_import
+
 from email import encoders
 from email import MIMEBase
 from email import MIMEMultipart

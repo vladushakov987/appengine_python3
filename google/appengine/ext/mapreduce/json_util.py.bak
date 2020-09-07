@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 """Json related utilities."""
-from __future__ import absolute_import
+
 import copy
 import datetime
 import logging

@@ -1,6 +1,9 @@
 "Database cache backend."
+from __future__ import division
 
 
+from past.utils import old_div
+from builtins import object
 from google.appengine._internal.django.core.cache.backends.base import BaseCache
 from google.appengine._internal.django.db import connections, router, transaction, DatabaseError
 import base64, time
@@ -136,7 +139,7 @@ class CacheClass(BaseCache):
             cursor.execute("SELECT COUNT(*) FROM %s" % table)
             num = cursor.fetchone()[0]
             if num > self._max_entries:
-                cursor.execute("SELECT cache_key FROM %s ORDER BY cache_key LIMIT 1 OFFSET %%s" % table, [num / self._cull_frequency])
+                cursor.execute("SELECT cache_key FROM %s ORDER BY cache_key LIMIT 1 OFFSET %%s" % table, [old_div(num, self._cull_frequency)])
                 cursor.execute("DELETE FROM %s WHERE cache_key < %%s" % table, [cursor.fetchone()[0]])
 
     def clear(self):

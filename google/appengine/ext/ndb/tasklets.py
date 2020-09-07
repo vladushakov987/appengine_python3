@@ -61,6 +61,9 @@ the tasklet into a generator.
 """
 
 
+from builtins import map
+from builtins import str
+from builtins import object
 import collections
 import logging
 import os

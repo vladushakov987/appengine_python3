@@ -22,10 +22,12 @@ Classes:
     Creates a dispatcher that will handle an image serving request. It will
     fetch an image from blobstore and dynamically resize it.
 """
+from __future__ import division
 
 
 
 
+from past.utils import old_div
 import logging
 import re
 import six.moves.urllib.parse
@@ -102,13 +104,13 @@ def CreateBlobImageDispatcher(images_stub):
         if width > height:
 
           crop_xform = images_service_pb.Transform()
-          delta = (width - height) / (width * 2.0)
+          delta = old_div((width - height), (width * 2.0))
           crop_xform.set_crop_left_x(delta)
           crop_xform.set_crop_right_x(1.0 - delta)
         elif width < height:
 
           crop_xform = images_service_pb.Transform()
-          delta = (height - width) / (height * 2.0)
+          delta = old_div((height - width), (height * 2.0))
           top_delta = max(0.0, delta - 0.25)
           bottom_delta = 1.0 - (2.0 * delta) + top_delta
           crop_xform.set_crop_top_y(top_delta)

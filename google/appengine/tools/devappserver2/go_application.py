@@ -19,6 +19,8 @@
 
 
 
+from builtins import str
+from builtins import object
 import atexit
 import errno
 import logging

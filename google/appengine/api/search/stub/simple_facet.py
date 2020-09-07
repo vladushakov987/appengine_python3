@@ -17,6 +17,8 @@
 """A Simple facet analyzer."""
 
 
+from builtins import str
+from builtins import object
 from google.appengine.datastore import document_pb
 
 

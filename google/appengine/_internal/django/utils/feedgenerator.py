@@ -22,8 +22,11 @@ Sample usage:
 For definitions of the different versions of RSS, see:
 http://diveintomark.org/archives/2004/02/04/incompatible-rss
 """
+from __future__ import division
 
 
+from builtins import object
+from past.utils import old_div
 import datetime
 import six.moves.urllib.parse
 from google.appengine._internal.django.utils.xmlutils import SimplerXMLGenerator
@@ -34,7 +37,7 @@ def rfc2822_date(date):
     if date.tzinfo:
         time_str = date.strftime('%a, %d %b %Y %H:%M:%S ')
         offset = date.tzinfo.utcoffset(date)
-        timezone = (offset.days * 24 * 60) + (offset.seconds / 60)
+        timezone = (offset.days * 24 * 60) + (old_div(offset.seconds, 60))
         hour, minute = divmod(timezone, 60)
         return time_str + "%+03d%02d" % (hour, minute)
     else:
@@ -44,7 +47,7 @@ def rfc3339_date(date):
     if date.tzinfo:
         time_str = date.strftime('%Y-%m-%dT%H:%M:%S')
         offset = date.tzinfo.utcoffset(date)
-        timezone = (offset.days * 24 * 60) + (offset.seconds / 60)
+        timezone = (offset.days * 24 * 60) + (old_div(offset.seconds, 60))
         hour, minute = divmod(timezone, 60)
         return time_str + "%+03d:%02d" % (hour, minute)
     else:

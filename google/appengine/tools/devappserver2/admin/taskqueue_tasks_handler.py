@@ -19,6 +19,7 @@
 
 
 
+from builtins import next
 import datetime
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 

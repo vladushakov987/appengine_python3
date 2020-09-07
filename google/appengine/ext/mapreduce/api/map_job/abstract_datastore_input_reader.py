@@ -16,6 +16,7 @@
 #
 """Abstract Datastore Input Reader implementation for the map_job API."""
 
+from builtins import range
 import random
 
 from google.appengine.api import datastore

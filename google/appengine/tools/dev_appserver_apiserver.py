@@ -32,6 +32,8 @@ backend at /_ah/spi and afterwards if app.yaml is changed.
 
 
 
+from past.builtins import cmp
+from builtins import object
 import base64
 import cgi
 import io

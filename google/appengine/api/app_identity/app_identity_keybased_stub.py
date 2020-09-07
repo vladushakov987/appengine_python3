@@ -35,6 +35,8 @@ a private key specified when starting dev_appserver.py.
 
 
 
+from builtins import str
+from builtins import range
 import base64
 import json
 import os

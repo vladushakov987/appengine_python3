@@ -1,5 +1,7 @@
+from __future__ import print_function
 
 
+from builtins import input
 from optparse import make_option
 
 from google.appengine._internal.django.conf import settings

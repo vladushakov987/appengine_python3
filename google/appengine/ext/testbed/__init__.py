@@ -105,6 +105,8 @@ self.setup_env().
 
 
 
+from builtins import str
+from builtins import object
 import os
 import unittest
 

@@ -36,6 +36,10 @@ This module also contains actual mapper code for backing data over.
 
 
 
+from builtins import zip
+from builtins import next
+from builtins import str
+from builtins import object
 import io
 import datetime
 import itertools

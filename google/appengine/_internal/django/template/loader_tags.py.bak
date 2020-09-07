@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.template import TemplateSyntaxError, TemplateDoesNotExist, Variable
 from google.appengine._internal.django.template import Library, Node, TextNode
 from google.appengine._internal.django.template.loader import get_template

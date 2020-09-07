@@ -17,6 +17,7 @@
 """Tracking of active requests."""
 
 
+from builtins import object
 import ctypes
 import threading
 

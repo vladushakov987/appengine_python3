@@ -41,10 +41,13 @@ Note that this is not used for the production Full Text Search API; this
 provides an approximation to the API for local testing with dev_appserver.
 
 """
+from __future__ import division
 
 
 
 
+from builtins import object
+from past.utils import old_div
 import logging
 import math
 
@@ -416,7 +419,7 @@ class ExpressionEvaluator(object):
       return self._EvalNumericBinaryOp(lambda a, b: a - b, 'subtraction', node,
                                        return_type)
     if node.getType() == ExpressionParser.DIV:
-      return self._EvalNumericBinaryOp(lambda a, b: a / b, 'division', node,
+      return self._EvalNumericBinaryOp(lambda a, b: old_div(a, b), 'division', node,
                                        return_type)
     if node.getType() == ExpressionParser.TIMES:
       return self._EvalNumericBinaryOp(lambda a, b: a * b,

@@ -35,6 +35,7 @@ blobs directly to a filesystem.
 
 
 
+from builtins import str
 import errno
 import os
 

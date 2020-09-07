@@ -35,6 +35,9 @@
 
 
 
+from builtins import str
+from builtins import next
+from builtins import object
 import six
 __all__ = ['FileFormat',
            'FORMATS']

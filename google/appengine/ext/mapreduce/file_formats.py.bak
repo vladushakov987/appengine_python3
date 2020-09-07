@@ -34,12 +34,12 @@
 
 
 
-from __future__ import absolute_import
+
 import six
 __all__ = ['FileFormat',
            'FORMATS']
 
-import StringIO
+import io
 import zipfile
 
 
@@ -276,7 +276,7 @@ class FileFormat(object):
     """
     return file_object
 
-  def next(self):
+  def __next__(self):
     """Returns a file-like object containing next content.
 
     Returns:
@@ -303,7 +303,7 @@ class FileFormat(object):
       self._cache = {}
       return next(self)
     if isinstance(result, str):
-      result = StringIO.StringIO(result)
+      result = io.StringIO(result)
     elif isinstance(result, six.text_type):
       raise ValueError('%s can not return unicode object.' %
                        self.__class__.__name__)
@@ -426,7 +426,7 @@ class _TextFormat(FileFormat):
       content = file_object.read()
       content = content.decode(self._kwargs['encoding'])
       file_object.close()
-      return StringIO.StringIO(content)
+      return io.StringIO(content)
     return file_object
 
 

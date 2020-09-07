@@ -1,7 +1,7 @@
 """
 Parser and utilities for the smart 'if' tag
 """
-from __future__ import absolute_import
+
 import operator
 
 # Using a simple top down parser, as described here:
@@ -110,7 +110,7 @@ OPERATORS = {
 }
 
 # Assign 'id' to each:
-for key, op in OPERATORS.items():
+for key, op in list(OPERATORS.items()):
     op.id = key
 
 
@@ -177,7 +177,7 @@ class IfParser(object):
         else:
             return op()
 
-    def next(self):
+    def __next__(self):
         if self.pos >= len(self.tokens):
             return EndToken
         else:

@@ -23,6 +23,8 @@ contents into the blob store.
 
 
 
+from builtins import str
+from builtins import object
 import base64
 import cgi
 import io

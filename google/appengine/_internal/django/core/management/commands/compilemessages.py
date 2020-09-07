@@ -1,4 +1,6 @@
 
+from builtins import map
+from builtins import filter
 import codecs
 import os
 import sys

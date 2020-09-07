@@ -26,6 +26,9 @@ http://www.python.org/dev/peps/pep-0249/
 
 
 from __future__ import absolute_import
+from builtins import zip
+from builtins import range
+from builtins import object
 import collections
 import datetime
 import decimal
@@ -355,7 +358,7 @@ class Cursor(object):
       return arg_jdbc_type
 
 
-    for python_t, jdbc_t in _PYTHON_TYPE_TO_JDBC_TYPE.items():
+    for python_t, jdbc_t in list(_PYTHON_TYPE_TO_JDBC_TYPE.items()):
       if isinstance(arg, python_t):
         return jdbc_t
 
@@ -808,7 +811,7 @@ class Connection(object):
     self._retry_interval_seconds = retry_interval_seconds
     self.converter = {}
     self.encoders = {}
-    for key, value in conv.items():
+    for key, value in list(conv.items()):
       if isinstance(key, int):
         self.converter[key] = value
       else:

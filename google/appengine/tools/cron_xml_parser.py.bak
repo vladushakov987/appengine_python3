@@ -23,7 +23,7 @@ CronXmlParser: converts XML to CronXml objct
 Cron: describes a single cron specified in cron.xml
 """
 
-from __future__ import absolute_import
+
 from xml.etree import ElementTree
 
 from google.appengine.cron import groc

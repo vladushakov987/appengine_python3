@@ -16,7 +16,7 @@
 #
 """Tests for devappserver2.admin.blobstore_viewer."""
 
-from __future__ import absolute_import
+
 import unittest
 
 import google

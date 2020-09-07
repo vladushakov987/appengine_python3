@@ -20,7 +20,7 @@ An instance (also referred to as a runtime process) handles dynamic content
 only. Static files are handled separately.
 """
 
-from __future__ import absolute_import
+
 import contextlib
 import six.moves.http_client
 import logging

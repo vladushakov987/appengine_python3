@@ -24,6 +24,8 @@ The Remote API protocol is used for communication.
 
 
 
+from builtins import str
+from builtins import object
 import six.moves.BaseHTTPServer
 import six.moves.http_client
 import logging

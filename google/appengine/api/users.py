@@ -42,6 +42,9 @@ Classes defined here:
 
 
 
+from past.builtins import cmp
+from builtins import str
+from builtins import object
 import os
 from google.appengine.api import apiproxy_stub_map
 from google.appengine.api import user_service_pb

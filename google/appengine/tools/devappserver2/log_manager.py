@@ -20,6 +20,8 @@ Should be accessed by get() function.
 """
 
 
+from builtins import str
+from builtins import object
 import six.moves.http_client
 import logging
 import os

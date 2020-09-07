@@ -15,8 +15,11 @@
 # limitations under the License.
 #
 """Utilities to support geo fields on the Python dev server."""
+from __future__ import division
 
 
+from builtins import object
+from past.utils import old_div
 import math
 
 
@@ -68,6 +71,6 @@ class LatLng(object):
 
     dlat = lat_rad - other_lat_rad
     dlng = lng_rad - other_lng_rad
-    a1 = math.sin(dlat / 2)**2
-    a2 = math.cos(lat_rad) * math.cos(other_lat_rad) * math.sin(dlng / 2)**2
+    a1 = math.sin(old_div(dlat, 2))**2
+    a2 = math.cos(lat_rad) * math.cos(other_lat_rad) * math.sin(old_div(dlng, 2))**2
     return 2 * self._EARTH_RADIUS_METERS * math.asin(math.sqrt(a1 + a2))

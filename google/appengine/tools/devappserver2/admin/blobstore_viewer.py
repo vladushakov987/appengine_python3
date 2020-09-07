@@ -17,6 +17,7 @@
 """A handler that displays information about blobstore blobs."""
 
 
+from builtins import str
 from google.appengine.ext import blobstore
 
 from google.appengine.tools.devappserver2.admin import admin_request_handler

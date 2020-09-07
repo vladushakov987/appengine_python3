@@ -44,7 +44,7 @@ The namespace schemas are:
 
 
 
-from __future__ import absolute_import
+
 import base64
 import calendar
 import datetime
@@ -624,7 +624,7 @@ class Key(object):
       raise datastore_errors.BadKeyError(
         'ToTagUri() called for an entity with an incomplete key.')
 
-    return u'tag:%s.%s,%s:%s[%s]' % (
+    return 'tag:%s.%s,%s:%s[%s]' % (
 
         saxutils.escape(EncodeAppIdNamespace(self.app(), self.namespace())),
         os.environ['AUTH_DOMAIN'],
@@ -738,7 +738,7 @@ class Key(object):
     if self.__reference.has_name_space():
       args.append('namespace=%r' %
           self.__reference.name_space().decode('utf-8'))
-    return u'datastore_types.Key.from_path(%s)' % ', '.join(args)
+    return 'datastore_types.Key.from_path(%s)' % ', '.join(args)
 
   def __cmp__(self, other):
     """Returns negative, zero, or positive when comparing two keys.
@@ -830,7 +830,7 @@ class Category(six.text_type):
     ValidateString(tag, 'tag')
 
   def ToXml(self):
-    return u'<category term="%s" label=%s />' % (Category.TERM,
+    return '<category term="%s" label=%s />' % (Category.TERM,
                                                  saxutils.quoteattr(self))
 
 
@@ -857,7 +857,7 @@ class Link(six.text_type):
       raise datastore_errors.BadValueError('Invalid URL: %s' % link)
 
   def ToXml(self):
-    return u'<link href=%s />' % saxutils.quoteattr(self)
+    return '<link href=%s />' % saxutils.quoteattr(self)
 
 
 class Email(six.text_type):
@@ -875,7 +875,7 @@ class Email(six.text_type):
     ValidateString(email, 'email')
 
   def ToXml(self):
-    return u'<gd:email address=%s />' % saxutils.quoteattr(self)
+    return '<gd:email address=%s />' % saxutils.quoteattr(self)
 
 
 class GeoPt(object):
@@ -958,12 +958,12 @@ class GeoPt(object):
     return 'datastore_types.GeoPt(%r, %r)' % (self.lat, self.lon)
 
   def __unicode__(self):
-    return u'%s,%s' % (six.text_type(self.lat), six.text_type(self.lon))
+    return '%s,%s' % (six.text_type(self.lat), six.text_type(self.lon))
 
   __str__ = __unicode__
 
   def ToXml(self):
-    return u'<georss:point>%s %s</georss:point>' % (six.text_type(self.lat),
+    return '<georss:point>%s %s</georss:point>' % (six.text_type(self.lat),
                                                     six.text_type(self.lon))
 
 
@@ -1048,12 +1048,12 @@ class IM(object):
     return 'datastore_types.IM(%r, %r)' % (self.protocol, self.address)
 
   def __unicode__(self):
-    return u'%s %s' % (self.protocol, self.address)
+    return '%s %s' % (self.protocol, self.address)
 
   __str__ = __unicode__
 
   def ToXml(self):
-    return (u'<gd:im protocol=%s address=%s />' %
+    return ('<gd:im protocol=%s address=%s />' %
             (saxutils.quoteattr(self.protocol),
              saxutils.quoteattr(self.address)))
 
@@ -1080,7 +1080,7 @@ class PhoneNumber(six.text_type):
     ValidateString(phone, 'phone')
 
   def ToXml(self):
-    return u'<gd:phoneNumber>%s</gd:phoneNumber>' % saxutils.escape(self)
+    return '<gd:phoneNumber>%s</gd:phoneNumber>' % saxutils.escape(self)
 
 
 class PostalAddress(six.text_type):
@@ -1098,7 +1098,7 @@ class PostalAddress(six.text_type):
     ValidateString(address, 'address')
 
   def ToXml(self):
-    return u'<gd:postalAddress>%s</gd:postalAddress>' % saxutils.escape(self)
+    return '<gd:postalAddress>%s</gd:postalAddress>' % saxutils.escape(self)
 
 
 class Rating(long):
@@ -1133,7 +1133,7 @@ class Rating(long):
         (rating, typename(rating)))
 
   def ToXml(self):
-    return (u'<gd:rating value="%d" min="%d" max="%d" />' %
+    return ('<gd:rating value="%d" min="%d" max="%d" />' %
             (self, Rating.MIN, Rating.MAX))
 
 
@@ -1156,7 +1156,7 @@ class Text(six.text_type):
                 defaults to 'ascii' when isinstance(arg, str);
     """
     if arg is None:
-      arg = u''
+      arg = ''
     if isinstance(arg, six.text_type):
       if encoding is not None:
         raise TypeError('Text() with a unicode argument '

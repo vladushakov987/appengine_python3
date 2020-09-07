@@ -20,11 +20,11 @@
 
 """Userland RPC instrumentation for App Engine."""
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import datetime
 import logging
 import os

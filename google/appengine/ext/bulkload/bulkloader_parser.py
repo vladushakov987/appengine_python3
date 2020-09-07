@@ -39,6 +39,8 @@ parsing of things like Python lambdas.
 
 
 
+from builtins import str
+from builtins import object
 import inspect
 import sys
 

@@ -28,6 +28,7 @@ http://docs.oracle.com/javase/7/docs/technotes/guides/jar/jar.html
 
 
 
+from builtins import object
 import os
 import sys
 import zipfile

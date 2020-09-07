@@ -2,6 +2,9 @@
 Parser and utilities for the smart 'if' tag
 """
 
+from builtins import next
+from builtins import str
+from builtins import object
 import operator
 
 # Using a simple top down parser, as described here:

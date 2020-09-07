@@ -21,6 +21,7 @@ DispatchEntry objects containing the data from the XML.
 """
 
 
+from builtins import object
 from xml.etree import ElementTree
 
 from google.appengine.tools import xml_parser_utils

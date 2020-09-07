@@ -19,6 +19,7 @@
 
 
 
+from builtins import str
 import sys
 
 from google.appengine.tools import appengine_rpc

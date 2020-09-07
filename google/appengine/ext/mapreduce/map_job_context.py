@@ -17,6 +17,7 @@
 """Map job execution context."""
 
 
+from builtins import object
 import logging
 
 

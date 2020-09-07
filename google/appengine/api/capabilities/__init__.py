@@ -57,6 +57,7 @@ Classes defined here:
 
 
 
+from builtins import object
 import warnings
 
 from google.appengine.api.capabilities import capability_service_pb

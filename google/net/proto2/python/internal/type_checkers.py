@@ -36,6 +36,7 @@ TYPE_TO_DESERIALIZE_METHOD: A dictionary with field types and deserialization
 
 
 from __future__ import absolute_import
+from builtins import object
 import sys
 import six
 if sys.version < '2.6': bytes = str

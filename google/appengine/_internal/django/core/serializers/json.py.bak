@@ -2,10 +2,10 @@
 Serialize data to/from JSON
 """
 
-from __future__ import absolute_import
+
 import datetime
 import decimal
-from StringIO import StringIO
+from io import StringIO
 
 from google.appengine._internal.django.core.serializers.python import Serializer as PythonSerializer
 from google.appengine._internal.django.core.serializers.python import Deserializer as PythonDeserializer

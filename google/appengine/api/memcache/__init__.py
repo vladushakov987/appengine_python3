@@ -33,6 +33,9 @@ required and higher performance is desired.
 
 
 
+from builtins import zip
+from builtins import str
+from builtins import object
 import six.moves.cPickle
 import io
 import hashlib

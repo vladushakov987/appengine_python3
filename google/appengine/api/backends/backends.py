@@ -35,6 +35,7 @@ This API provides utility methods for working with backends.
 
 
 
+from builtins import str
 import logging
 import os
 import re

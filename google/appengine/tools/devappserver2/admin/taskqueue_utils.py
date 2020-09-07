@@ -15,10 +15,14 @@
 # limitations under the License.
 #
 """Shared utilities for dealing with taskqueue."""
+from __future__ import division
 
 
 
 
+from builtins import zip
+from builtins import object
+from past.utils import old_div
 import datetime
 
 from google.appengine.api import apiproxy_stub_map
@@ -27,7 +31,7 @@ from six.moves import zip
 
 
 def _human_readable_eta(eta_usec):
-  eta = datetime.datetime.utcfromtimestamp(eta_usec / 1e6)
+  eta = datetime.datetime.utcfromtimestamp(old_div(eta_usec, 1e6))
   return eta.strftime('%Y/%m/%d %H:%M:%S')
 
 
@@ -37,7 +41,7 @@ def _timedelta_without_microseconds(delta):
 
 def _human_readable_eta_delta(eta_usec):
   now = datetime.datetime.utcnow()
-  eta = datetime.datetime.utcfromtimestamp(eta_usec / 1e6)
+  eta = datetime.datetime.utcfromtimestamp(old_div(eta_usec, 1e6))
   if eta > now:
     return '%s from now' % _timedelta_without_microseconds(eta - now)
   else:

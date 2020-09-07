@@ -67,6 +67,10 @@ A few caveats:
 
 
 
+from builtins import str
+from builtins import zip
+from builtins import next
+from builtins import object
 import google
 import os
 import pickle

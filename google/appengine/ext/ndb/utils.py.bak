@@ -3,7 +3,7 @@
 These are not meant for use by code outside NDB.
 """
 
-from __future__ import absolute_import
+
 import functools
 import logging
 import os

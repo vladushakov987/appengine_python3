@@ -19,6 +19,9 @@
 
 
 
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
 import six.moves.builtins
 import imp
 import os

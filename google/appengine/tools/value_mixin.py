@@ -21,6 +21,7 @@ based on the values of fields.
 """
 
 
+from builtins import object
 class ValueMixin(object):
   def __cmp__(self, other):
 

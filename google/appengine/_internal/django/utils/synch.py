@@ -7,12 +7,13 @@ Synchronization primitives:
 """
 
 
+from builtins import object
 try:
     import threading
 except ImportError:
     import dummy_threading as threading
 
-class RWLock:
+class RWLock(object):
     """
     Classic implementation of reader-writer lock with preference to writers.
 

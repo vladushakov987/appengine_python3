@@ -32,6 +32,7 @@ messaging functionality and a command handler for commands such as "/foo bar"
 
 
 
+from builtins import object
 import logging
 from google.appengine.api import xmpp
 from google.appengine.ext import webapp

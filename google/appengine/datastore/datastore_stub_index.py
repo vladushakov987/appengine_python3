@@ -30,6 +30,8 @@
 
 
 
+from builtins import zip
+from builtins import object
 import six
 from six.moves import zip
 __all__ = ['GenerateIndexFromHistory',

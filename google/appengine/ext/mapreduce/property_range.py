@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 """A class representing entity property range."""
+from __future__ import division
 
 
 
@@ -22,6 +23,11 @@
 
 
 
+from builtins import zip
+from builtins import chr
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import datetime
 
 from google.appengine.ext import ndb
@@ -263,7 +269,7 @@ def _split_datetime_property(start, end, n, include_start, include_end):
 
 def _split_float_property(start, end, n):
   delta = float(end - start)
-  stride = delta / n
+  stride = old_div(delta, n)
   if stride <= 0:
     raise ValueError("Range too small to split: start %r end %r", start, end)
   splitpoints = []
@@ -278,7 +284,7 @@ def _split_integer_property(start, end, n, include_start, include_end):
   if include_end:
     end += 1
   delta = float(end - start)
-  stride = delta / n
+  stride = old_div(delta, n)
   if stride <= 0:
     raise ValueError("Range too small to split: start %r end %r", start, end)
   splitpoints = [start]

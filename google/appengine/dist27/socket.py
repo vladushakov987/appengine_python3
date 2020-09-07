@@ -50,6 +50,9 @@ the setsockopt() and getsockopt() methods.
 
 # GOOGLE NOTE: import paths changed to refer to our implementation.
 
+from builtins import str
+from builtins import map
+from builtins import object
 from google.appengine.api.remote_socket import _remote_socket as _socket
 from google.appengine.api.remote_socket._remote_socket import *
 from functools import partial

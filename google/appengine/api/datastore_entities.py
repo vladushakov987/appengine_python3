@@ -37,6 +37,7 @@ Most of these kinds are based on the gd namespace "kinds" from GData:
 
 
 
+from builtins import object
 import types
 import six.moves.urllib.parse
 from xml.sax import saxutils
@@ -251,7 +252,7 @@ class Event(GdKind):
                      'endTime', 'eventStatus', 'link', 'category']
   CONTACT_PROPERTIES = ['attendee']
 
-  class Status:
+  class Status(object):
     CONFIRMED = 'confirmed'
     TENTATIVE = 'tentative'
     CANCELED = 'canceled'

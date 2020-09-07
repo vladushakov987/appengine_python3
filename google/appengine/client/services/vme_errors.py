@@ -17,6 +17,7 @@
 """Exceptions related to Managed VM deployments."""
 
 
+from builtins import str
 import logging
 
 

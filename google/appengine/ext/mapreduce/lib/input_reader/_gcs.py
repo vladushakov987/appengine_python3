@@ -17,6 +17,9 @@
 """GCS related input readers."""
 
 
+from builtins import next
+from builtins import range
+from builtins import object
 import six
 from six.moves import range
 __all__ = [

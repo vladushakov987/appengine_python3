@@ -1,4 +1,5 @@
 
+from builtins import str
 from threading import Lock
 from pprint import pformat
 try:

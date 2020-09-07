@@ -17,6 +17,7 @@
 """A handler that allows the user to see and test cron tasks."""
 
 
+from builtins import str
 import datetime
 import os.path
 import traceback

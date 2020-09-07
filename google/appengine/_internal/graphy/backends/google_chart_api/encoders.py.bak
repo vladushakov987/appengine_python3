@@ -18,7 +18,7 @@
 
 Not intended for end users, use the methods in __init__ instead."""
 
-from __future__ import absolute_import
+
 import warnings
 from google.appengine._internal.graphy.backends.google_chart_api import util
 

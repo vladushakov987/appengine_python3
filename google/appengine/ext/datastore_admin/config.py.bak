@@ -53,7 +53,7 @@ Using values:
   It is assumed that values in this configuration module are constants.
 """
 
-from __future__ import absolute_import
+
 import os
 
 
@@ -132,7 +132,7 @@ def GetConfig():
   datacenter = os.environ.get('DATACENTER')
   if not datacenter:
     return Local
-  for prefix, config in RUNTIME_DATACENTER_TO_CLASS.items():
+  for prefix, config in list(RUNTIME_DATACENTER_TO_CLASS.items()):
     if datacenter.startswith(prefix):
       return config
   return PRODUCTION_CLASS

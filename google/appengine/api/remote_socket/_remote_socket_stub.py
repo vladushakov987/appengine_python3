@@ -24,6 +24,8 @@ A stub version of the Remote Socket API for the dev_appserver.
 
 
 
+from builtins import str
+from builtins import object
 import binascii
 import errno
 import os

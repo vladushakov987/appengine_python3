@@ -19,6 +19,7 @@
 
 
 
+from builtins import str
 import threading
 
 from google.appengine.tools.devappserver2 import module

@@ -20,7 +20,7 @@
 
 
 
-from __future__ import absolute_import
+
 import datetime
 import errno
 import logging
@@ -305,7 +305,7 @@ class ModuleConfiguration(object):
         # immutable value *and* different from the last loaded value.
         continue
 
-      if isinstance(app_info_value, (str,)):
+      if isinstance(app_info_value, str):
         logging.warning('Restart the development module to see updates to "%s" '
                         '["%s" => "%s"]',
                         app_info_attribute,
@@ -485,7 +485,7 @@ class BackendsConfiguration(object):
 
   def get_backend_configurations(self):
     return [BackendConfiguration(self._base_module_configuration, self, entry)
-            for entry in self._backends_name_to_backend_entry.values()]
+            for entry in list(self._backends_name_to_backend_entry.values())]
 
   def check_for_updates(self, backend_name):
     """Return any configuration changes since the last check_for_updates call.
@@ -501,7 +501,7 @@ class BackendsConfiguration(object):
     with self._update_lock:
       module_changes = self._base_module_configuration.check_for_updates()
       if module_changes:
-        for backend_changes in self._changes.values():
+        for backend_changes in list(self._changes.values()):
           backend_changes.update(module_changes)
       changes = self._changes[backend_name]
       self._changes[backend_name] = set()

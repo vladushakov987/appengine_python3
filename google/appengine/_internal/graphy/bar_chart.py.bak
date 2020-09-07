@@ -16,7 +16,7 @@
 
 """Code related to bar charts."""
 
-from __future__ import absolute_import
+
 import copy
 import warnings
 

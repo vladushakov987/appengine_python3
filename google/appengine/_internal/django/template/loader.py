@@ -26,6 +26,7 @@
 # installed, because pkg_resources is necessary to read eggs.
 
 
+from builtins import object
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured
 from google.appengine._internal.django.template import Origin, Template, Context, TemplateDoesNotExist, add_to_builtins
 from google.appengine._internal.django.utils.importlib import import_module

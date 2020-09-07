@@ -24,6 +24,7 @@
 
 
 
+from builtins import str
 class Error(Exception):
   """Base datastore yaml error type."""
 

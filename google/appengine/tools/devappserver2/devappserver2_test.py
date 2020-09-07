@@ -19,6 +19,7 @@
 
 
 
+from builtins import object
 import argparse
 import getpass
 import itertools

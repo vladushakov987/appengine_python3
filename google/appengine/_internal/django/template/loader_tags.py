@@ -1,4 +1,5 @@
 
+from builtins import object
 from google.appengine._internal.django.template import TemplateSyntaxError, TemplateDoesNotExist, Variable
 from google.appengine._internal.django.template import Library, Node, TextNode
 from google.appengine._internal.django.template.loader import get_template

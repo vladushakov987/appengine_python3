@@ -40,6 +40,7 @@
 
 
 
+from builtins import object
 import six
 __all__ = ['CS_XML_NS',
            'CSFileStat',

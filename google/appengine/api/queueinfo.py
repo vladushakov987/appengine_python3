@@ -127,6 +127,7 @@ suffices are B (bytes), K (kilobytes), M (megabytes), G (gigabytes) and
 T (terabytes). If total_storage_limit exceeds the total disk storage
 available to an app, it is clamped.
 """
+from __future__ import division
 
 
 
@@ -136,6 +137,7 @@ available to an app, it is clamped.
 
 
 
+from past.utils import old_div
 from google.appengine.api import appinfo
 from google.appengine.api import validation
 from google.appengine.api import yaml_builder
@@ -288,11 +290,11 @@ def ParseRate(rate):
   if unit == 's':
     return number
   if unit == 'm':
-    return number/60
+    return old_div(number,60)
   if unit == 'h':
-    return number/(60 * 60)
+    return old_div(number,(60 * 60))
   if unit == 'd':
-    return number/(24 * 60 * 60)
+    return old_div(number,(24 * 60 * 60))
 
 
 def ParseTotalStorageLimit(limit):

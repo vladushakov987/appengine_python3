@@ -18,10 +18,10 @@
 
 
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import base64
-import cStringIO
+import io
 import six.moves.http_client
 import logging
 import os
@@ -187,17 +187,17 @@ class PHPRuntime(object):
     if p.returncode:
       if request_type == 'interactive':
         start_response('200 OK', [('Content-Type', 'text/plain')])
-        message = six.moves.http_client.HTTPMessage(cStringIO.StringIO(stdout))
+        message = six.moves.http_client.HTTPMessage(io.StringIO(stdout))
         return [message.fp.read()]
       else:
         logging.error('php failure (%r) with:\nstdout:\n%sstderr:\n%s',
                       p.returncode, stdout, stderr)
         start_response('500 Internal Server Error',
                        [(http_runtime_constants.ERROR_CODE_HEADER, '1')])
-        message = six.moves.http_client.HTTPMessage(cStringIO.StringIO(stdout))
+        message = six.moves.http_client.HTTPMessage(io.StringIO(stdout))
         return [message.fp.read()]
 
-    message = six.moves.http_client.HTTPMessage(cStringIO.StringIO(stdout))
+    message = six.moves.http_client.HTTPMessage(io.StringIO(stdout))
 
     if 'Status' in message:
       status = message['Status']

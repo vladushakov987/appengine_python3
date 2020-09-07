@@ -1,4 +1,5 @@
 
+from builtins import object
 import sys
 
 from google.appengine._internal.django.contrib.contenttypes.generic import GenericForeignKey, GenericRelation
@@ -11,7 +12,7 @@ try:
 except NameError:
     from google.appengine._internal.django.utils.itercompat import any
 
-class ModelErrorCollection:
+class ModelErrorCollection(object):
     def __init__(self, outfile=sys.stdout):
         self.errors = []
         self.outfile = outfile

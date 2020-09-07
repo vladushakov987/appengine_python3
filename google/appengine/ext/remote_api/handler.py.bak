@@ -60,7 +60,7 @@ See the ConfigDefaults class below for the full set of options available.
 
 
 
-from __future__ import absolute_import
+
 import google
 import hashlib
 import logging

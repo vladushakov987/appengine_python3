@@ -27,6 +27,7 @@ datastore.
 Transactions are serialized through __tx_lock. Each transaction acquires it
 when it begins and releases it when it commits or rolls back.
 """
+from __future__ import division
 
 
 
@@ -41,6 +42,12 @@ when it begins and releases it when it commits or rolls back.
 
 
 
+from builtins import zip
+from builtins import filter
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import array
 import itertools
 import logging
@@ -1369,7 +1376,7 @@ class DatastoreSqliteStub(datastore_stub_util.BaseDatastore,
     if not block_size:
 
 
-      block_size = (size / 1000 + 1) * 1000
+      block_size = (old_div(size, 1000) + 1) * 1000
       c = conn.execute('SELECT next_id FROM %s WHERE prefix = ? LIMIT 1'
                        % table, (prefix,))
       next_id = c.fetchone()[0]

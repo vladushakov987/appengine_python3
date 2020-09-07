@@ -26,6 +26,7 @@ Use this classes to test functionality depending on webapp framework.
 
 
 
+from builtins import object
 import io
 import six.moves.urllib.parse
 

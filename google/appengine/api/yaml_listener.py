@@ -27,6 +27,7 @@ a handler object.
 
 
 
+from builtins import object
 from google.appengine.api import yaml_errors
 import yaml
 import six
