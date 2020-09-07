@@ -64,7 +64,7 @@ it for details.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import os
 import threading
@@ -257,7 +257,7 @@ class Throttle(object):
 
 
       total = 0
-      for count in self.prior_block[throttle_name].values():
+      for count in list(self.prior_block[throttle_name].values()):
         total += count
 
 
@@ -267,7 +267,7 @@ class Throttle(object):
 
 
 
-      for count in self.transferred[throttle_name].values():
+      for count in list(self.transferred[throttle_name].values()):
         total += count
 
 
@@ -333,7 +333,7 @@ class Throttle(object):
       if next_rotate_time >= self.get_time():
         return
 
-      for name, count in self.transferred[throttle_name].items():
+      for name, count in list(self.transferred[throttle_name].items()):
 
 
 
@@ -372,9 +372,9 @@ class Throttle(object):
     """
     total = 0
 
-    for count in self.totals[throttle_name].values():
+    for count in list(self.totals[throttle_name].values()):
       total += count
-    for count in self.transferred[throttle_name].values():
+    for count in list(self.transferred[throttle_name].values()):
       total += count
     return total, self.get_time() - self.start_time
 
@@ -476,7 +476,7 @@ class ThrottleHandler(six.moves.urllib.request.BaseHandler):
     res.read = ReturnContent
     size = len(content)
     headers = res.info()
-    for key, value in headers.items():
+    for key, value in list(headers.items()):
       size += len('%s: %s\n' % (key, value))
     self.throttle.AddTransfer(throttle_name, size)
 

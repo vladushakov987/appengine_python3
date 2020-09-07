@@ -1,7 +1,7 @@
 """Thread module emulating a subset of Java's threading model."""
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import sys as _sys
 import six
 from six.moves import range

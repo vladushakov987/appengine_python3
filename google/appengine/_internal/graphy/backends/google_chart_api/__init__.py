@@ -16,7 +16,7 @@
 
 """Backend which can generate charts using the Google Chart API."""
 
-from __future__ import absolute_import
+
 from google.appengine._internal.graphy import line_chart
 from google.appengine._internal.graphy import bar_chart
 from google.appengine._internal.graphy import pie_chart

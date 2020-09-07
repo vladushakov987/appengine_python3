@@ -16,7 +16,7 @@
 #
 """Schedule callables to run at a particular time."""
 
-from __future__ import absolute_import
+
 import heapq
 import threading
 import time

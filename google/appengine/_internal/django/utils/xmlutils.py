@@ -2,7 +2,7 @@
 Utilities for XML generation/parsing.
 """
 
-from __future__ import absolute_import
+
 from xml.sax.saxutils import XMLGenerator
 
 class SimplerXMLGenerator(XMLGenerator):

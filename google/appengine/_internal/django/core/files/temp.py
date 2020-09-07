@@ -9,7 +9,7 @@ NamedTemporaryFile uses the O_TEMPORARY flag, and thus cannot be reopened [1].
 1: http://mail.python.org/pipermail/python-list/2005-December/359474.html
 """
 
-from __future__ import absolute_import
+
 import os
 import tempfile
 from google.appengine._internal.django.core.files.utils import FileProxyMixin

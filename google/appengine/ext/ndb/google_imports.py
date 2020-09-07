@@ -4,7 +4,7 @@ All other NDB code should import its Google App Engine modules from
 this module.  If necessary, add new imports here (in both places).
 """
 
-from __future__ import absolute_import
+
 try:
   from google.appengine.datastore import entity_pb
   normal_environment = True

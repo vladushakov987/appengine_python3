@@ -30,7 +30,7 @@ supply no parameters.
 
 
 
-from __future__ import absolute_import
+
 import cgi
 import six.moves.http_cookies
 import hashlib

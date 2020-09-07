@@ -7,7 +7,7 @@ application's datastore by offline processes run by the Google App Engine team.
 # NOTE: All constant strings in this file should be kept in sync with
 # those in google/appengine/ext/db/stats.py.
 
-from __future__ import absolute_import
+
 from . import model
 
 __all__ = ['BaseKindStatistic',

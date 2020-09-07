@@ -26,7 +26,7 @@ a handler object.
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api import yaml_errors
 import yaml
 import six

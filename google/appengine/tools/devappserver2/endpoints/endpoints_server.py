@@ -31,7 +31,7 @@ configuration has changed.
 
 
 
-from __future__ import absolute_import
+
 import six.moves.http_client
 import json
 import logging
@@ -594,7 +594,7 @@ class EndpointsDispatcher(object):
     # parameters to nested parameters.  We don't use iteritems since we may
     # modify body_json within the loop.  For instance, 'a.b' is not a valid key
     # and would be replaced with 'a'.
-    for key, value in body_json.items():
+    for key, value in list(body_json.items()):
       current_parameter = method_parameters.get(key, {})
       repeated = current_parameter.get('repeated', False)
 

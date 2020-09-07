@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from optparse import make_option
 
 from google.appengine._internal.django.core.management.base import AppCommand
@@ -17,4 +17,4 @@ class Command(AppCommand):
     output_transaction = True
 
     def handle_app(self, app, **options):
-        return u'\n'.join(sql_create(app, self.style, connections[options.get('database', DEFAULT_DB_ALIAS)])).encode('utf-8')
+        return '\n'.join(sql_create(app, self.style, connections[options.get('database', DEFAULT_DB_ALIAS)])).encode('utf-8')

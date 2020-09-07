@@ -25,8 +25,8 @@ Use this classes to test functionality depending on webapp framework.
 
 
 
-from __future__ import absolute_import
-import StringIO
+
+import io
 import six.moves.urllib.parse
 
 
@@ -86,7 +86,7 @@ class MockRequest(object):
     self.path = o.path
     self.update_properties()
 
-    for (name, value) in six.moves.urllib.parse.parse_qs(o.query).items():
+    for (name, value) in list(six.moves.urllib.parse.parse_qs(o.query).items()):
       assert len(value) == 1
       self.set(name, value[0])
 
@@ -216,7 +216,7 @@ class MockResponse(object):
   """
 
   def __init__(self):
-    self.out = StringIO.StringIO()
+    self.out = io.StringIO()
     self.headers = MockHeaders()
     self.status = 200
     self.status_message = 'OK'

@@ -16,7 +16,7 @@
 #
 """Stub implementation for Log Service that uses sqlite."""
 
-from __future__ import absolute_import
+
 import atexit
 import codecs
 import logging

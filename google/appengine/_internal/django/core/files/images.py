@@ -4,7 +4,7 @@ Utility functions for handling images.
 Requires PIL, as you might imagine.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.files import File
 
 class ImageFile(File):

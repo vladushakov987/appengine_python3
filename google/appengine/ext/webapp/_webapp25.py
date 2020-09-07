@@ -66,11 +66,11 @@ is stored in memory before it is written.
 
 
 
-from __future__ import absolute_import
+
 import cgi
 import logging
 import re
-import StringIO
+import io
 import sys
 import traceback
 import six.moves.urllib.parse
@@ -252,7 +252,7 @@ class Response(object):
     """Constructs a response with the default settings."""
 
 
-    self.out = StringIO.StringIO()
+    self.out = io.StringIO()
     self.__wsgi_headers = []
     self.headers = wsgiref.headers.Headers(self.__wsgi_headers)
     self.headers['Content-Type'] = 'text/html; charset=utf-8'

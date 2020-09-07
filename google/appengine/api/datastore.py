@@ -45,7 +45,7 @@ which needs BadValueError, so it can't be defined in datastore.
 
 
 
-from __future__ import absolute_import
+
 import heapq
 import itertools
 import logging
@@ -916,7 +916,7 @@ class Entity(dict):
     BadPropertyError. If any value is not a supported type, raises
     BadValueError.
     """
-    for name, value in other.items():
+    for name, value in list(other.items()):
       self.__setitem__(name, value)
 
   def copy(self):
@@ -936,7 +936,7 @@ class Entity(dict):
     performance-critical.
     """
 
-    xml = u'<entity kind=%s' % saxutils.quoteattr(self.kind())
+    xml = '<entity kind=%s' % saxutils.quoteattr(self.kind())
     if self.__key.has_id_or_name():
       xml += ' key=%s' % saxutils.quoteattr(str(self.__key))
     xml += '>'
@@ -981,8 +981,8 @@ class Entity(dict):
       proptype_xml = saxutils.quoteattr(proptype)
 
       escaped_values = self._XmlEscapeValues(propname)
-      open_tag = u'<property name=%s type=%s>' % (propname_xml, proptype_xml)
-      close_tag = u'</property>'
+      open_tag = '<property name=%s type=%s>' % (propname_xml, proptype_xml)
+      close_tag = '</property>'
       xml_properties += [open_tag + val + close_tag for val in escaped_values]
 
     return xml_properties
@@ -1818,7 +1818,7 @@ class Query(dict):
     If any filter string is invalid, raises BadFilterError. If any value is
     not a supported type, raises BadValueError.
     """
-    for filter, value in other.items():
+    for filter, value in list(other.items()):
       self.__setitem__(filter, value)
 
   def copy(self):
@@ -2304,7 +2304,7 @@ class MultiQuery(Query):
           result = top_result.GetEntity()
           if override:
 
-            for key in result.keys():
+            for key in list(result.keys()):
               if key not in projection:
                 del result[key]
           yield result

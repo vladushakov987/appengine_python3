@@ -19,8 +19,8 @@
 
 
 
-from __future__ import absolute_import
-import StringIO
+
+import io
 import unittest
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 
@@ -110,7 +110,7 @@ class DevAppserverChannelTest(wsgi_test_utils.WSGITestCase):
     self._old_get_channel_stub = channel._get_channel_stub
     channel._get_channel_stub = lambda: self._mock_channel_service_stub
     self._channel_app = channel.application
-    self._output = StringIO.StringIO()
+    self._output = io.StringIO()
 
   def tearDown(self):
     channel._get_channel_stub = self._old_get_channel_stub

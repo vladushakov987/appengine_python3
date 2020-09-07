@@ -28,7 +28,6 @@ functions that are used by the dev_appserver's admin console to display the
 application's queues and tasks.
 """
 
-from __future__ import with_statement
 
 
 
@@ -41,7 +40,8 @@ from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six
 from six.moves import range
 from six.moves import zip

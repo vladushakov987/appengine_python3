@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import os
 import re
 
@@ -32,7 +32,7 @@ def sql_create(app, style, connection):
     for model in app_models:
         output, references = connection.creation.sql_create_model(model, style, known_models)
         final_output.extend(output)
-        for refto, refs in references.items():
+        for refto, refs in list(references.items()):
             pending_references.setdefault(refto, []).extend(refs)
             if refto in known_models:
                 final_output.extend(connection.creation.sql_for_pending_references(refto, style, pending_references))
@@ -165,9 +165,9 @@ def custom_sql_for_model(model, style, connection):
             fp = open(sql_file, 'U')
             for statement in statements.split(fp.read().decode(settings.FILE_CHARSET)):
                 # Remove any comments from the file
-                statement = re.sub(ur"--.*([\n\Z]|$)", "", statement)
+                statement = re.sub(r"--.*([\n\Z]|$)", "", statement)
                 if statement.strip():
-                    output.append(statement + u";")
+                    output.append(statement + ";")
             fp.close()
 
     return output

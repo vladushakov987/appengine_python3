@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import unittest
 
 import google
@@ -46,7 +46,7 @@ class TestFormData(unittest.TestCase):
 
   def test(self):
     form_data = xmpp_request_handler._FormData()
-    form_data.add_text('message', u'\N{White Smiling Face}', 'plain')
+    form_data.add_text('message', '\N{White Smiling Face}', 'plain')
     form_data.add_text('stanza', '<p>This is\na\ntest!</p>', 'xml')
     boundary, content = form_data.get_boundary_and_content()
     self.assertMultiLineEqual(

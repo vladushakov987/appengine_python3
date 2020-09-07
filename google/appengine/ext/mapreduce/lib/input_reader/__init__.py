@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 """Various libraries regarding input readers and input in general."""
-from __future__ import absolute_import
+
 from google.appengine.ext.mapreduce.lib.input_reader._gcs import GCSInputReader
 from google.appengine.ext.mapreduce.lib.input_reader._gcs import GCSRecordInputReader
 from google.appengine.ext.mapreduce.lib.input_reader._gcs import PathFilter

@@ -38,7 +38,7 @@ parsing of things like Python lambdas.
 
 
 
-from __future__ import absolute_import
+
 import inspect
 import sys
 

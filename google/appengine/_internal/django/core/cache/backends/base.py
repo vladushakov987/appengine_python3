@@ -1,6 +1,6 @@
 "Base Cache class."
 
-from __future__ import absolute_import
+
 import warnings
 
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured, DjangoRuntimeWarning
@@ -110,7 +110,7 @@ class BaseCache(object):
         If timeout is given, that timeout will be used for the key; otherwise
         the default cache timeout will be used.
         """
-        for key, value in data.items():
+        for key, value in list(data.items()):
             self.set(key, value, timeout)
 
     def delete_many(self, keys):

@@ -35,7 +35,7 @@
 
 
 
-from __future__ import absolute_import
+
 import os
 _original_os_urandom = os.urandom
 def os_urandom_replacement(n):
@@ -54,19 +54,19 @@ import Bastion
 import six.moves.CGIHTTPServer
 import six.moves.configparser
 import six.moves.http_cookies
-import DocXMLRPCServer
+import xmlrpc.server
 import six.moves.html_parser
 import MimeWriter
 import six.moves.queue
 import six.moves.SimpleHTTPServer
 import six.moves.xmlrpc_server
 import six.moves.socketserver
-import StringIO
+import io
 import UserDict
-import UserList
-import UserString
+import collections
+import collections
 import aifc
-import anydbm
+import dbm
 
 
 import atexit
@@ -86,7 +86,7 @@ import code
 import codecs
 import codeop
 import colorsys
-import commands
+import subprocess
 
 
 import six.moves.http_cookiejar
@@ -100,7 +100,7 @@ import difflib
 import dircache
 import dis
 import doctest
-import dumbdbm
+import dbm.dumb
 import filecmp
 import fileinput
 import fnmatch
@@ -133,7 +133,7 @@ import macpath
 import macurl2path
 import mailbox
 import mailcap
-import markupbase
+import _markupbase
 import math
 import md5
 import mhlib
@@ -230,7 +230,7 @@ import warnings
 import wave
 import weakref
 
-import whichdb
+import dbm
 import xdrlib
 import xml.parsers.expat
 import xml.dom

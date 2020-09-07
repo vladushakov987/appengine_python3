@@ -29,7 +29,7 @@ creator and do not need to end before the creator request completes.
 
 
 
-from __future__ import absolute_import
+
 __all__ = ['start_new_background_thread',
            'BackgroundThread',
            'Error',

@@ -23,7 +23,7 @@ get_representations_of_kind() have optional start and end arguments to limit the
 query to a range of names, such that start <= name < end.
 """
 
-from __future__ import absolute_import
+
 from . import model
 
 __all__ = ['Namespace', 'Kind', 'Property', 'EntityGroup',

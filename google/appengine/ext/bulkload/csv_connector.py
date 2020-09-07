@@ -35,9 +35,9 @@ Handle the CSV format specified in a bulkloader.yaml file.
 
 
 
-from __future__ import absolute_import
+
 import codecs
-import cStringIO
+import io
 import csv
 import encodings
 import encodings.ascii
@@ -86,7 +86,7 @@ class UnicodeDictWriter(object):
     else:
       self.no_recoding = False
       self.encoder = codecs.getencoder('utf-8')
-      self.queue = cStringIO.StringIO()
+      self.queue = io.StringIO()
       self.writer = csv.DictWriter(self.queue, fieldnames, **kwds)
       self.stream = writer(stream)
 

@@ -34,7 +34,7 @@ Handle the simpletext format specified in a bulkloader.yaml file.
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.ext.bulkload import bulkloader_errors
 from google.appengine.ext.bulkload import connector_interface
 

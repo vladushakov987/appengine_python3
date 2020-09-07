@@ -9,7 +9,7 @@ that custom headers are prefixed with "X-").
 Next time you're at slashdot.org, watch out for X-Fry and X-Bender. :)
 """
 
-from __future__ import absolute_import
+
 def populate_xheaders(request, response, model, object_id):
     """
     Adds the "X-Object-Type" and "X-Object-Id" headers to the given

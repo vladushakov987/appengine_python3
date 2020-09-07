@@ -25,7 +25,7 @@
 # Python eggs) sets is_usable to False if the "pkg_resources" module isn't
 # installed, because pkg_resources is necessary to read eggs.
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured
 from google.appengine._internal.django.template import Origin, Template, Context, TemplateDoesNotExist, add_to_builtins
 from google.appengine._internal.django.utils.importlib import import_module

@@ -59,7 +59,7 @@ you want, override ZipHandler.SetCachingHeaders().
 
 
 
-from __future__ import absolute_import
+
 import email.Utils
 import logging
 import mimetypes

@@ -2,7 +2,7 @@
 Fixes Python 2.4's failure to deepcopy unbound functions.
 """
 
-from __future__ import absolute_import
+
 import copy
 import types
 

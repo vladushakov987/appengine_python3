@@ -1,6 +1,6 @@
 "Database cache backend."
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.cache.backends.base import BaseCache
 from google.appengine._internal.django.db import connections, router, transaction, DatabaseError
 import base64, time

@@ -2,7 +2,7 @@
 Dummy email backend that does nothing.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.mail.backends.base import BaseEmailBackend
 
 class EmailBackend(BaseEmailBackend):

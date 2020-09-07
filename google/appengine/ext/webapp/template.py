@@ -51,7 +51,7 @@ http://www.djangoproject.com/documentation/templates/
 
 
 
-from __future__ import absolute_import
+
 import logging
 import os
 import warnings

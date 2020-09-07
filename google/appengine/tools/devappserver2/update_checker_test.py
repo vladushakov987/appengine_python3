@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import unittest
 
 import google
@@ -31,13 +31,13 @@ from google.appengine.tools.devappserver2 import update_checker
 
 class GetUserAgentTest(unittest.TestCase):
   def test(self):
-    self.assertRegexpMatches(update_checker._get_user_agent(),
+    self.assertRegex(update_checker._get_user_agent(),
                              r'devappserver2_py/\d+(\.\d+)* .* Python/.*')
 
 
 class GetSourceNameTest(unittest.TestCase):
   def test(self):
-    self.assertRegexpMatches(update_checker._get_source_name(),
+    self.assertRegex(update_checker._get_source_name(),
                              r'Google-appcfg-\d+(\.\d+)*')
 
 

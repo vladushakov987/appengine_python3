@@ -27,7 +27,7 @@
 
 
 
-from __future__ import absolute_import
+
 import random
 
 from google.appengine.api import apiproxy_stub

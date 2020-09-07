@@ -21,5 +21,5 @@
 
 """Prospective search API module."""
 
-from __future__ import absolute_import
+
 from .prospective_search import *

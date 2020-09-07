@@ -22,8 +22,8 @@
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import json
 import unittest
 
@@ -117,7 +117,7 @@ class RequestTest(unittest.TestCase):
     path = '/_ah/api/guestbook/v1/greetings'
     env = {'SERVER_PORT': 42, 'REQUEST_METHOD': 'GET',
            'SERVER_NAME': 'localhost', 'HTTP_CONTENT_TYPE': 'application/json',
-           'PATH_INFO': path, 'wsgi.input': cStringIO.StringIO(body)}
+           'PATH_INFO': path, 'wsgi.input': io.StringIO(body)}
 
     request = api_request.ApiRequest(env)
     self.assertEqual(request.source_ip, None)

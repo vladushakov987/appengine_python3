@@ -22,7 +22,7 @@
 
 
 
-from __future__ import absolute_import
+
 import six.moves.http_client
 import json
 import os
@@ -78,7 +78,7 @@ class DiscoveryApiProxyTest(unittest.TestCase):
 
     self.assertTrue(doc)
     api_config = json.loads(doc)
-    self.assertEquals('https://tictactoe.appspot.com/_ah/api/tictactoe/v1/',
+    self.assertEqual('https://tictactoe.appspot.com/_ah/api/tictactoe/v1/',
                       api_config['baseUrl'])
 
   def test_generate_discovery_doc_rpc(self):
@@ -92,7 +92,7 @@ class DiscoveryApiProxyTest(unittest.TestCase):
 
     self.assertTrue(doc)
     api_config = json.loads(doc)
-    self.assertEquals('https://tictactoe.appspot.com/_ah/api/rpc',
+    self.assertEqual('https://tictactoe.appspot.com/_ah/api/rpc',
                       api_config['rpcUrl'])
 
   def test_generate_discovery_doc_invalid_format(self):

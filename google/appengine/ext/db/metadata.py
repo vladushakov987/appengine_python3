@@ -54,7 +54,7 @@ or, using Query objects
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api import datastore_types
 from google.appengine.ext import db
 

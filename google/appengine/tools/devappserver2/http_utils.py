@@ -16,7 +16,7 @@
 #
 """HTTP utils for devappserver."""
 
-from __future__ import absolute_import
+
 import contextlib
 import six.moves.http_client
 import socket

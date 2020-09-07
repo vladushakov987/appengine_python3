@@ -35,7 +35,7 @@ class representing a blob-key.
 
 
 
-from __future__ import absolute_import
+
 import base64
 import email
 import email.message
@@ -775,7 +775,7 @@ class BlobReader(object):
   def flush(self):
     raise IOError("BlobReaders are read-only")
 
-  def next(self):
+  def __next__(self):
     """Returns the next line from the file.
 
     Returns:

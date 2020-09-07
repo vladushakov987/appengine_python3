@@ -20,7 +20,7 @@
 
 """Search API module."""
 
-from __future__ import absolute_import
+
 from .search import AtomField
 from .search import AtomFacet
 from .search import Cursor

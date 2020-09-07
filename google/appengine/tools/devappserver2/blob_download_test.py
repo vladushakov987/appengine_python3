@@ -16,9 +16,9 @@
 #
 """Tests for devappserver2.blob_download."""
 
-from __future__ import absolute_import
+
 import base64
-import cStringIO
+import io
 import datetime
 import os
 import shutil
@@ -89,7 +89,7 @@ class DownloadTestBase(unittest.TestCase):
     """
     contents = 'a blob'
     blob_key = blobstore.BlobKey('blob-key-1')
-    self.blob_storage.StoreBlob(blob_key, cStringIO.StringIO(contents))
+    self.blob_storage.StoreBlob(blob_key, io.StringIO(contents))
     entity = datastore.Entity(blobstore.BLOB_INFO_KIND,
                               name=str(blob_key),
                               namespace='')
@@ -125,39 +125,39 @@ class BlobDownloadTest(DownloadTestBase, wsgi_test_utils.WSGITestCase):
   def test_get_blob_storage(self):
     """Test getting blob storage from datastore stub."""
     blob_storage = blob_download._get_blob_storage()
-    self.assertEquals(self.blobstore_stub.storage, blob_storage)
+    self.assertEqual(self.blobstore_stub.storage, blob_storage)
 
   def test_parse_range_header(self):
     """Test ParseRangeHeader function."""
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header(''))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('invalid'))
-    self.assertEquals(
+    self.assertEqual(
         (1, None), blob_download._parse_range_header('bytes=1-'))
-    self.assertEquals(
+    self.assertEqual(
         (10, 21), blob_download._parse_range_header('bytes=10-20'))
-    self.assertEquals(
+    self.assertEqual(
         (-30, None), blob_download._parse_range_header('bytes=-30'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=-30-'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=-30-40'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=0-1,2-3'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=-0'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bits=0-20'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=a-20'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=0-a'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=0--'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=--10'))
-    self.assertEquals(
+    self.assertEqual(
         (None, None), blob_download._parse_range_header('bytes=0--10'))
 
   def test_rewrite_for_download_use_stored_content_type_auto_mime(self):
@@ -488,7 +488,7 @@ class BlobDownloadTestGoogleStorage(BlobDownloadTest):
       options['content-type'] = content_type
     blob_key = stub.post_start_creation(filename, options)
     stub.put_continue_creation(blob_key, data, (0, len(data) - 1), len(data))
-    self.blob_storage.StoreBlob(blob_key, cStringIO.StringIO(data))
+    self.blob_storage.StoreBlob(blob_key, io.StringIO(data))
 
     return blob_key
 

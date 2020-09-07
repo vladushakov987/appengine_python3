@@ -16,7 +16,7 @@
 #
 """Performs translation of queue.xml to queue.yaml."""
 
-from __future__ import absolute_import
+
 from xml.etree import ElementTree
 
 from google.appengine.tools import xml_parser_utils

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import os
 from os.path import join, normcase, normpath, abspath, isabs, sep
 from google.appengine._internal.django.utils.encoding import force_unicode
@@ -19,7 +19,7 @@ else:
         in join when the cwd has non-ASCII characters.
         """
         if not isabs(path):
-            path = join(os.getcwdu(), path)
+            path = join(os.getcwd(), path)
         return normpath(path)
 
 def safe_join(base, *paths):

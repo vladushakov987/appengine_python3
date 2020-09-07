@@ -138,7 +138,7 @@ bug in your grammar, it can only be detected at runtime.
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from __future__ import absolute_import
+
 __version__ = '3.1.1'
 
 def version_str_to_tuple(version_str):

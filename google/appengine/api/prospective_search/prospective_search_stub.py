@@ -27,7 +27,7 @@
 
 
 
-from __future__ import absolute_import
+
 import base64
 import bisect
 
@@ -384,7 +384,7 @@ class ProspectiveSearchStub(apiproxy_stub.APIProxyStub):
       if query_val.startswith('"') and query_val.endswith('"'):
         query_val = query_val[1:-1]
       query_val = re.sub(r'\s+', r'\s+', query_val)
-      re_query = re.compile(u'(^\\s*|\\s+)%s(\\s+|\\s*$)'
+      re_query = re.compile('(^\\s*|\\s+)%s(\\s+|\\s*$)'
                             % query_val, re.IGNORECASE)
       for val in field_vals:
         value_text = ('%s' % val)

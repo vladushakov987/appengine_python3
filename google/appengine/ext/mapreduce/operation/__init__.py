@@ -40,7 +40,7 @@ on recieving from handler function.
 
 
 
-from __future__ import absolute_import
+
 from . import db
 from . import counters
 from .base import Operation

@@ -94,8 +94,8 @@ Example:
 
 
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import csv
 import errno
 import getopt
@@ -107,7 +107,7 @@ import six.moves.queue
 import re
 import shutil
 import signal
-import StringIO
+import io
 import sys
 import threading
 import time
@@ -1954,9 +1954,9 @@ def KeyStr(key):
 
       part = ':%s' % part
 
-    out_path.append(zero_matcher.sub(u'\0\1', part))
+    out_path.append(zero_matcher.sub('\0\1', part))
 
-  out_str = u'\0\0'.join(out_path)
+  out_str = '\0\0'.join(out_path)
 
   return out_str
 
@@ -1970,12 +1970,12 @@ def StrKey(key_str):
   Returns:
     A datastore.Key instance k, such that KeyStr(k) == key_str.
   """
-  parts = key_str.split(u'\0\0')
+  parts = key_str.split('\0\0')
   for i in range(len(parts)):
     if parts[i][0] == ':':
 
       part = parts[i][1:]
-      part = zero_one_matcher.sub(u'\0', part)
+      part = zero_one_matcher.sub('\0', part)
       parts[i] = part
     else:
       parts[i] = int(parts[i])
@@ -3116,7 +3116,7 @@ class Exporter(object):
     Returns:
       A CSV string.
     """
-    output = StringIO.StringIO()
+    output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow(self.__ExtractProperties(entity))
     return output.getvalue()
@@ -3972,7 +3972,7 @@ def _MakeSignature(app_id=None,
     result_db_line = 'result_db: %s' % result_db_filename
   else:
     result_db_line = ''
-  return u"""
+  return """
   app_id: %s
   url: %s
   kind: %s

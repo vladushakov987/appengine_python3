@@ -22,7 +22,7 @@
 
 
 
-from __future__ import absolute_import
+
 import json
 import os
 import unittest
@@ -110,7 +110,7 @@ class DiscoveryServiceTest(test_utils.TestsWithStartResponse):
     discovery_api.handle_discovery_request(
         discovery_service.DiscoveryService._GET_REST_API, request,
         self.start_response)
-    self.assertEquals(self.response_status, '404')
+    self.assertEqual(self.response_status, '404')
 
   def test_generate_directory(self):
     body = json.dumps({'kind': 'discovery#directoryItem'})

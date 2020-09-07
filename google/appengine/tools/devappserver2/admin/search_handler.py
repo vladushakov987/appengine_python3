@@ -16,7 +16,7 @@
 #
 """Handlers that display full-text search indexes and documents."""
 
-from __future__ import absolute_import
+
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 
 from google.appengine.api import search

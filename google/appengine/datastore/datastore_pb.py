@@ -28,7 +28,7 @@
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.datastore.action_pb import Action
 from google.appengine.datastore.entity_pb import CompositeIndex
 from google.appengine.datastore.entity_pb import EntityProto

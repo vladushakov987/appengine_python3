@@ -16,7 +16,7 @@
 
 """Code for pie charts."""
 
-from __future__ import absolute_import
+
 import warnings
 
 from google.appengine._internal.graphy import common

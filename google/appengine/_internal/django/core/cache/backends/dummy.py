@@ -1,6 +1,6 @@
 "Dummy cache backend"
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.cache.backends.base import BaseCache
 
 class CacheClass(BaseCache):

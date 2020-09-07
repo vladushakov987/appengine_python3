@@ -5,7 +5,7 @@ Move a file in the safest way possible::
     >>> file_move_safe("/tmp/old_file", "/tmp/new_file")
 """
 
-from __future__ import absolute_import
+
 import os
 from google.appengine._internal.django.core.files import locks
 

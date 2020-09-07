@@ -39,7 +39,7 @@
 
 
 
-from __future__ import absolute_import
+
 import six
 __all__ = ['CS_XML_NS',
            'CSFileStat',

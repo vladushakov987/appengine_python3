@@ -16,7 +16,7 @@
 #
 """Modify pdb to work with the devappserver2 sandbox."""
 
-from __future__ import absolute_import
+
 import sys
 import threading
 

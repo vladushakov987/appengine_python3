@@ -20,5 +20,5 @@
 
 """App identity API Provides access functions for the app identity service ."""
 
-from __future__ import absolute_import
+
 from .app_identity import *

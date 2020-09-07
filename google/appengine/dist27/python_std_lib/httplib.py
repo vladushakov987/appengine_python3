@@ -66,8 +66,8 @@ Req-started-unread-response    _CS_REQ_STARTED    <response_class>
 Req-sent-unread-response       _CS_REQ_SENT       <response_class>
 """
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from array import array
 import os
 import socket
@@ -82,9 +82,9 @@ with warnings.catch_warnings():
     import mimetools
 
 try:
-    from cStringIO import StringIO
+    from io import StringIO
 except ImportError:
-    from StringIO import StringIO
+    from io import StringIO
 
 __all__ = ["HTTP", "HTTPResponse", "HTTPConnection",
            "HTTPException", "NotConnected", "UnknownProtocol",

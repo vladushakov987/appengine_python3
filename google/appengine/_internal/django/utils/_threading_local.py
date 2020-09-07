@@ -135,7 +135,7 @@ affects what we see:
 
 # Threading import is at end
 
-from __future__ import absolute_import
+
 class _localbase(object):
     __slots__ = '_local__key', '_local__args', '_local__lock'
 

@@ -1,9 +1,9 @@
-from __future__ import absolute_import
+
 import os
 try:
-    from cStringIO import StringIO
+    from io import StringIO
 except ImportError:
-    from StringIO import StringIO
+    from io import StringIO
 
 from google.appengine._internal.django.utils.encoding import smart_str, smart_unicode
 from google.appengine._internal.django.core.files.utils import FileProxyMixin
@@ -22,12 +22,12 @@ class File(FileProxyMixin):
         return smart_str(self.name or '')
 
     def __unicode__(self):
-        return smart_unicode(self.name or u'')
+        return smart_unicode(self.name or '')
 
     def __repr__(self):
         return "<%s: %s>" % (self.__class__.__name__, self or "None")
 
-    def __nonzero__(self):
+    def __bool__(self):
         return bool(self.name)
 
     def __len__(self):
@@ -125,7 +125,7 @@ class ContentFile(File):
     def __str__(self):
         return 'Raw content'
 
-    def __nonzero__(self):
+    def __bool__(self):
         return True
 
     def open(self, mode=None):

@@ -32,7 +32,7 @@
 
 
 
-from __future__ import absolute_import
+
 import six
 from six.moves import range
 from six.moves import zip
@@ -67,7 +67,7 @@ import logging
 import pickle
 import random
 import string
-import StringIO
+import io
 import time
 import zipfile
 
@@ -151,7 +151,7 @@ class InputReader(json_util.JsonMixin):
   def __iter__(self):
     return self
 
-  def next(self):
+  def __next__(self):
     """Returns the next input from this input reader as a key, value pair.
 
     Returns:
@@ -316,7 +316,7 @@ class FileInputReader(InputReader):
     """Inherit docs."""
     return self
 
-  def next(self):
+  def __next__(self):
     """Inherit docs."""
     ctx = context.get()
     start_time = time.time()
@@ -1408,7 +1408,7 @@ class BlobstoreLineInputReader(InputReader):
     self._has_iterated = False
     self._read_before_start = bool(start_position)
 
-  def next(self):
+  def __next__(self):
     """Returns the next input from as an (offset, line) tuple."""
     self._has_iterated = True
 
@@ -1507,7 +1507,7 @@ class BlobstoreLineInputReader(InputReader):
       shards_per_blob = 1
 
     chunks = []
-    for blob_key, blob_size in blob_sizes.items():
+    for blob_key, blob_size in list(blob_sizes.items()):
       blob_chunk_size = blob_size // shards_per_blob
       for i in range(shards_per_blob - 1):
         chunks.append(BlobstoreLineInputReader.from_json(
@@ -1557,7 +1557,7 @@ class BlobstoreZipInputReader(InputReader):
     self._zip = None
     self._entries = None
 
-  def next(self):
+  def __next__(self):
     """Returns the next input from this input reader as (ZipInfo, opener) tuple.
 
     Returns:
@@ -1825,7 +1825,7 @@ class BlobstoreZipLineInputReader(InputReader):
 
     return readers
 
-  def next(self):
+  def __next__(self):
     """Returns the next line from this input reader as (lineinfo, line) tuple.
 
     Returns:
@@ -1845,7 +1845,7 @@ class BlobstoreZipLineInputReader(InputReader):
         raise StopIteration()
       entry = self._entries.pop()
       value = self._zip.read(entry.filename)
-      self._filestream = StringIO.StringIO(value)
+      self._filestream = io.StringIO(value)
       if self._initial_offset:
         self._filestream.seek(self._initial_offset)
         self._filestream.readline()
@@ -2672,7 +2672,7 @@ class _GoogleCloudStorageInputReader(InputReader):
     finally:
       self._bucket_itr = before_iter
 
-  def next(self):
+  def __next__(self):
     """Returns the next input from this input reader, a block of bytes.
 
     Non existent files will be logged and skipped. The file might have been
@@ -2745,7 +2745,7 @@ class _GoogleCloudStorageRecordInputReader(_GoogleCloudStorageInputReader):
       result.pop("_record_reader")
     return result
 
-  def next(self):
+  def __next__(self):
     """Returns the next input from this input reader, a record.
 
     Returns:

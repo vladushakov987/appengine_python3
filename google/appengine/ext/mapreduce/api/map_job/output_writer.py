@@ -16,7 +16,7 @@
 #
 """Output writer interface for map job."""
 
-from __future__ import absolute_import
+
 from google.appengine.ext.mapreduce import errors
 from google.appengine.ext.mapreduce import json_util
 from google.appengine.ext.mapreduce import shard_life_cycle

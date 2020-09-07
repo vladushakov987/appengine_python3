@@ -30,11 +30,11 @@ Google Storage specific Files API calls."""
 
 
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six
 __all__ = ['create']
 
@@ -323,7 +323,7 @@ def create(filename,
   if user_metadata:
     if not isinstance(user_metadata, dict):
       raise files.InvalidArgumentError('Expected dict for user_metadata')
-    for key, value in user_metadata.items():
+    for key, value in list(user_metadata.items()):
       if not isinstance(key, six.string_types):
         raise files.InvalidArgumentError(
             'Expected string for key in user_metadata')

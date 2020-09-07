@@ -1,6 +1,6 @@
 """Email backend that writes messages to a file."""
 
-from __future__ import absolute_import
+
 import datetime
 import os
 

@@ -8,7 +8,7 @@ pretty-print::
     $ echo '{ 1.2:3.4}' | python -msimplejson.tool
     Expecting property name: line 1 column 2 (char 2)
 """
-from __future__ import absolute_import
+
 from google.appengine._internal.django.utils import simplejson
 
 def main():

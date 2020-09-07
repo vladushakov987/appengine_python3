@@ -66,7 +66,7 @@ A few caveats:
 
 
 
-from __future__ import absolute_import
+
 import google
 import os
 import pickle
@@ -499,7 +499,7 @@ class RemoteDatastoreStub(RemoteStub):
 
     tx = remote_api_pb.TransactionRequest()
     tx.set_allow_multiple_eg(txdata.is_xg)
-    for key, hash in txdata.preconditions.values():
+    for key, hash in list(txdata.preconditions.values()):
       precond = tx.add_precondition()
       precond.mutable_key().CopyFrom(key)
       if hash:
@@ -507,7 +507,7 @@ class RemoteDatastoreStub(RemoteStub):
 
     puts = tx.mutable_puts()
     deletes = tx.mutable_deletes()
-    for key, entity in txdata.entities.values():
+    for key, entity in list(txdata.entities.values()):
       if entity:
         puts.add_entity().CopyFrom(entity)
       else:

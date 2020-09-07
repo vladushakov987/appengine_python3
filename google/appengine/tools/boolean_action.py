@@ -34,7 +34,7 @@ call to add_argument being assigned for the argument:
 --boolean_flag
 """
 
-from __future__ import absolute_import
+
 import argparse
 
 _TRUE_VALUES = ['true', 'yes', '1']

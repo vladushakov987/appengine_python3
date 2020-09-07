@@ -32,11 +32,11 @@ Example:
   server.serve_forever()
 """
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 from google.appengine.tools import os_compat
 
 import six.moves.builtins
@@ -44,7 +44,7 @@ import six.moves.BaseHTTPServer
 import base64
 import binascii
 import calendar
-import cStringIO
+import io
 import cgi
 import cgitb
 import email.Utils
@@ -61,7 +61,7 @@ import os
 import select
 import shutil
 import simplejson
-import StringIO
+import io
 import struct
 import tempfile
 import wsgiref.headers
@@ -724,7 +724,7 @@ class MatcherDispatcher(URLDispatcher):
 
           logging.info('Internal redirection to %s',
                        forward_request.relative_url)
-          new_outfile = cStringIO.StringIO()
+          new_outfile = io.StringIO()
           self.Dispatch(forward_request,
                         new_outfile,
                         dict(base_env_dict))
@@ -914,7 +914,7 @@ def ClearAllButEncodingsModules(module_dict):
   Args:
     module_dict: Dictionary in the form used by sys.modules.
   """
-  for module_name in module_dict.keys():
+  for module_name in list(module_dict.keys()):
 
 
     if not IsEncodingsModule(module_name) and module_name != 'sys':
@@ -1624,7 +1624,7 @@ def ExecuteCGI(config,
     sys.modules.update(module_dict)
     sys.argv = [cgi_path]
 
-    sys.stdin = cStringIO.StringIO(infile.getvalue())
+    sys.stdin = io.StringIO(infile.getvalue())
     sys.stdout = outfile
 
 
@@ -1757,7 +1757,7 @@ class CGIDispatcher(URLDispatcher):
       return
 
 
-    memory_file = cStringIO.StringIO()
+    memory_file = io.StringIO()
     CopyStreamPart(request.infile, memory_file, request_size)
     memory_file.seek(0)
 
@@ -2215,7 +2215,7 @@ class AppServerResponse(object):
     if response_file:
       self.SetResponse(response_file)
     else:
-      self.headers = mimetools.Message(cStringIO.StringIO())
+      self.headers = mimetools.Message(io.StringIO())
       self.body = None
 
     for name, value in six.iteritems(kwds):
@@ -2272,7 +2272,7 @@ def ValidHeadersRewriter(response):
 
   This rewriter will remove headers that contain non ascii characters.
   """
-  for (key, value) in response.headers.items():
+  for (key, value) in list(response.headers.items()):
     try:
       key.decode('ascii')
       value.decode('ascii')
@@ -2308,7 +2308,7 @@ def ParseStatusRewriter(response):
     response.status_code = int(response.status_code)
   except ValueError:
     response.status_code = 500
-    response.body = cStringIO.StringIO(
+    response.body = io.StringIO(
         'Error: Invalid "status" header value returned.')
 
 
@@ -2586,7 +2586,7 @@ class ModuleManager(object):
       return
 
     self._modification_times.clear()
-    for name, module in self._modules.items():
+    for name, module in list(self._modules.items()):
       if not isinstance(module, types.ModuleType):
         continue
       module_file = self.GetModuleFile(module)
@@ -2986,7 +2986,7 @@ def CreateRequestHandler(root_path,
         if multiprocess.GlobalProcess().HandleRequest(self):
           return
 
-        outfile = cStringIO.StringIO()
+        outfile = io.StringIO()
         try:
           self._Dispatch(dispatcher, self.rfile, outfile, env_dict)
         finally:
@@ -3002,7 +3002,7 @@ def CreateRequestHandler(root_path,
         if self.command == 'HEAD' and runtime_response_size > 0:
           logging.warning('Dropping unexpected body in response to HEAD '
                           'request')
-          response.body = cStringIO.StringIO('')
+          response.body = io.StringIO('')
         elif (not response.large_response and
               runtime_response_size > MAX_RUNTIME_RESPONSE_SIZE):
           logging.error('Response too large: %d, max is %d',
@@ -3017,7 +3017,7 @@ def CreateRequestHandler(root_path,
                           % (runtime_response_size,
                              MAX_RUNTIME_RESPONSE_SIZE))
           response.headers['Content-Length'] = str(len(new_response))
-          response.body = cStringIO.StringIO(new_response)
+          response.body = io.StringIO(new_response)
 
 
         multiprocess.GlobalProcess().RequestComplete(self, response)
@@ -3371,7 +3371,7 @@ class ReservedPathFilter():
   def ExcludePath(self, path):
     """Check to see if this is a service url and matches inbound_services."""
     skip = False
-    for reserved_path in self.reserved_paths.keys():
+    for reserved_path in list(self.reserved_paths.keys()):
       if path.startswith(reserved_path):
         if (not self.inbound_services or
             self.reserved_paths[reserved_path] not in self.inbound_services):
@@ -4088,15 +4088,15 @@ class FakeRequestSocket(object):
   """A socket object to fake an HTTP request."""
 
   def __init__(self, method, relative_url, headers, body):
-    payload = cStringIO.StringIO()
+    payload = io.StringIO()
     payload.write('%s %s HTTP/1.1\r\n' % (method, relative_url))
     payload.write('Content-Length: %d\r\n' % len(body))
     for key, value in headers:
       payload.write('%s: %s\r\n' % (key, value))
     payload.write('\r\n')
     payload.write(body)
-    self.rfile = cStringIO.StringIO(payload.getvalue())
-    self.wfile = StringIO.StringIO()
+    self.rfile = io.StringIO(payload.getvalue())
+    self.wfile = io.StringIO()
     self.wfile_close = self.wfile.close
     self.wfile.close = self.connection_done
 

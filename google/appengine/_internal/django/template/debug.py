@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.template import Lexer, Parser, tag_re, NodeList, VariableNode, TemplateSyntaxError
 from google.appengine._internal.django.utils.encoding import force_unicode
 from google.appengine._internal.django.utils.html import escape
@@ -78,7 +78,7 @@ class DebugNodeList(NodeList):
             raise
         except Exception as e:
             from sys import exc_info
-            wrapped = TemplateSyntaxError(u'Caught %s while rendering: %s' %
+            wrapped = TemplateSyntaxError('Caught %s while rendering: %s' %
                 (e.__class__.__name__, force_unicode(e, errors='replace')))
             wrapped.source = node.source
             wrapped.exc_info = exc_info()

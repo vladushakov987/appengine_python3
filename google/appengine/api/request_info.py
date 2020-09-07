@@ -27,7 +27,7 @@ An instance of a RequestInfo subclass is passed to stubs that require these
 capabilities.
 """
 
-from __future__ import absolute_import
+
 import logging
 import operator
 import os

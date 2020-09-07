@@ -1,7 +1,7 @@
 """
 Internationalization support.
 """
-from __future__ import absolute_import
+
 from google.appengine._internal.django.utils.encoding import force_unicode
 from google.appengine._internal.django.utils.functional import lazy, curry
 import six
@@ -102,5 +102,5 @@ def _string_concat(*strings):
     Lazy variant of string concatenation, needed for translations that are
     constructed from multiple parts.
     """
-    return u''.join([force_unicode(s) for s in strings])
+    return ''.join([force_unicode(s) for s in strings])
 string_concat = lazy(_string_concat, six.text_type)

@@ -7,7 +7,7 @@ This is a simple server for use in testing or debugging Django apps. It hasn't
 been reviewed for security issues. Don't use it for production use.
 """
 
-from __future__ import absolute_import
+
 from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import mimetypes
 import os
@@ -49,7 +49,7 @@ class FileWrapper(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         data = self.filelike.read(self.blksize)
         if data:
             return data
@@ -203,7 +203,7 @@ class Headers(object):
         parts = []
         if _value is not None:
             parts.append(_value)
-        for k, v in _params.items():
+        for k, v in list(_params.items()):
             if v is None:
                 parts.append(k.replace('_', '-'))
             else:

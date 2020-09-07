@@ -16,7 +16,7 @@
 #
 """Tests for google.appengine.tools.devappserver2.python.request_state."""
 
-from __future__ import absolute_import
+
 import ctypes
 import threading
 import unittest
@@ -51,10 +51,10 @@ class RequestStateTest(unittest.TestCase):
   def test_start_and_end_thread(self):
     self.request_state._threads = set()
     self.request_state.start_thread()
-    self.assertEquals(set([threading.current_thread().ident]),
+    self.assertEqual(set([threading.current_thread().ident]),
                       self.request_state._threads)
     self.request_state.end_thread()
-    self.assertEquals(set(), self.request_state._threads)
+    self.assertEqual(set(), self.request_state._threads)
 
   def test_inject_exception(self):
     ctypes.pythonapi.PyThreadState_SetAsyncExc(

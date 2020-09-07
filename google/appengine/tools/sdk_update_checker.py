@@ -16,8 +16,8 @@
 #
 """Checks for SDK updates."""
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import datetime
 import logging
 import os
@@ -187,7 +187,7 @@ class SDKUpdateChecker(object):
                     'requested in app.yaml.')
       return
     unsupported_api_versions_found = False
-    for runtime, api_versions in self.runtime_to_api_version.items():
+    for runtime, api_versions in list(self.runtime_to_api_version.items()):
       supported_api_versions = _GetSupportedApiVersions(version, runtime)
       unsupported_api_versions = sorted(api_versions -
                                         set(supported_api_versions))
@@ -275,7 +275,7 @@ class SDKUpdateChecker(object):
           logging.info('This SDK release is newer than the advertised release.')
           return
 
-    for runtime, response in responses.items():
+    for runtime, response in list(responses.items()):
       api_versions = _GetSupportedApiVersions(response, runtime)
       obsolete_versions = sorted(
           self.runtime_to_api_version[runtime] - set(api_versions))

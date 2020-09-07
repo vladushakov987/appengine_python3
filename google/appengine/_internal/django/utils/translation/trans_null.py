@@ -2,7 +2,7 @@
 # that don't actually do anything. This is purely for performance, so that
 # settings.USE_I18N = False can use this module rather than trans_real.py.
 
-from __future__ import absolute_import
+
 import warnings
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.utils.encoding import force_unicode

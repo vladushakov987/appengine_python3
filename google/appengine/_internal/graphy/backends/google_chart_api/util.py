@@ -18,7 +18,7 @@
 
 Not intended for end users, use the methods in __init__ instead."""
 
-from __future__ import absolute_import
+
 import cgi
 import string
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
@@ -179,7 +179,7 @@ def JoinLists(**args):
       A dictionary {long_name:joined_value} entries.
   """
   out = {}
-  for key, val in args.items():
+  for key, val in list(args.items()):
     if val:
       out[key] = StrJoin(JOIN_DELIMS[key], val)
     else:

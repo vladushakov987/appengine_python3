@@ -15,7 +15,7 @@ are re-exported here.
 # TODO: Should we try to support async calls as well?  That can't be
 # done without rewriting the standard prospective_search API module.
 
-from __future__ import absolute_import
+
 import base64
 
 from .google_imports import datastore

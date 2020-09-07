@@ -35,7 +35,7 @@ TODO: convert all runtimes to START_PROCESS_FILE.
 
 
 
-from __future__ import absolute_import
+
 import base64
 import logging
 import os

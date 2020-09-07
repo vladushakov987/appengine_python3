@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import logging
 import sys
 import types
@@ -126,7 +126,7 @@ def get_file_watcher(directories, use_mtime_file_watcher):
     A FileWatcher appropriate for the current platform. start() must be called
     before changes().
   """
-  assert not isinstance(directories, (str,)), 'expected list got str'
+  assert not isinstance(directories, str), 'expected list got str'
 
   if use_mtime_file_watcher:
     return _create_watcher(directories, mtime_file_watcher.MtimeFileWatcher)

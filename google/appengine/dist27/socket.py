@@ -49,7 +49,7 @@ the setsockopt() and getsockopt() methods.
 """
 
 # GOOGLE NOTE: import paths changed to refer to our implementation.
-from __future__ import absolute_import
+
 from google.appengine.api.remote_socket import _remote_socket as _socket
 from google.appengine.api.remote_socket._remote_socket import *
 from functools import partial
@@ -78,7 +78,7 @@ import os, sys, warnings
 
 # GOOGLE NOTE: Use StringIO rather than cStringIO so that sockets can be
 # pickled.
-from StringIO import StringIO
+from io import StringIO
 
 try:
     import errno
@@ -526,7 +526,7 @@ class _fileobject(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         line = self.readline()
         if not line:
             raise StopIteration

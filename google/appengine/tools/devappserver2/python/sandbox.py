@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import six.moves.builtins
 import imp
 import os
@@ -688,7 +688,7 @@ class ModuleOverridePolicy(object):
     Args:
       module_dict: The module dict to be filtered.
     """
-    for symbol in module_dict.keys():
+    for symbol in list(module_dict.keys()):
       if symbol in self.overrides:
         module_dict[symbol] = self.overrides[symbol]
       elif symbol in self.deletes:

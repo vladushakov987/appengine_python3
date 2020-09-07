@@ -90,7 +90,7 @@ preconfigured to return all matching comments:
 
 
 
-from __future__ import absolute_import
+
 import copy
 import datetime
 import logging
@@ -425,7 +425,7 @@ def _initialize_properties(model_class, name, bases, dct):
         model_class._properties.update(base._properties)
 
 
-  for attr_name in dct.keys():
+  for attr_name in list(dct.keys()):
     attr = dct[attr_name]
     if isinstance(attr, Property):
       check_reserved_word(attr_name)
@@ -437,11 +437,11 @@ def _initialize_properties(model_class, name, bases, dct):
 
 
   model_class._all_properties = frozenset(
-      prop.name for name, prop in model_class._properties.items())
+      prop.name for name, prop in list(model_class._properties.items()))
 
 
   model_class._unindexed_properties = frozenset(
-    prop.name for name, prop in model_class._properties.items()
+    prop.name for name, prop in list(model_class._properties.items())
     if not prop.indexed)
 
 
@@ -962,7 +962,7 @@ class Model(six.with_metaclass(PropertiedClass, object)):
 
 
 
-    for prop in self.properties().values():
+    for prop in list(self.properties().values()):
       if prop.name in kwds:
         value = kwds[prop.name]
       elif is_projection:
@@ -1022,7 +1022,7 @@ class Model(six.with_metaclass(PropertiedClass, object)):
       entity: Entity to save information on.
     """
 
-    for prop in self.properties().values():
+    for prop in list(self.properties().values()):
       self.__set_property(entity, prop.name, prop.get_value_for_datastore(self))
 
 
@@ -1041,7 +1041,7 @@ class Model(six.with_metaclass(PropertiedClass, object)):
     self._entity = self._populate_entity(_entity_class=_entity_class)
 
 
-    for prop in self.properties().values():
+    for prop in list(self.properties().values()):
       new_value = prop.get_updated_value_for_datastore(self)
       if new_value is not AUTO_UPDATE_UNCHANGED:
         self.__set_property(self._entity, prop.name, new_value)
@@ -1402,7 +1402,7 @@ class Model(six.with_metaclass(PropertiedClass, object)):
       entity: Entity which contain values to search dyanmic properties for.
     """
     entity_values = {}
-    for prop in cls.properties().values():
+    for prop in list(cls.properties().values()):
       if prop.name in entity:
         try:
           value = entity[prop.name]
@@ -1957,7 +1957,7 @@ class Expando(Model):
 
     all_properties = set(six.iterkeys(self._dynamic_properties))
     all_properties.update(self._all_properties)
-    for key in entity.keys():
+    for key in list(entity.keys()):
       if key not in all_properties:
         del entity[key]
 
@@ -2316,7 +2316,7 @@ class _QueryIterator(object):
     """
     return self
 
-  def next(self):
+  def __next__(self):
     """Get next Model instance in query results.
 
     Returns:

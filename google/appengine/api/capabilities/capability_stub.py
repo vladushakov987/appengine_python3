@@ -27,7 +27,7 @@
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api import apiproxy_stub
 from google.appengine.api import capabilities
 

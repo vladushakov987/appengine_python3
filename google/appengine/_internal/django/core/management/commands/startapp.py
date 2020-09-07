@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import os
 
 from google.appengine._internal.django.core.management.base import copy_helper, CommandError, LabelCommand

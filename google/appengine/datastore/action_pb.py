@@ -31,7 +31,7 @@
 
 
 
-from __future__ import absolute_import
+
 from google.net.proto import ProtocolBuffer
 
 __pychecker__ = """maxreturns=0 maxbranches=0 no-callinit

@@ -16,7 +16,7 @@
 #
 """Interface for user defined mapper."""
 
-from __future__ import absolute_import
+
 from google.appengine.ext.mapreduce import shard_life_cycle
 
 

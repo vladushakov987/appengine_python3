@@ -42,7 +42,7 @@ serialized to/from json and passed around with other means.
 
 
 
-from __future__ import absolute_import
+
 from six.moves import range
 __all__ = ["MapreduceState",
            "MapperSpec",
@@ -232,7 +232,7 @@ class HugeTask(object):
       payload_str = body
 
     result = {}
-    for (name, value) in cgi.parse_qs(payload_str).items():
+    for (name, value) in list(cgi.parse_qs(payload_str).items()):
       if len(value) == 1:
         result[name] = value[0]
       else:
@@ -1011,7 +1011,7 @@ class ShardState(db.Model):
 
   def copy_from(self, other_state):
     """Copy data from another shard state entity to self."""
-    for prop in self.properties().values():
+    for prop in list(self.properties().values()):
       setattr(self, prop.name, getattr(other_state, prop.name))
 
   def __eq__(self, other):

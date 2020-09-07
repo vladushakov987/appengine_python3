@@ -16,7 +16,7 @@
 #
 """Utilities to support geo fields on the Python dev server."""
 
-from __future__ import absolute_import
+
 import math
 
 

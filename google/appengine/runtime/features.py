@@ -19,7 +19,7 @@
 This module simplifies the access to the appengine feature flags.
 """
 
-from __future__ import absolute_import
+
 import six.moves.builtins
 
 

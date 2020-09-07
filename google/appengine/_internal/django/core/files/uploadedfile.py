@@ -2,12 +2,12 @@
 Classes representing uploaded files.
 """
 
-from __future__ import absolute_import
+
 import os
 try:
-    from cStringIO import StringIO
+    from io import StringIO
 except ImportError:
-    from StringIO import StringIO
+    from io import StringIO
 
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.core.files.base import File

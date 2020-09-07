@@ -1,6 +1,6 @@
 # Wrapper for loading templates from eggs via pkg_resources.resource_string.
 
-from __future__ import absolute_import
+
 try:
     from pkg_resources import resource_string
 except ImportError:

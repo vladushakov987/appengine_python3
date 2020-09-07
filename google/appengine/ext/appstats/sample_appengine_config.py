@@ -33,7 +33,7 @@ Also a section at the end for the remote_api handler.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import os
 import random

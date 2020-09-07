@@ -16,7 +16,7 @@
 #
 """Utils for working with environment variables in devappserver2."""
 
-from __future__ import absolute_import
+
 from google.appengine.tools.devappserver2 import http_runtime_constants
 import six
 

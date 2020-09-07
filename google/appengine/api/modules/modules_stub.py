@@ -16,7 +16,7 @@
 #
 """Stub implementation of the modules service."""
 
-from __future__ import absolute_import
+
 from google.appengine.api import apiproxy_stub
 from google.appengine.api import request_info
 from google.appengine.api.modules import modules_service_pb

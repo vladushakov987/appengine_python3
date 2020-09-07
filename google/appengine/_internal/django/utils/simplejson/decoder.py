@@ -1,12 +1,12 @@
 """Implementation of JSONDecoder
 """
-from __future__ import absolute_import
+
 import re
 import sys
 import struct
 
 from google.appengine._internal.django.utils.simplejson.scanner import make_scanner
-from six import unichr
+from six import chr
 import six
 c_scanstring = None
 
@@ -51,8 +51,8 @@ _CONSTANTS = {
 
 STRINGCHUNK = re.compile(r'(.*?)(["\\\x00-\x1f])', FLAGS)
 BACKSLASH = {
-    '"': u'"', '\\': u'\\', '/': u'/',
-    'b': u'\b', 'f': u'\f', 'n': u'\n', 'r': u'\r', 't': u'\t',
+    '"': '"', '\\': '\\', '/': '/',
+    'b': '\b', 'f': '\f', 'n': '\n', 'r': '\r', 't': '\t',
 }
 
 DEFAULT_ENCODING = "utf-8"
@@ -126,11 +126,11 @@ def py_scanstring(s, end, encoding=None, strict=True, _b=BACKSLASH, _m=STRINGCHU
                 uni2 = int(esc2, 16)
                 uni = 0x10000 + (((uni - 0xd800) << 10) | (uni2 - 0xdc00))
                 next_end += 6
-            char = unichr(uni)
+            char = chr(uni)
             end = next_end
         # Append the unescaped character
         _append(char)
-    return u''.join(chunks), end
+    return ''.join(chunks), end
 
 
 # Use speedup if available

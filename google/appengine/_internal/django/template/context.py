@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured
 from google.appengine._internal.django.utils.importlib import import_module
 

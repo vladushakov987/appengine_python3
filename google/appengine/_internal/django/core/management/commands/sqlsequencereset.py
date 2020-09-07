@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from optparse import make_option
 
 from google.appengine._internal.django.core.management.base import AppCommand
@@ -18,4 +18,4 @@ class Command(AppCommand):
 
     def handle_app(self, app, **options):
         connection = connections[options.get('database', DEFAULT_DB_ALIAS)]
-        return u'\n'.join(connection.ops.sequence_reset_sql(self.style, models.get_models(app, include_auto_created=True))).encode('utf-8')
+        return '\n'.join(connection.ops.sequence_reset_sql(self.style, models.get_models(app, include_auto_created=True))).encode('utf-8')

@@ -15,7 +15,7 @@ that support polymorphic queries.  Simply subclass PolyModel instead
 of Model.
 """
 
-from __future__ import absolute_import
+
 from . import model
 
 __all__ = ['PolyModel']

@@ -23,8 +23,8 @@ one important one being a simple integration point for OAuth2 integration.
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import logging
 import os
 import re
@@ -69,7 +69,7 @@ class MemoryCache(object):
 def RaiseHttpError(url, response_info, response_body, extra_msg=''):
   """Raise a urllib2.HTTPError based on an httplib2 response tuple."""
   if response_body is not None:
-    stream = cStringIO.StringIO()
+    stream = io.StringIO()
     stream.write(response_body)
     stream.seek(0)
   else:
@@ -423,7 +423,7 @@ def _ScopesToString(scopes):
   """Converts scope value to a string."""
 
 
-  if isinstance(scopes, (str,)):
+  if isinstance(scopes, str):
     return scopes
   else:
     return ' '.join(scopes)

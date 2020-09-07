@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import logging
 import os
 import os.path
@@ -391,17 +391,17 @@ class TestBitStr(unittest.TestCase):
   }
 
   def testSingleBit(self):
-    self.assertEquals(
+    self.assertEqual(
         'one (0x1)',
         inotify_file_watcher._bit_str(0x1, self._MASK_NAMES))
 
   def testMultipleBits(self):
-    self.assertEquals(
+    self.assertEqual(
         'one|two|eight (0xb)',
         inotify_file_watcher._bit_str(0x1 | 0x2 | 0x8, self._MASK_NAMES))
 
   def testExtraBits(self):
-    self.assertEquals(
+    self.assertEqual(
         'one|two|(0x4)|eight|(0x10) (0x1f)',
         inotify_file_watcher._bit_str(0x1 | 0x2 | 0x4 | 0x8 | 0x10,
                                       self._MASK_NAMES))

@@ -24,7 +24,6 @@ This module is internal and should not be used by client applications.
 """
 
 
-from __future__ import with_statement
 
 
 
@@ -33,7 +32,8 @@ from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six
 from six.moves import filter
 from six.moves import range
@@ -231,7 +231,7 @@ _SPECIAL_PROPERTY_MAP = {
 def GetInvisibleSpecialPropertyNames():
   """Gets the names of all non user-visible special properties."""
   invisible_names = []
-  for name, value in _SPECIAL_PROPERTY_MAP.items():
+  for name, value in list(_SPECIAL_PROPERTY_MAP.items()):
     is_visible, _, _ = value
     if not is_visible:
       invisible_names.append(name)
@@ -245,7 +245,7 @@ def _PrepareSpecialProperties(entity_proto, is_load):
     if entity_proto.property(i).name() in _SPECIAL_PROPERTY_MAP:
       del entity_proto.property_list()[i]
 
-  for is_visible, is_stored, property_func in _SPECIAL_PROPERTY_MAP.values():
+  for is_visible, is_stored, property_func in list(_SPECIAL_PROPERTY_MAP.values()):
     if is_load:
       should_process = is_visible
     else:
@@ -1460,7 +1460,7 @@ class LiveTxn(object):
 
 
 
-      candidates = [other for other in self._entity_groups.values()
+      candidates = [other for other in list(self._entity_groups.values())
                     if other._snapshot is not None and other != tracker]
       meta_data_list = [other._meta_data for other in candidates]
       self._txn_manager._AcquireWriteLocks(meta_data_list)
@@ -1686,7 +1686,7 @@ class LiveTxn(object):
     try:
 
       assert self._state == self.COMMITED
-      for tracker in self._entity_groups.values():
+      for tracker in list(self._entity_groups.values()):
         if tracker._meta_data is meta_data:
           break
       else:
@@ -2571,7 +2571,7 @@ class BaseDatastore(BaseTransactionManager, BaseIndexManager):
     if transaction:
 
       txn = self.GetTxn(transaction, trusted, calling_app)
-      for group in grouped_entities.values():
+      for group in list(grouped_entities.values()):
         for entity, insert in group:
 
           indexes = _FilterIndexesByKind(entity.key(), self.GetIndexes(
@@ -3002,7 +3002,7 @@ class DatastoreStub(object):
   def QueryHistory(self):
     """Returns a dict that maps Query PBs to times they've been run."""
 
-    return dict((pb, times) for pb, times in self.__query_history.items()
+    return dict((pb, times) for pb, times in list(self.__query_history.items())
                 if pb.app() == self._app_id)
 
   def _QueryCompositeIndexHistoryLength(self):

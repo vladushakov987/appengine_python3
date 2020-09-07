@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import unittest
 
 from google.appengine.tools.devappserver2 import start_response_utils

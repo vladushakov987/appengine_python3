@@ -30,7 +30,7 @@ Provides a Python 2.7 method which invokes a user-specified shutdown hook.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import sys
 import traceback

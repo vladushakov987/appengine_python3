@@ -34,7 +34,7 @@ This API provides utility methods for working with backends.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import os
 import re

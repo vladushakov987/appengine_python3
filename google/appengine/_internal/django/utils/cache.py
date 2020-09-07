@@ -17,7 +17,7 @@ An example: i18n middleware would need to distinguish caches by the
 "Accept-language" header.
 """
 
-from __future__ import absolute_import
+
 import re
 import time
 
@@ -68,9 +68,9 @@ def patch_cache_control(response, **kwargs):
     if 'max-age' in cc and 'max_age' in kwargs:
         kwargs['max_age'] = min(cc['max-age'], kwargs['max_age'])
 
-    for (k, v) in kwargs.items():
+    for (k, v) in list(kwargs.items()):
         cc[k.replace('_', '-')] = v
-    cc = ', '.join([dictvalue(el) for el in cc.items()])
+    cc = ', '.join([dictvalue(el) for el in list(cc.items())])
     response['Cache-Control'] = cc
 
 def get_max_age(response):

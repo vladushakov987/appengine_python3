@@ -16,7 +16,7 @@
 #
 
 
-from __future__ import absolute_import
+
 import sys
 from google.appengine._internal.antlr3 import *
 from google.appengine._internal.antlr3.compat import set, frozenset
@@ -2871,35 +2871,35 @@ class QueryParser(Parser):
 
 
     DFA3_eot = DFA.unpack(
-        u"\4\uffff"
+        "\4\uffff"
         )
 
     DFA3_eof = DFA.unpack(
-        u"\2\2\2\uffff"
+        "\2\2\2\uffff"
         )
 
     DFA3_min = DFA.unpack(
-        u"\2\17\2\uffff"
+        "\2\17\2\uffff"
         )
 
     DFA3_max = DFA.unpack(
-        u"\1\30\1\31\2\uffff"
+        "\1\30\1\31\2\uffff"
         )
 
     DFA3_accept = DFA.unpack(
-        u"\2\uffff\1\2\1\1"
+        "\2\uffff\1\2\1\1"
         )
 
     DFA3_special = DFA.unpack(
-        u"\4\uffff"
+        "\4\uffff"
         )
 
 
     DFA3_transition = [
-        DFA.unpack(u"\1\1\10\uffff\1\2"),
-        DFA.unpack(u"\1\1\10\uffff\1\2\1\3"),
-        DFA.unpack(u""),
-        DFA.unpack(u"")
+        DFA.unpack("\1\1\10\uffff\1\2"),
+        DFA.unpack("\1\1\10\uffff\1\2\1\3"),
+        DFA.unpack(""),
+        DFA.unpack("")
     ]
 
 
@@ -2908,35 +2908,35 @@ class QueryParser(Parser):
 
 
     DFA5_eot = DFA.unpack(
-        u"\4\uffff"
+        "\4\uffff"
         )
 
     DFA5_eof = DFA.unpack(
-        u"\2\2\2\uffff"
+        "\2\2\2\uffff"
         )
 
     DFA5_min = DFA.unpack(
-        u"\2\17\2\uffff"
+        "\2\17\2\uffff"
         )
 
     DFA5_max = DFA.unpack(
-        u"\1\30\1\53\2\uffff"
+        "\1\30\1\53\2\uffff"
         )
 
     DFA5_accept = DFA.unpack(
-        u"\2\uffff\1\2\1\1"
+        "\2\uffff\1\2\1\1"
         )
 
     DFA5_special = DFA.unpack(
-        u"\4\uffff"
+        "\4\uffff"
         )
 
 
     DFA5_transition = [
-        DFA.unpack(u"\1\1\10\uffff\1\2"),
-        DFA.unpack(u"\1\1\7\uffff\1\3\2\2\1\uffff\7\3\11\uffff\1\3"),
-        DFA.unpack(u""),
-        DFA.unpack(u"")
+        DFA.unpack("\1\1\10\uffff\1\2"),
+        DFA.unpack("\1\1\7\uffff\1\3\2\2\1\uffff\7\3\11\uffff\1\3"),
+        DFA.unpack(""),
+        DFA.unpack("")
     ]
 
 
@@ -2945,35 +2945,35 @@ class QueryParser(Parser):
 
 
     DFA6_eot = DFA.unpack(
-        u"\4\uffff"
+        "\4\uffff"
         )
 
     DFA6_eof = DFA.unpack(
-        u"\2\2\2\uffff"
+        "\2\2\2\uffff"
         )
 
     DFA6_min = DFA.unpack(
-        u"\2\17\2\uffff"
+        "\2\17\2\uffff"
         )
 
     DFA6_max = DFA.unpack(
-        u"\1\30\1\53\2\uffff"
+        "\1\30\1\53\2\uffff"
         )
 
     DFA6_accept = DFA.unpack(
-        u"\2\uffff\1\2\1\1"
+        "\2\uffff\1\2\1\1"
         )
 
     DFA6_special = DFA.unpack(
-        u"\4\uffff"
+        "\4\uffff"
         )
 
 
     DFA6_transition = [
-        DFA.unpack(u"\1\1\10\uffff\1\2"),
-        DFA.unpack(u"\1\1\7\uffff\3\2\1\3\7\2\11\uffff\1\2"),
-        DFA.unpack(u""),
-        DFA.unpack(u"")
+        DFA.unpack("\1\1\10\uffff\1\2"),
+        DFA.unpack("\1\1\7\uffff\3\2\1\3\7\2\11\uffff\1\2"),
+        DFA.unpack(""),
+        DFA.unpack("")
     ]
 
 
@@ -2982,59 +2982,59 @@ class QueryParser(Parser):
 
 
     DFA8_eot = DFA.unpack(
-        u"\31\uffff"
+        "\31\uffff"
         )
 
     DFA8_eof = DFA.unpack(
-        u"\3\uffff\3\21\2\uffff\3\21\1\uffff\3\21\1\uffff\1\21\3\uffff\1"
-        u"\21\1\uffff\1\21\1\uffff\1\21"
+        "\3\uffff\3\21\2\uffff\3\21\1\uffff\3\21\1\uffff\1\21\3\uffff\1"
+        "\21\1\uffff\1\21\1\uffff\1\21"
         )
 
     DFA8_min = DFA.unpack(
-        u"\1\27\2\34\3\17\1\4\1\uffff\3\17\1\4\3\17\1\4\1\17\2\uffff\1\4"
-        u"\1\17\1\4\1\17\1\4\1\17"
+        "\1\27\2\34\3\17\1\4\1\uffff\3\17\1\4\3\17\1\4\1\17\2\uffff\1\4"
+        "\1\17\1\4\1\17\1\4\1\17"
         )
 
     DFA8_max = DFA.unpack(
-        u"\3\41\3\30\1\54\1\uffff\3\30\1\54\3\30\1\54\1\53\2\uffff\1\54\1"
-        u"\30\1\54\1\30\1\54\1\30"
+        "\3\41\3\30\1\54\1\uffff\3\30\1\54\3\30\1\54\1\53\2\uffff\1\54\1"
+        "\30\1\54\1\30\1\54\1\30"
         )
 
     DFA8_accept = DFA.unpack(
-        u"\7\uffff\1\2\11\uffff\1\3\1\1\6\uffff"
+        "\7\uffff\1\2\11\uffff\1\3\1\1\6\uffff"
         )
 
     DFA8_special = DFA.unpack(
-        u"\31\uffff"
+        "\31\uffff"
         )
 
 
     DFA8_transition = [
-        DFA.unpack(u"\1\7\4\uffff\1\4\1\5\1\1\1\2\1\3\1\6"),
-        DFA.unpack(u"\1\11\1\12\2\uffff\1\10\1\13"),
-        DFA.unpack(u"\1\15\1\16\2\uffff\1\14\1\17"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\1\20\10\22\1\21"),
-        DFA.unpack(u"\1\20\10\22\1\21"),
-        DFA.unpack(u"\35\23\1\24\13\23"),
-        DFA.unpack(u""),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\35\25\1\26\13\25"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\35\27\1\30\13\27"),
-        DFA.unpack(u"\1\20\7\22\13\21\11\uffff\1\21"),
-        DFA.unpack(u""),
-        DFA.unpack(u""),
-        DFA.unpack(u"\35\23\1\24\13\23"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\35\25\1\26\13\25"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21"),
-        DFA.unpack(u"\35\27\1\30\13\27"),
-        DFA.unpack(u"\1\20\7\22\1\uffff\1\21")
+        DFA.unpack("\1\7\4\uffff\1\4\1\5\1\1\1\2\1\3\1\6"),
+        DFA.unpack("\1\11\1\12\2\uffff\1\10\1\13"),
+        DFA.unpack("\1\15\1\16\2\uffff\1\14\1\17"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\1\20\10\22\1\21"),
+        DFA.unpack("\1\20\10\22\1\21"),
+        DFA.unpack("\35\23\1\24\13\23"),
+        DFA.unpack(""),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\35\25\1\26\13\25"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\35\27\1\30\13\27"),
+        DFA.unpack("\1\20\7\22\13\21\11\uffff\1\21"),
+        DFA.unpack(""),
+        DFA.unpack(""),
+        DFA.unpack("\35\23\1\24\13\23"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\35\25\1\26\13\25"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21"),
+        DFA.unpack("\35\27\1\30\13\27"),
+        DFA.unpack("\1\20\7\22\1\uffff\1\21")
     ]
 
 

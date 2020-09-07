@@ -30,11 +30,11 @@ Utilities for interacting with the Python Runtime."""
 
 
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import threading
 
 from google.appengine.api import apiproxy_stub_map

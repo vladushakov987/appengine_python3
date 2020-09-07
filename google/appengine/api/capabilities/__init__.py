@@ -56,7 +56,7 @@ Classes defined here:
 
 
 
-from __future__ import absolute_import
+
 import warnings
 
 from google.appengine.api.capabilities import capability_service_pb

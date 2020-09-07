@@ -31,7 +31,7 @@ pycrc 0.7.1 (http://www.tty1.net/pycrc/). Command line used:
 
 
 
-from __future__ import absolute_import
+
 import array
 
 CRC_TABLE = (

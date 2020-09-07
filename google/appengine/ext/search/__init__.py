@@ -127,7 +127,7 @@ properties in a given entity. Caveat hacker!
 
 
 
-from __future__ import absolute_import
+
 import re
 import string
 import sys

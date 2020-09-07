@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import hotshot, time, os
 from google.appengine._internal.django.core.handlers.modpython import ModPythonHandler
 

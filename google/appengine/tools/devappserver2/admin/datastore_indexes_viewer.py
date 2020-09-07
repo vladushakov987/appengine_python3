@@ -16,7 +16,7 @@
 #
 """A datastore indexes viewer UI."""
 
-from __future__ import absolute_import
+
 import collections
 
 from google.appengine.api import datastore

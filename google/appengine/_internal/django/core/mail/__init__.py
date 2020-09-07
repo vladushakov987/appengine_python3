@@ -2,7 +2,7 @@
 Tools for sending email.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured
 from google.appengine._internal.django.utils.importlib import import_module
@@ -84,7 +84,7 @@ def mail_admins(subject, message, fail_silently=False, connection=None):
     """Sends a message to the admins, as defined by the ADMINS setting."""
     if not settings.ADMINS:
         return
-    EmailMessage(u'%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject), message,
+    EmailMessage('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject), message,
                  settings.SERVER_EMAIL, [a[1] for a in settings.ADMINS],
                  connection=connection).send(fail_silently=fail_silently)
 
@@ -93,7 +93,7 @@ def mail_managers(subject, message, fail_silently=False, connection=None):
     """Sends a message to the managers, as defined by the MANAGERS setting."""
     if not settings.MANAGERS:
         return
-    EmailMessage(u'%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject), message,
+    EmailMessage('%s%s' % (settings.EMAIL_SUBJECT_PREFIX, subject), message,
                  settings.SERVER_EMAIL, [a[1] for a in settings.MANAGERS],
                  connection=connection).send(fail_silently=fail_silently)
 

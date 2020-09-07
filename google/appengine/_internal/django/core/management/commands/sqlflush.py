@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from optparse import make_option
 
 from google.appengine._internal.django.core.management.base import NoArgsCommand
@@ -17,4 +17,4 @@ class Command(NoArgsCommand):
     output_transaction = True
 
     def handle_noargs(self, **options):
-        return u'\n'.join(sql_flush(self.style, connections[options.get('database', DEFAULT_DB_ALIAS)], only_django=True)).encode('utf-8')
+        return '\n'.join(sql_flush(self.style, connections[options.get('database', DEFAULT_DB_ALIAS)], only_django=True)).encode('utf-8')

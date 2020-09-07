@@ -38,7 +38,7 @@ similar API.  The main API differences:
 # TODO: Don't have redundant function/method versions of APIs?
 # TODO: Refactor ext.blobstore to reduce duplication of code.
 
-from __future__ import absolute_import
+
 import base64
 import email
 

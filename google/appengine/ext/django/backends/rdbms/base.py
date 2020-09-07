@@ -25,5 +25,5 @@ external GAE SDK.
 
 
 
-from __future__ import absolute_import
+
 from google.storage.speckle.python.django.backend.base import *

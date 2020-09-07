@@ -18,8 +18,8 @@
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import pickle
 import re
 import tempfile
@@ -148,7 +148,7 @@ class TestAPIServer(wsgi_test_utils.WSGITestCase):
 
       environ = {'CONTENT_LENGTH': len(remote_payload),
                  'REQUEST_METHOD': 'POST',
-                 'wsgi.input': cStringIO.StringIO(remote_payload)}
+                 'wsgi.input': io.StringIO(remote_payload)}
 
       expected_headers = {'Content-Type': 'application/octet-stream'}
       self.assertResponse('200 OK',
@@ -191,7 +191,7 @@ class TestAPIServer(wsgi_test_utils.WSGITestCase):
     harness = rpc_test_harness.RpcTestHarness(
         datastore_v4_pb.DatastoreV4Service)
     deprecated = ['Get', 'Write']
-    methods = set([k for k in harness.__dict__.keys()
+    methods = set([k for k in list(harness.__dict__.keys())
                    if k not in deprecated and not k.startswith('_')])
     self.assertEqual(methods, set(api_server._DATASTORE_V4_METHODS.keys()))
 

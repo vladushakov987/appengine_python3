@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import mimetypes
 import os
 import random
@@ -101,8 +101,8 @@ def sanitize_address(addr, encoding):
     try:
         addr = addr.encode('ascii')
     except UnicodeEncodeError:  # IDN
-        if u'@' in addr:
-            localpart, domain = addr.split(u'@', 1)
+        if '@' in addr:
+            localpart, domain = addr.split('@', 1)
             localpart = str(Header(localpart, encoding))
             domain = domain.encode('idna')
             addr = '@'.join([localpart, domain])
@@ -190,7 +190,7 @@ class EmailMessage(object):
             msg['Date'] = formatdate()
         if 'message-id' not in header_names:
             msg['Message-ID'] = make_msgid()
-        for name, value in self.extra_headers.items():
+        for name, value in list(self.extra_headers.items()):
             if name.lower() == 'from':  # From is already handled
                 continue
             msg[name] = value

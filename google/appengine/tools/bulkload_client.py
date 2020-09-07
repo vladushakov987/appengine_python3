@@ -38,9 +38,9 @@ Please look there for documentation about how to setup the server side.
 
 
 
-from __future__ import absolute_import
-from __future__ import print_function
-import StringIO
+
+
+import io
 import six.moves.http_client
 import logging
 import csv
@@ -99,7 +99,7 @@ def ContentGenerator(csv_file,
 
   while not exhausted:
     rows_written = 0
-    content = StringIO.StringIO()
+    content = io.StringIO()
     writer = create_csv_writer(content)
     try:
       for i in range(batch_size):

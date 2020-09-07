@@ -1,6 +1,6 @@
 "Implementation of tzinfo classes for use with datetime.datetime."
 
-from __future__ import absolute_import
+
 import time
 from datetime import timedelta, tzinfo
 from google.appengine._internal.django.utils.encoding import smart_unicode, smart_str, DEFAULT_LOCALE_ENCODING
@@ -15,7 +15,7 @@ class FixedOffset(tzinfo):
             self.__offset = timedelta(minutes=offset)
 
         sign = offset < 0 and '-' or '+'
-        self.__name = u"%s%02d%02d" % (sign, abs(offset) / 60., abs(offset) % 60)
+        self.__name = "%s%02d%02d" % (sign, abs(offset) / 60., abs(offset) % 60)
 
     def __repr__(self):
         return self.__name

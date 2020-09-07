@@ -30,7 +30,7 @@
 #
 # end[licence]
 
-from __future__ import absolute_import
+
 try:
     set = set
     frozenset = frozenset

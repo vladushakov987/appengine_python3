@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.utils.safestring import mark_safe
 import six

@@ -16,7 +16,7 @@
 #
 """Tests for google.appengine.tools.devappserver2.blob_image."""
 
-from __future__ import absolute_import
+
 import six.moves.http_client
 import os
 import unittest
@@ -162,27 +162,27 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
 
   def test_parse_path(self):
     """Tests URL parsing."""
-    self.assertEquals(('SomeBlobKey', ''),
+    self.assertEqual(('SomeBlobKey', ''),
                       self.app._parse_path(
                           'http://test.com/_ah/img/SomeBlobKey'))
-    self.assertEquals(('SomeBlobKey', ''),
+    self.assertEqual(('SomeBlobKey', ''),
                       self.app._parse_path('/_ah/img/SomeBlobKey'))
-    self.assertEquals(('SomeBlobKey', 's32'),
+    self.assertEqual(('SomeBlobKey', 's32'),
                       self.app._parse_path('/_ah/img/SomeBlobKey=s32'))
-    self.assertEquals(('SomeBlobKey', 's32-c'),
+    self.assertEqual(('SomeBlobKey', 's32-c'),
                       self.app._parse_path('/_ah/img/SomeBlobKey=s32-c'))
-    self.assertEquals(('foo', 's32-c'),
+    self.assertEqual(('foo', 's32-c'),
                       self.app._parse_path('/_ah/img/foo=s32-c'))
     # Google Storage keys have the format encoded_gs_file:key
-    self.assertEquals(('encoded_gs_file:someblobkey', 's32-c'),
+    self.assertEqual(('encoded_gs_file:someblobkey', 's32-c'),
                       self.app._parse_path(
                           '/_ah/img/encoded_gs_file:someblobkey=s32-c'))
     # Dev blobkeys are padded with '='.
-    self.assertEquals(('foo====', ''),
+    self.assertEqual(('foo====', ''),
                       self.app._parse_path('/_ah/img/foo===='))
-    self.assertEquals(('foo=', 's32-c'),
+    self.assertEqual(('foo=', 's32-c'),
                       self.app._parse_path('/_ah/img/foo==s32-c'))
-    self.assertEquals(('foo==', 's32-c'),
+    self.assertEqual(('foo==', 's32-c'),
                       self.app._parse_path('/_ah/img/foo===s32-c'))
     self.assertRaises(blob_image.InvalidRequestError,
                       self.app._parse_path, 'SomeBlobKey')
@@ -193,14 +193,14 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
 
   def test_parse_options(self):
     """Tests Option parsing."""
-    self.assertEquals((32, False), self.app._parse_options('s32'))
-    self.assertEquals((32, True), self.app._parse_options('s32-c'))
-    self.assertEquals((None, False), self.app._parse_options(''))
-    self.assertEquals((None, False), self.app._parse_options('c-s32'))
-    self.assertEquals((None, False), self.app._parse_options('s-c'))
-    self.assertEquals((123, False), self.app._parse_options('s123'))
-    self.assertEquals((512, True), self.app._parse_options('s512-c'))
-    self.assertEquals((None, False), self.app._parse_options('s-100'))
+    self.assertEqual((32, False), self.app._parse_options('s32'))
+    self.assertEqual((32, True), self.app._parse_options('s32-c'))
+    self.assertEqual((None, False), self.app._parse_options(''))
+    self.assertEqual((None, False), self.app._parse_options('c-s32'))
+    self.assertEqual((None, False), self.app._parse_options('s-c'))
+    self.assertEqual((123, False), self.app._parse_options('s123'))
+    self.assertEqual((512, True), self.app._parse_options('s512-c'))
+    self.assertEqual((None, False), self.app._parse_options('s-100'))
     self.assertRaises(blob_image.InvalidRequestError,
                       self.app._parse_options, 's1601')
     self.assertRaises(blob_image.InvalidRequestError,
@@ -226,7 +226,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_resize(blob_image._DEFAULT_SERVING_SIZE)
     self.expect_encode_image('SomeImageInJpeg')
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageInJpeg', 'image/jpeg'),
+    self.assertEqual(('SomeImageInJpeg', 'image/jpeg'),
                       self.app._transform_image('SomeBlobKey'))
     self.mox.VerifyAll()
 
@@ -235,7 +235,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_open_image('SomeBlobKey', (400, 300))
     self.expect_encode_image('SomeImageInJpeg')
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageInJpeg', 'image/jpeg'),
+    self.assertEqual(('SomeImageInJpeg', 'image/jpeg'),
                       self.app._transform_image('SomeBlobKey'))
     self.mox.VerifyAll()
 
@@ -246,7 +246,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_encode_image('SomeImageInPng',
                              images_service_pb.OutputSettings.PNG)
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageInPng', 'image/png'),
+    self.assertEqual(('SomeImageInPng', 'image/png'),
                       self.app._transform_image('SomeBlobKey'))
     self.mox.VerifyAll()
 
@@ -257,7 +257,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     # TIFF is not servable, so we transcode to JPEG.
     self.expect_encode_image('SomeImageInJpeg')
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageInJpeg', 'image/jpeg'),
+    self.assertEqual(('SomeImageInJpeg', 'image/jpeg'),
                       self.app._transform_image('SomeBlobKey'))
     self.mox.VerifyAll()
 
@@ -269,7 +269,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_encode_image('SomeImageInPng',
                              images_service_pb.OutputSettings.PNG)
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageInPng', 'image/png'),
+    self.assertEqual(('SomeImageInPng', 'image/png'),
                       self.app._transform_image('SomeBlobKey'))
     self.mox.VerifyAll()
 
@@ -279,7 +279,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_resize(32)
     self.expect_encode_image('SomeImageSize32')
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageSize32', 'image/jpeg'),
+    self.assertEqual(('SomeImageSize32', 'image/jpeg'),
                       self.app._transform_image('SomeBlobKey', 32))
     self.mox.VerifyAll()
 
@@ -288,7 +288,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_open_image('SomeBlobKey', (1600, 1200))
     self.expect_encode_image('SomeImageInJpeg')
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageInJpeg', 'image/jpeg'),
+    self.assertEqual(('SomeImageInJpeg', 'image/jpeg'),
                       self.app._transform_image('SomeBlobKey', 0))
     self.mox.VerifyAll()
 
@@ -299,7 +299,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_encode_image('SomeImageSize32',
                              images_service_pb.OutputSettings.PNG)
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageSize32', 'image/png'),
+    self.assertEqual(('SomeImageSize32', 'image/png'),
                       self.app._transform_image('SomeBlobKey', 32))
     self.mox.VerifyAll()
 
@@ -310,7 +310,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_resize(32)
     self.expect_encode_image('SomeImageSize32-c')
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageSize32-c', 'image/jpeg'),
+    self.assertEqual(('SomeImageSize32-c', 'image/jpeg'),
                       self.app._transform_image('SomeBlobKey', 32, True))
     self.mox.VerifyAll()
 
@@ -322,7 +322,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_encode_image('SomeImageSize32-c',
                              images_service_pb.OutputSettings.PNG)
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageSize32-c', 'image/png'),
+    self.assertEqual(('SomeImageSize32-c', 'image/png'),
                       self.app._transform_image('SomeBlobKey', 32, True))
     self.mox.VerifyAll()
 
@@ -333,7 +333,7 @@ class BlobImageTest(wsgi_test_utils.WSGITestCase):
     self.expect_resize(32)
     self.expect_encode_image('SomeImageSize32-c')
     self.mox.ReplayAll()
-    self.assertEquals(('SomeImageSize32-c', 'image/jpeg'),
+    self.assertEqual(('SomeImageSize32-c', 'image/jpeg'),
                       self.app._transform_image('SomeBlobKey', 32, True))
     self.mox.VerifyAll()
 

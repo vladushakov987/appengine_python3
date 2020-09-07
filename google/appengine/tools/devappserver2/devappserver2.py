@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import argparse
 import errno
 import getpass
@@ -965,7 +965,7 @@ class DevelopmentServer(object):
     if isinstance(setting, dict):
       # Warn and remove a setting if the module name is unknown.
       module_to_setting = {}
-      for module_name, value in setting.items():
+      for module_name, value in list(setting.items()):
         if module_name in module_names:
           module_to_setting[module_name] = value
         else:

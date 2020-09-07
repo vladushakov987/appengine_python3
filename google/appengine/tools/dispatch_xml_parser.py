@@ -20,7 +20,7 @@ DispatchXmlParser is called with an XML string to produce a list of
 DispatchEntry objects containing the data from the XML.
 """
 
-from __future__ import absolute_import
+
 from xml.etree import ElementTree
 
 from google.appengine.tools import xml_parser_utils

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 """Abstract Datastore Input Reader implementation for the map_job API."""
-from __future__ import absolute_import
+
 import random
 
 from google.appengine.api import datastore

@@ -16,7 +16,7 @@
 #
 """A datastore stats generator button UI."""
 
-from __future__ import absolute_import
+
 from google.appengine.datastore import datastore_stats_generator
 from google.appengine.tools.devappserver2.admin import admin_request_handler
 

@@ -27,7 +27,7 @@ active workers, or increasing the number when requests latency reduces.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import six.moves.queue
 import sys

@@ -16,8 +16,8 @@
 #
 """Tests for google.appengine.tools.devappserver2.gcs_application."""
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import six.moves.http_client
 import unittest
 
@@ -57,7 +57,7 @@ class GCSTest(wsgi_test_utils.WSGITestCase):
         'PATH_INFO': path,
         'QUERY_STRING': query,
         'wsgi.url_scheme': 'http',
-        'wsgi.input': cStringIO.StringIO(body),
+        'wsgi.input': io.StringIO(body),
     }
 
     for k, v in six.iteritems(headers):

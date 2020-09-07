@@ -45,7 +45,7 @@ versions: 'all' to report on all minor versions, or 'latest' for the latest.
 
 
 
-from __future__ import absolute_import
+
 import datetime
 import itertools
 import os

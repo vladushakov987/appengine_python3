@@ -16,7 +16,7 @@
 #
 """Manage the lifecycle of modules and dispatch requests to them."""
 
-from __future__ import absolute_import
+
 import collections
 import logging
 import socket
@@ -220,7 +220,7 @@ class Dispatcher(request_info.Dispatcher):
     self._quit_event.set()
     if self._dispatch_server:
       self._dispatch_server.quit()
-    for _module in self._module_name_to_module.values():
+    for _module in list(self._module_name_to_module.values()):
       _module.quit()
 
   def _create_module(self, module_configuration, port):

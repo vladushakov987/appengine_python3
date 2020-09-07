@@ -35,7 +35,7 @@ from a bulkloader.yaml file.
 
 
 
-from __future__ import absolute_import
+
 import base64
 
 import datetime
@@ -236,7 +236,7 @@ def key_id_or_name_as_string_n(index):
   def transform_function(key):
     id_or_name = _key_id_or_name_n(key, index)
     if not id_or_name:
-      return u''
+      return ''
     return six.text_type(id_or_name)
 
   return transform_function

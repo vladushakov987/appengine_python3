@@ -7,7 +7,7 @@ a string) and returns a tuple in this format:
     (view_function, function_args, function_kwargs)
 """
 
-from __future__ import absolute_import
+
 import re
 
 from google.appengine._internal.django.http import Http404
@@ -179,9 +179,9 @@ class RegexURLResolver(object):
                             for piece, p_args in parent:
                                 new_matches.extend([(piece + suffix, p_args + args) for (suffix, args) in matches])
                             lookups.appendlist(name, (new_matches, p_pattern + pat))
-                    for namespace, (prefix, sub_pattern) in pattern.namespace_dict.items():
+                    for namespace, (prefix, sub_pattern) in list(pattern.namespace_dict.items()):
                         namespaces[namespace] = (p_pattern + prefix, sub_pattern)
-                    for app_name, namespace_list in pattern.app_dict.items():
+                    for app_name, namespace_list in list(pattern.app_dict.items()):
                         apps.setdefault(app_name, []).extend(namespace_list)
             else:
                 bits = normalize(p_pattern)
@@ -226,7 +226,7 @@ class RegexURLResolver(object):
                         tried.append(pattern.regex.pattern)
                 else:
                     if sub_match:
-                        sub_match_dict = dict([(smart_str(k), v) for k, v in match.groupdict().items()])
+                        sub_match_dict = dict([(smart_str(k), v) for k, v in list(match.groupdict().items())])
                         sub_match_dict.update(self.default_kwargs)
                         for k, v in six.iteritems(sub_match[2]):
                             sub_match_dict[smart_str(k)] = v
@@ -283,9 +283,9 @@ class RegexURLResolver(object):
                 else:
                     if set(kwargs.keys()) != set(params):
                         continue
-                    unicode_kwargs = dict([(k, force_unicode(v)) for (k, v) in kwargs.items()])
+                    unicode_kwargs = dict([(k, force_unicode(v)) for (k, v) in list(kwargs.items())])
                     candidate = result % unicode_kwargs
-                if re.search(u'^%s' % pattern, candidate, re.UNICODE):
+                if re.search('^%s' % pattern, candidate, re.UNICODE):
                     return candidate
         # lookup_view can be URL label, or dotted path, or callable, Any of
         # these can be passed in at the top, but callables are not friendly in
@@ -350,7 +350,7 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None, current
                 else:
                     raise NoReverseMatch("%s is not a registered namespace" % key)
 
-    return iri_to_uri(u'%s%s' % (prefix, resolver.reverse(view,
+    return iri_to_uri('%s%s' % (prefix, resolver.reverse(view,
             *args, **kwargs)))
 
 def clear_url_caches():
@@ -373,7 +373,7 @@ def get_script_prefix():
     wishes to construct their own URLs manually (although accessing the request
     instance is normally going to be a lot cleaner).
     """
-    return _prefixes.get(currentThread(), u'/')
+    return _prefixes.get(currentThread(), '/')
 
 def set_urlconf(urlconf_name):
     """

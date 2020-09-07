@@ -22,7 +22,7 @@ channel polling HTTP requests, to connect and retrieve messages.
 
 
 
-from __future__ import absolute_import
+
 import os
 
 import google

@@ -32,9 +32,9 @@ Please use the new bulkloader.
 
 
 
-from __future__ import absolute_import
+
 import six.moves.http_cookies
-import StringIO
+import io
 import csv
 import six.moves.http_client
 import os
@@ -345,7 +345,7 @@ class BulkLoad(webapp.RequestHandler):
       output.append('Error: no Loader defined for kind %s.' % kind)
       return (six.moves.http_client.BAD_REQUEST, ''.join(output))
 
-    buffer = StringIO.StringIO(data)
+    buffer = io.StringIO(data)
     reader = csv.reader(buffer, skipinitialspace=True)
 
     try:

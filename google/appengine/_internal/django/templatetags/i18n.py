@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import re
 
 from google.appengine._internal.django.template import Node, Variable, VariableNode, _render_value_in_context
@@ -40,7 +40,7 @@ class TranslateNode(Node):
         self.noop = noop
         self.filter_expression = filter_expression
         if isinstance(self.filter_expression.var, six.string_types):
-            self.filter_expression.var = Variable(u"'%s'" % self.filter_expression.var)
+            self.filter_expression.var = Variable("'%s'" % self.filter_expression.var)
 
     def render(self, context):
         self.filter_expression.var.translate = not self.noop
@@ -63,13 +63,13 @@ class BlockTranslateNode(Node):
             if token.token_type == TOKEN_TEXT:
                 result.append(token.contents)
             elif token.token_type == TOKEN_VAR:
-                result.append(u'%%(%s)s' % token.contents)
+                result.append('%%(%s)s' % token.contents)
                 vars.append(token.contents)
         return ''.join(result), vars
 
     def render(self, context):
         tmp_context = {}
-        for var, val in self.extra_context.items():
+        for var, val in list(self.extra_context.items()):
             tmp_context[var] = val.render(context)
         # Update() works like a push(), so corresponding context.pop() is at
         # the end of function
@@ -84,7 +84,7 @@ class BlockTranslateNode(Node):
         else:
             result = translation.ugettext(singular)
         # Escape all isolated '%' before substituting in the context.
-        result = re.sub(u'%(?!\()', u'%%', result)
+        result = re.sub('%(?!\()', '%%', result)
         data = dict([(v, _render_value_in_context(context[v], context)) for v in vars])
         context.pop()
         return result % data

@@ -16,7 +16,7 @@
 #
 """A thread-safe wrapper for the subprocess module."""
 
-from __future__ import absolute_import
+
 import logging
 import subprocess
 import sys

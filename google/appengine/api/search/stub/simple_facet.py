@@ -16,7 +16,7 @@
 #
 """A Simple facet analyzer."""
 
-from __future__ import absolute_import
+
 from google.appengine.datastore import document_pb
 
 
@@ -122,7 +122,7 @@ class SimpleFacet(object):
 
 
 
-    for facet in manual_facets.values():
+    for facet in list(manual_facets.values()):
       self._FillResponseForSingleFacet(facet, response.add_facet_result())
     for facet in  _GetTopN(list(discovered_facets.values()),
                            self._params.auto_discover_facet_count()):
@@ -174,7 +174,7 @@ class SimpleFacet(object):
 
 
     return all([self._MatchFacetRefinementSameName(doc, ref_same_names)
-                for ref_same_names in ref_groups.values()])
+                for ref_same_names in list(ref_groups.values())])
 
   def _MatchFacetRefinementSameName(self, doc, ref_same_names):
 

@@ -18,12 +18,12 @@
 
 
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import google
 
 import six.moves.http_cookiejar
-import cStringIO
+import io
 import fancy_urllib
 import gzip
 import logging
@@ -495,7 +495,7 @@ class ContentEncodingHandler(six.moves.urllib.request.BaseHandler):
 
     fp = resp
     while encodings and encodings[-1].lower() == "gzip":
-      fp = cStringIO.StringIO(fp.read())
+      fp = io.StringIO(fp.read())
       fp = gzip.GzipFile(fileobj=fp, mode="r")
       encodings.pop()
 

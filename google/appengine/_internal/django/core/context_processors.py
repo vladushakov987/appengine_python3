@@ -7,7 +7,7 @@ These are referenced from the setting TEMPLATE_CONTEXT_PROCESSORS and used by
 RequestContext.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.middleware.csrf import get_token
 from google.appengine._internal.django.utils.functional import lazy
@@ -88,7 +88,7 @@ class PermLookupDict(object):
     def __getitem__(self, perm_name):
         return self.user.has_perm("%s.%s" % (self.module_name, perm_name))
 
-    def __nonzero__(self):
+    def __bool__(self):
         return self.user.has_module_perms(self.module_name)
 
 class PermWrapper(object):

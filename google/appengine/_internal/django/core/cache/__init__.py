@@ -15,7 +15,7 @@ cache class.
 See docs/cache.txt for information on the public API.
 """
 
-from __future__ import absolute_import
+
 try:
     from six.moves.urllib.parse import parse_qsl
 except ImportError:

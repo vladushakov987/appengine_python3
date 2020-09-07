@@ -30,7 +30,7 @@ Note that rdbms_mysqldb is the module used in dev_appserver.
 
 
 
-from __future__ import absolute_import
+
 import logging
 
 from google.storage.speckle.python.api import rdbms_apiproxy

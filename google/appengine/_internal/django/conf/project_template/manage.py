@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.management import execute_manager
 try:
     from . import settings # Assumed to be in the same directory.

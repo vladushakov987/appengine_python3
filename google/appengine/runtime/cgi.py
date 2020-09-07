@@ -24,12 +24,12 @@ CGI-compliant interface between the Python runtime and user-provided Python
 code.
 """
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+
+import io
 from email import feedparser
 import imp
 import logging
@@ -64,7 +64,7 @@ def HandleRequest(unused_environ, handler_name, unused_url, post_data,
       headers: A list of tuples (key, value) of HTTP headers.
       body: A str of the body of the response.
   """
-  body = cStringIO.StringIO()
+  body = io.StringIO()
   module_name = _FileToModuleName(handler_name)
   parent_module, _, submodule_name = module_name.rpartition('.')
   parent_module = _GetModuleOrNone(parent_module)

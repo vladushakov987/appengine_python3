@@ -16,7 +16,7 @@
 #
 """A handler that allows the user to send email to their application."""
 
-from __future__ import absolute_import
+
 import email.mime.multipart
 import email.mime.text
 import email.utils

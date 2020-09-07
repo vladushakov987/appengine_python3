@@ -23,7 +23,7 @@
 This module is shared by both the remote_api_stub and the handler.
 """
 
-from __future__ import absolute_import
+
 import sys
 
 from google.appengine.api import api_base_pb

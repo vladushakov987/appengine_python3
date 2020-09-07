@@ -24,7 +24,7 @@ Backend: describes a single backend specified in backends.xml
 
 """
 
-from __future__ import absolute_import
+
 from xml.etree import ElementTree
 
 from google.appengine.tools import xml_parser_utils

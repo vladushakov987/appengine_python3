@@ -1,13 +1,13 @@
 """Translation helper functions."""
 
-from __future__ import absolute_import
+
 import locale
 import os
 import re
 import sys
 import warnings
 import gettext as gettext_module
-from cStringIO import StringIO
+from io import StringIO
 
 from google.appengine._internal.django.utils.importlib import import_module
 from google.appengine._internal.django.utils.safestring import mark_safe, SafeData

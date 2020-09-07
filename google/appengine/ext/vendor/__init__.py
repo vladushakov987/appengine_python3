@@ -16,7 +16,7 @@
 #
 """Dependencies vendoring helpers."""
 
-from __future__ import absolute_import
+
 import os.path
 import site
 import sys

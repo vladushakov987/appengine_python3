@@ -16,7 +16,7 @@
 #
 """Handles dynamic serving of images from blobstore."""
 
-from __future__ import absolute_import
+
 import six.moves.http_client
 import logging
 import re

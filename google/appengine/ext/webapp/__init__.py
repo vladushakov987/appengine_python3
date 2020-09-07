@@ -67,7 +67,7 @@ is stored in memory before it is written.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import os
 

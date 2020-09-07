@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import decimal
 import datetime
 
@@ -110,7 +110,7 @@ def localize(value):
     """
     if isinstance(value, bool):
         return mark_safe(six.text_type(value))
-    elif isinstance(value, (decimal.Decimal, float, int, int)):
+    elif isinstance(value, (decimal.Decimal, float, int)):
         return number_format(value)
     elif isinstance(value, datetime.datetime):
         return date_format(value, 'DATETIME_FORMAT')
@@ -126,7 +126,7 @@ def localize_input(value, default=None):
     Checks if an input value is a localizable type and returns it
     formatted with the appropriate formatting string of the current locale.
     """
-    if isinstance(value, (decimal.Decimal, float, int, int)):
+    if isinstance(value, (decimal.Decimal, float, int)):
         return number_format(value)
     if isinstance(value, datetime.datetime):
         value = datetime_safe.new_datetime(value)

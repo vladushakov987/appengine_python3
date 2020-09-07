@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 VERSION = (1, 2, 5, 'final', 0)
 
 def get_version():
@@ -12,6 +12,6 @@ def get_version():
             version = '%s %s %s' % (version, VERSION[3], VERSION[4])
     from google.appengine._internal.django.utils.version import get_svn_revision
     svn_rev = get_svn_revision()
-    if svn_rev != u'SVN-unknown':
+    if svn_rev != 'SVN-unknown':
         version = "%s %s" % (version, svn_rev)
     return version

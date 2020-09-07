@@ -22,7 +22,7 @@
 
 
 
-from __future__ import absolute_import
+
 import email.Utils
 try:
   import json

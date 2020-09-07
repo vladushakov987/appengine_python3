@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import keyword
 from optparse import make_option
 
@@ -118,7 +118,7 @@ class Command(NoArgsCommand):
                 if extra_params:
                     if not field_desc.endswith('('):
                         field_desc += ', '
-                    field_desc += ', '.join(['%s=%r' % (k, v) for k, v in extra_params.items()])
+                    field_desc += ', '.join(['%s=%r' % (k, v) for k, v in list(extra_params.items())])
                 field_desc += ')'
                 if comment_notes:
                     field_desc += ' # ' + ' '.join(comment_notes)

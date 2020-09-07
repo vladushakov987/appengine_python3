@@ -16,7 +16,7 @@ To add your own serializers, use the SERIALIZATION_MODULES setting::
 
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.utils import importlib
 import six

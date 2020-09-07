@@ -79,7 +79,7 @@ this to your index.yaml:
 
 
 
-from __future__ import absolute_import
+
 import datetime
 import logging
 import os

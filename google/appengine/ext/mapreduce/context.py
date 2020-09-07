@@ -39,7 +39,7 @@ from handlers such as counters, log messages, mutation pools.
 
 
 
-from __future__ import absolute_import
+
 import six
 from six.moves import zip
 __all__ = ["get",
@@ -454,7 +454,7 @@ class Context(object):
 
   def flush(self):
     """Flush all information recorded in context."""
-    for pool in self._pools.values():
+    for pool in list(self._pools.values()):
       pool.flush()
 
   def register_pool(self, key, pool):

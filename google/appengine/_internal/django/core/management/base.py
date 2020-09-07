@@ -4,7 +4,7 @@ be executed through ``django-admin.py`` or ``manage.py``).
 
 """
 
-from __future__ import absolute_import
+
 import os
 import sys
 from optparse import make_option, OptionParser
@@ -243,9 +243,9 @@ class BaseCommand(object):
         """
         from google.appengine._internal.django.core.management.validation import get_validation_errors
         try:
-            from cStringIO import StringIO
+            from io import StringIO
         except ImportError:
-            from StringIO import StringIO
+            from io import StringIO
         s = StringIO()
         num_errors = get_validation_errors(s, app)
         if num_errors:

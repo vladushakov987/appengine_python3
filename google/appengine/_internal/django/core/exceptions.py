@@ -2,7 +2,7 @@
 Global Django exception and warning classes.
 """
 
-from __future__ import absolute_import
+
 from functools import reduce
 class DjangoRuntimeWarning(RuntimeWarning):
    pass
@@ -79,7 +79,7 @@ class ValidationError(Exception):
     def update_error_dict(self, error_dict):
         if hasattr(self, 'message_dict'):
             if error_dict:
-                for k, v in self.message_dict.items():
+                for k, v in list(self.message_dict.items()):
                     error_dict.setdefault(k, []).extend(v)
             else:
                 error_dict = self.message_dict

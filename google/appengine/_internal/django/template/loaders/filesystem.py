@@ -2,7 +2,7 @@
 Wrapper for loading templates from the filesystem.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.template import TemplateDoesNotExist
 from google.appengine._internal.django.template.loader import BaseLoader

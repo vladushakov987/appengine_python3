@@ -16,7 +16,7 @@
 #
 """Tests for google.appengine.tools.devappserver2.dispatcher."""
 
-from __future__ import absolute_import
+
 import logging
 import socket
 import unittest

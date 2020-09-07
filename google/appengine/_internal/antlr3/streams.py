@@ -30,9 +30,9 @@
 #
 # end[licence]
 
-from __future__ import absolute_import
+
 import codecs
-from StringIO import StringIO
+from io import StringIO
 
 from google.appengine._internal.antlr3.constants import DEFAULT_CHANNEL, EOF
 from google.appengine._internal.antlr3.tokens import Token, EOF_TOKEN

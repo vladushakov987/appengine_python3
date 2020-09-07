@@ -16,7 +16,7 @@
 #
 """Tests for google.appengine.tools.devappserver2.shutdown."""
 
-from __future__ import absolute_import
+
 import os
 import signal
 import time

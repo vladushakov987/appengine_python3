@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from optparse import make_option
 import sys
 
@@ -83,7 +83,7 @@ class Command(NoArgsCommand):
         )
 
         # Create the tables for each model
-        for app_name, model_list in manifest.items():
+        for app_name, model_list in list(manifest.items()):
             for model in model_list:
                 # Create the model's database table, if it doesn't already exist.
                 if verbosity >= 2:
@@ -91,7 +91,7 @@ class Command(NoArgsCommand):
                 sql, references = connection.creation.sql_create_model(model, self.style, seen_models)
                 seen_models.add(model)
                 created_models.add(model)
-                for refto, refs in references.items():
+                for refto, refs in list(references.items()):
                     pending_references.setdefault(refto, []).extend(refs)
                     if refto in seen_models:
                         sql.extend(connection.creation.sql_for_pending_references(refto, self.style, pending_references))
@@ -114,7 +114,7 @@ class Command(NoArgsCommand):
 
         # Install custom SQL for the app (but only if this
         # is a model we've just created)
-        for app_name, model_list in manifest.items():
+        for app_name, model_list in list(manifest.items()):
             for model in model_list:
                 if model in created_models:
                     custom_sql = custom_sql_for_model(model, self.style, connection)
@@ -137,7 +137,7 @@ class Command(NoArgsCommand):
                             print("No custom SQL for %s.%s model" % (app_name, model._meta.object_name))
 
         # Install SQL indicies for all newly created models
-        for app_name, model_list in manifest.items():
+        for app_name, model_list in list(manifest.items()):
             for model in model_list:
                 if model in created_models:
                     index_sql = connection.creation.sql_indexes_for_model(model, self.style)

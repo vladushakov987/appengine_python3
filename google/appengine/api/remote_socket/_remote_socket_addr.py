@@ -24,7 +24,7 @@ normally provided by the system:
   - (hton|ntoh)(sl)
 """
 
-from __future__ import absolute_import
+
 import errno
 import os
 import re

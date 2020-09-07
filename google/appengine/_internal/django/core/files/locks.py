@@ -15,7 +15,7 @@ Example Usage::
     >>> f.close()
 """
 
-from __future__ import absolute_import
+
 __all__ = ('LOCK_EX','LOCK_SH','LOCK_NB','lock','unlock')
 
 system_type = None

@@ -31,7 +31,7 @@ with these in memory.
 
 
 
-from __future__ import absolute_import
+
 import google
 
 from google.appengine.api import validation

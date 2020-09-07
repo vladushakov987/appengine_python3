@@ -117,7 +117,7 @@ The EnumProperty supports the following standard options:
   - verbose_name
 """
 
-from __future__ import absolute_import
+
 from protorpc import messages
 from protorpc import remote
 

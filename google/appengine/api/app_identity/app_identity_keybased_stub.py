@@ -22,7 +22,6 @@ This service behaves the same as the production service, except using
 a private key specified when starting dev_appserver.py.
 """
 
-from __future__ import with_statement
 
 
 
@@ -34,7 +33,8 @@ from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import base64
 import json
 import os
@@ -118,7 +118,7 @@ class KeyBasedAppIdentityServiceStub(app_identity_stub.AppIdentityServiceStub):
 
 
 
-        for signing_key, x509 in json.loads(resp.content).items():
+        for signing_key, x509 in list(json.loads(resp.content).items()):
           der = rsa.pem.load_pem(x509, 'CERTIFICATE')
           asn1_cert, _ = decoder.decode(der, asn1Spec=Certificate())
 

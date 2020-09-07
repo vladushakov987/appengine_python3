@@ -33,7 +33,7 @@ Functions defined in this module:
 
 
 
-from __future__ import absolute_import
+
 import os
 
 from google.appengine.api import api_base_pb

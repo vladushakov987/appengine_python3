@@ -34,7 +34,7 @@ Classes defined here:
 
 
 
-from __future__ import absolute_import
+
 import logging
 
 from google.appengine import runtime

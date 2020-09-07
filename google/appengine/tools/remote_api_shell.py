@@ -26,8 +26,8 @@ If the -s HOSTNAME flag is not specified, the APPID must be specified.
 
 
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from google.appengine.tools import os_compat
 
 import atexit
@@ -64,7 +64,7 @@ The db, ndb, users, urlfetch, and memcache modules are imported.\
 
 
 def auth_func():
-  return (input('Email: '), getpass.getpass('Password: '))
+  return (eval(input('Email: ')), getpass.getpass('Password: '))
 
 
 def remote_api_shell(servername, appid, path, secure, rpc_server_factory):

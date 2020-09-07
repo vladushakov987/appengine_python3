@@ -16,7 +16,7 @@
 #
 """Tests for google.appengine.tools.devappserver2.mtime_file_watcher."""
 
-from __future__ import absolute_import
+
 import os
 import os.path
 import shutil

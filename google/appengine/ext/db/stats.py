@@ -34,7 +34,7 @@ application's datastore by offline processes run by the Google App Engine team.
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.ext import db
 
 

@@ -16,7 +16,7 @@
 #
 """Utilities for handling Java code."""
 
-from __future__ import absolute_import
+
 import os
 
 

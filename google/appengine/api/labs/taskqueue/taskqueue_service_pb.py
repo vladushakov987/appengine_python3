@@ -25,7 +25,7 @@ This contains all of the protocol messages as of 1.4.2.
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.api.taskqueue import taskqueue_service_pb
 
 

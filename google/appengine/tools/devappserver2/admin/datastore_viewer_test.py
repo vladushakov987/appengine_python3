@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import datetime
 import os
 import unittest
@@ -84,7 +84,7 @@ class GetWriteOpsTest(unittest.TestCase):
 
   def test_no_properties(self):
     entity = datastore.Entity('Yar', id=123, _app=self.app_id)  # 2 writes.
-    self.assertEquals(
+    self.assertEqual(
         2, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
   def test_indexed_properties_no_composite_indexes(self):
@@ -92,7 +92,7 @@ class GetWriteOpsTest(unittest.TestCase):
     entity['p1'] = None  # 2 writes.
     entity['p2'] = None  # 2 writes.
     entity['p3'] = [1, 2, 3]  # 6 writes.
-    self.assertEquals(
+    self.assertEqual(
         12, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
   def test_unindexed_properties_no_composite_indexes(self):
@@ -103,7 +103,7 @@ class GetWriteOpsTest(unittest.TestCase):
     entity.set_unindexed_properties(('u1', 'u2', 'u3'))
 
     # unindexed properties have no impact on cost
-    self.assertEquals(
+    self.assertEqual(
         2, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
   def test_composite_index(self):
@@ -122,32 +122,32 @@ class GetWriteOpsTest(unittest.TestCase):
     prop.set_direction(prop.DESCENDING)
     stub = apiproxy_stub_map.apiproxy.GetStub('datastore_v3')
     stub.CreateIndex(ci)
-    self.assertEquals(1, len(datastore.GetIndexes()))
+    self.assertEqual(1, len(datastore.GetIndexes()))
 
     # no properties, no composite indices.
     entity = datastore.Entity('Yar', id=123, _app=self.app_id)  # 2 writes.
     # We only have the 2 built-in index writes because the entity doesn't have
     # property values for any of the index properties.
-    self.assertEquals(
+    self.assertEqual(
         2, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     entity['this'] = 4
     # Unindexed property so no additional writes
     entity.set_unindexed_properties(('this',))
-    self.assertEquals(
+    self.assertEqual(
         2, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     entity['that'] = 4
     # Unindexed property so no additional writes
     entity.set_unindexed_properties(('this', 'that'))
-    self.assertEquals(
+    self.assertEqual(
         2, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # no indexed property value on 'that'
     entity.set_unindexed_properties(('that',))
     # 2 writes for the entity.
     # 2 writes for the single indexed property.
-    self.assertEquals(
+    self.assertEqual(
         4, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # indexed property value on both 'this' and 'that'
@@ -155,7 +155,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 writes for the entity
     # 4 writes for the indexed properties
     # 1 writes for the composite index
-    self.assertEquals(
+    self.assertEqual(
         7, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # now run tests with null property values
@@ -163,14 +163,14 @@ class GetWriteOpsTest(unittest.TestCase):
     entity['this'] = None
     # 2 for the entity
     # 2 for the single indexed property
-    self.assertEquals(
+    self.assertEqual(
         4, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     entity['that'] = None
     # 2 for the entity
     # 4 for the indexed properties
     # 1 for the composite index
-    self.assertEquals(
+    self.assertEqual(
         7, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # now run tests with a repeated property
@@ -178,21 +178,21 @@ class GetWriteOpsTest(unittest.TestCase):
     entity['this'] = [1, 2, 3]
     # 2 for the entity
     # 6 for the indexed properties
-    self.assertEquals(
+    self.assertEqual(
         8, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     entity['that'] = None
     # 2 for the entity
     # 8 for the indexed properties
     # 3 for the Composite index
-    self.assertEquals(
+    self.assertEqual(
         13, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     entity['that'] = [4, 5]
     # 2 for the entity
     # 10 for the indexed properties
     # 6 for the Composite index
-    self.assertEquals(
+    self.assertEqual(
         18, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
   def test_composite_index_no_properties(self):
@@ -205,14 +205,14 @@ class GetWriteOpsTest(unittest.TestCase):
     index.set_entity_type('Yar')
     stub = apiproxy_stub_map.apiproxy.GetStub('datastore_v3')
     stub.CreateIndex(ci)
-    self.assertEquals(1, len(datastore.GetIndexes()))
+    self.assertEqual(1, len(datastore.GetIndexes()))
 
     # no properties, and composite index with no properties.
     entity = datastore.Entity('Yar', id=123, _app=self.app_id)  # 2 writes.
     # We have the 2 built-in index writes, and one for the entity key in the
     # composite index despite the fact that there are no proerties defined in
     # the index.
-    self.assertEquals(
+    self.assertEqual(
         3, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # now with a repeated property
@@ -221,7 +221,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 for the entity
     # 6 for the indexed properties
     # 1 for the composite index
-    self.assertEquals(
+    self.assertEqual(
         9, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
   def test_composite_ancestor_index(self):
@@ -240,7 +240,7 @@ class GetWriteOpsTest(unittest.TestCase):
     prop.set_direction(prop.DESCENDING)
     stub = apiproxy_stub_map.apiproxy.GetStub('datastore_v3')
     stub.CreateIndex(ci)
-    self.assertEquals(1, len(datastore.GetIndexes()))
+    self.assertEqual(1, len(datastore.GetIndexes()))
 
     entity = datastore.Entity('Yar', id=123, _app=self.app_id)  # 2 writes.
     entity['this'] = 4
@@ -248,7 +248,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 for the entity
     # 4 for the indexed properties
     # 1 for the composite index
-    self.assertEquals(
+    self.assertEqual(
         7, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # Now use the same entity but give it an ancestor
@@ -263,7 +263,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 writes for the entity.
     # 4 writes for the indexed properties.
     # 2 writes for the composite indices.
-    self.assertEquals(
+    self.assertEqual(
         8, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # Now use the same entity but give it 2 ancestors.
@@ -281,7 +281,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 writes for the entity.
     # 4 writes for the indexed properties.
     # 3 writes for the composite indices.
-    self.assertEquals(
+    self.assertEqual(
         9, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # Now try it with a multi-value prop
@@ -289,7 +289,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 writes for the entity.
     # 8 writes for the indexed properties.
     # 9 writes for the composite indices.
-    self.assertEquals(
+    self.assertEqual(
         19, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # Now try it with 2 multi-value props.
@@ -297,7 +297,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 writes for the entity.
     # 10 writes for the indexed properties.
     # 18 writes for the composite indices.
-    self.assertEquals(
+    self.assertEqual(
         30, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
   def test_composite_ancestor_index_no_properties(self):
@@ -310,14 +310,14 @@ class GetWriteOpsTest(unittest.TestCase):
     index.set_entity_type('Yar')
     stub = apiproxy_stub_map.apiproxy.GetStub('datastore_v3')
     stub.CreateIndex(ci)
-    self.assertEquals(1, len(datastore.GetIndexes()))
+    self.assertEqual(1, len(datastore.GetIndexes()))
 
     entity = datastore.Entity('Yar', id=123, _app=self.app_id)  # 2 writes.
     entity['this'] = [None, None]
     # 2 writes for the entity.
     # 4 writes for the indexed properties.
     # 1 writes for the composite index.
-    self.assertEquals(
+    self.assertEqual(
         7, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
     # Now use the same entity but give it an ancestor
@@ -331,7 +331,7 @@ class GetWriteOpsTest(unittest.TestCase):
     # 2 writes for the entity.
     # 4 writes for the indexed properties.
     # 2 writes for the composite indices.
-    self.assertEquals(
+    self.assertEqual(
         8, datastore_viewer.DatastoreRequestHandler._get_write_ops(entity))
 
 
@@ -444,34 +444,34 @@ class GetEntityTemplateDataTest(unittest.TestCase):
         headers)
 
     self.assertEqual(
-        [{'attributes': [{'name': u'intprop',
+        [{'attributes': [{'name': 'intprop',
                           'short_value': '3',
                           'value': '3'},
-                         {'name': u'listprop',
+                         {'name': 'listprop',
                           'short_value': mox.Regex(r'\[1L?, 2L?, 3L?\]'),
                           'value': mox.Regex(r'\[1L?, 2L?, 3L?\]')},
-                         {'name': u'stringprop',
+                         {'name': 'stringprop',
                           'short_value': '',
                           'value': ''}],
           'edit_uri': '/datastore/edit/{0}?next=http%3A//next/'.format(
               self.entity3.key()),
-          'key': datastore_types.Key.from_path(u'Kind1', 125, _app=u'myapp'),
+          'key': datastore_types.Key.from_path('Kind1', 125, _app='myapp'),
           'key_id': 125,
           'key_name': None,
           'shortened_key': 'agVteWFw...',
           'write_ops': 10},
-         {'attributes': [{'name': u'intprop',
+         {'attributes': [{'name': 'intprop',
                           'short_value': '4',
                           'value': '4'},
-                         {'name': u'listprop',
+                         {'name': 'listprop',
                           'short_value': mox.Regex(r'\[10L?, 11L?\]'),
                           'value': mox.Regex(r'\[10L?, 11L?\]')},
-                         {'name': u'stringprop',
-                          'short_value': u'value4',
-                          'value': u'value4'}],
+                         {'name': 'stringprop',
+                          'short_value': 'value4',
+                          'value': 'value4'}],
           'edit_uri': '/datastore/edit/{0}?next=http%3A//next/'.format(
               self.entity4.key()),
-          'key': datastore_types.Key.from_path(u'Kind1', 126, _app=u'myapp'),
+          'key': datastore_types.Key.from_path('Kind1', 126, _app='myapp'),
           'key_id': 126,
           'key_name': None,
           'shortened_key': 'agVteWFw...',
@@ -776,7 +776,7 @@ class DatastoreEditRequestHandlerTest(unittest.TestCase):
     self.mox.VerifyAll()
 
     self.assertEqual(302, response.status_int)
-    self.assertRegexpMatches(
+    self.assertRegex(
         response.location,
         r'/datastore\?kind=Kind1&message=Cannot+.*&namespace=cat')
 
@@ -865,7 +865,7 @@ class DatastoreEditRequestHandlerTest(unittest.TestCase):
     query.update({'dateprop': datetime.datetime(2009, 12, 24, 23, 59, 59),
                   'intprop': 123,
                   'stringprop': 'Hello'})
-    self.assertEquals(1, query.Count())
+    self.assertEqual(1, query.Count())
 
   def test_post_entity_key_string(self):
     request = webapp2.Request.blank(

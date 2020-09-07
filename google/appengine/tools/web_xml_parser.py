@@ -25,7 +25,7 @@ SecurityConstraint: Contains information about specified security constraints.
 
 """
 
-from __future__ import absolute_import
+
 import logging
 
 from xml.etree import ElementTree

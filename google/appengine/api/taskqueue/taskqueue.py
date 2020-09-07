@@ -45,7 +45,7 @@ base path. A default queue is also provided for simple usage.
 
 
 
-from __future__ import absolute_import
+
 from six.moves import zip
 __all__ = [
 
@@ -464,7 +464,7 @@ def _TranslateError(error, detail=''):
 
     class JointException(datastore_exception.__class__, DatastoreError):
       """There was a datastore error while accessing the queue."""
-      __msg = (u'taskqueue.DatastoreError caused by: %s %s' %
+      __msg = ('taskqueue.DatastoreError caused by: %s %s' %
                (datastore_exception.__class__, detail))
 
       def __str__(self):
@@ -480,7 +480,7 @@ def _TranslateError(error, detail=''):
 
 
 def _ValidateDeadline(deadline):
-  if not isinstance(deadline, (int, int, float)):
+  if not isinstance(deadline, (int, float)):
     raise TypeError(
         'deadline must be numeric')
 
@@ -1166,7 +1166,7 @@ class Task(object):
         query, keep_blank_values=True, strict_parsing=True):
       p.setdefault(key, []).append(value)
 
-    for key, value in p.items():
+    for key, value in list(p.items()):
       if len(value) == 1:
         p[key] = value[0]
 
@@ -1623,7 +1623,7 @@ class Queue(object):
   @staticmethod
   def _ValidateLeaseSeconds(lease_seconds):
 
-    if not isinstance(lease_seconds, (float, int, int)):
+    if not isinstance(lease_seconds, (float, int)):
       raise TypeError(
           'lease_seconds must be a float or an integer')
     lease_seconds = float(lease_seconds)

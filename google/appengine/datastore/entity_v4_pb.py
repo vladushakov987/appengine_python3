@@ -17,7 +17,7 @@
 
 
 
-from __future__ import absolute_import
+
 from google.net.proto import ProtocolBuffer
 import array
 import base64

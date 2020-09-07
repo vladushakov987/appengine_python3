@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 """Per job config for map jobs."""
-from __future__ import absolute_import
+
 from google.appengine.ext.mapreduce import hooks
 from google.appengine.ext.mapreduce import input_readers
 from google.appengine.ext.mapreduce import output_writers

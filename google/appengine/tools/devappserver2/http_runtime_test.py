@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import base64
 import os
 import re
@@ -266,7 +266,7 @@ class HttpRuntimeProxyFileFlavorTest(wsgi_test_utils.WSGITestCase):
 
     self.mox.ReplayAll()
     self.proxy.start()
-    self.assertEquals(1234, self.proxy._proxy._port)
+    self.assertEqual(1234, self.proxy._proxy._port)
     self.mox.VerifyAll()
 
   def test_slow_shattered(self):
@@ -294,7 +294,7 @@ class HttpRuntimeProxyFileFlavorTest(wsgi_test_utils.WSGITestCase):
 
     self.mox.ReplayAll()
     self.proxy.start()
-    self.assertEquals(4321, self.proxy._proxy._port)
+    self.assertEqual(4321, self.proxy._proxy._port)
     self.mox.VerifyAll()
 
   def test_runtime_instance_dies_immediately(self):

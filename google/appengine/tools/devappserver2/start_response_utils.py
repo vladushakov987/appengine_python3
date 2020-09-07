@@ -18,8 +18,8 @@
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 
 
 class CapturingStartResponse(object):
@@ -29,7 +29,7 @@ class CapturingStartResponse(object):
     self.status = None
     self.response_headers = None
     self.exc_info = None
-    self.response_stream = cStringIO.StringIO()
+    self.response_stream = io.StringIO()
 
   def __call__(self, status, response_headers, exc_info=None):
     assert exc_info is not None or self.status is None, (
@@ -45,4 +45,4 @@ class CapturingStartResponse(object):
 
 
 def null_start_response(status, response_headers, exc_info=None):
-  return cStringIO.StringIO()
+  return io.StringIO()

@@ -18,7 +18,7 @@
 
 """Wrapper for QueryParser."""
 
-from __future__ import absolute_import
+
 from google.appengine._internal import antlr3
 from google.appengine._internal.antlr3 import tree
 from google.appengine.api.search import QueryLexer
@@ -225,7 +225,7 @@ def GetQueryNodeText(node):
 def GetQueryNodeTextUnicode(node):
   """Returns the unicode text from node."""
   if node.getType() == QueryParser.VALUE and len(node.children) >= 2:
-    return u''.join(c.getText() for c in node.children[1:])
+    return ''.join(c.getText() for c in node.children[1:])
   elif node.getType() == QueryParser.VALUE:
     return None
   return node.getText()

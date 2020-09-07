@@ -16,8 +16,8 @@
 #
 """Import hook for dev_appserver.py."""
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import six.moves._dummy_thread
 import errno
 import imp
@@ -1138,7 +1138,7 @@ class HardenedModulesHook(object):
         ['getpid', 'getuid', 'sys'])
 
 
-      for k in self._white_list_partial_modules.keys():
+      for k in list(self._white_list_partial_modules.keys()):
         if k.startswith('Crypto'):
           del self._white_list_partial_modules[k]
 

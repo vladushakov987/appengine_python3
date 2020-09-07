@@ -21,7 +21,7 @@
 """OAuth API module."""
 
 
-from __future__ import absolute_import
+
 from .oauth_api import *
 
 

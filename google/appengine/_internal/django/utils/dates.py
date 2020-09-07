@@ -1,6 +1,6 @@
 "Commonly-used date structures"
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.utils.translation import ugettext_lazy as _
 
 WEEKDAYS = {

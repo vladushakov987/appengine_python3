@@ -3,7 +3,7 @@
 
 # This is defined here as a do-nothing function because we can't import
 # django.utils.translation -- that module depends on the settings.
-from __future__ import absolute_import
+
 gettext_noop = lambda s: s
 
 ####################

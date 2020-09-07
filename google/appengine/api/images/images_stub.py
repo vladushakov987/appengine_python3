@@ -25,11 +25,11 @@
 
 
 
-from __future__ import absolute_import
+
 import datetime
 import logging
 import re
-import StringIO
+import io
 import time
 import six
 from six.moves import map
@@ -321,7 +321,7 @@ class ImagesServiceStub(apiproxy_stub.APIProxyStub):
     Returns:
       str - Encoded image information in given encoding format.  Default is PNG.
     """
-    image_string = StringIO.StringIO()
+    image_string = io.StringIO()
     image_encoding = PNG
 
     if output_encoding.mime_type() == images_service_pb.OutputSettings.WEBP:
@@ -398,7 +398,7 @@ class ImagesServiceStub(apiproxy_stub.APIProxyStub):
       raise apiproxy_errors.ApplicationError(
           images_service_pb.ImagesServiceError.NOT_IMAGE)
 
-    image = StringIO.StringIO(image)
+    image = io.StringIO(image)
     try:
       return Image.open(image)
     except IOError:

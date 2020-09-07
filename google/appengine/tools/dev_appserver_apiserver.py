@@ -25,16 +25,16 @@ In addition, the proxy loads api configs from
 backend at /_ah/spi and afterwards if app.yaml is changed.
 """
 
-from __future__ import with_statement
 
 
 
 
 
-from __future__ import absolute_import
+
+
 import base64
 import cgi
-import cStringIO
+import io
 import six.moves.http_client
 import six
 try:
@@ -1176,7 +1176,7 @@ def CreateApiserverDispatcher(config_manager=None):
 
 
       headers = {}
-      for header, value in response_headers.items():
+      for header, value in list(response_headers.items()):
         if (header.lower() == 'content-type' and
             not value.lower().startswith('application/json')):
           return self.FailRequest('Non-JSON reply: %s' % body, outfile)
@@ -1296,7 +1296,7 @@ def CreateApiserverDispatcher(config_manager=None):
         return
 
       enum_values = [enum['backendValue']
-                     for enum in field_parameter['enum'].values()
+                     for enum in list(field_parameter['enum'].values())
                      if 'backendValue' in enum]
       if value not in enum_values:
         raise EnumRejectionError(parameter_name, value, enum_values)
@@ -1426,7 +1426,7 @@ def CreateApiserverDispatcher(config_manager=None):
 
 
 
-      for key, value in body_obj.items():
+      for key, value in list(body_obj.items()):
         current_parameter = method_parameters.get(key, {})
         repeated = current_parameter.get('repeated', False)
 
@@ -1522,8 +1522,8 @@ def BuildCGIRequest(base_env_dict, request, old_dev_appserver):
 
 
 
-  header_outfile = cStringIO.StringIO()
-  body_outfile = cStringIO.StringIO()
+  header_outfile = io.StringIO()
+  body_outfile = io.StringIO()
   WriteHeaders(request.headers, header_outfile, len(request.body))
   body_outfile.write(request.body)
   header_outfile.seek(0)

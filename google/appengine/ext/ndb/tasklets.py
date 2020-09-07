@@ -60,7 +60,7 @@ suspend -- there's no need to insert a dummy yield in order to make
 the tasklet into a generator.
 """
 
-from __future__ import absolute_import
+
 import collections
 import logging
 import os

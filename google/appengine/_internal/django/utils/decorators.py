@@ -1,6 +1,6 @@
 "Functions that help with dynamically creating decorators for views."
 
-from __future__ import absolute_import
+
 import types
 try:
     from functools import wraps, update_wrapper, WRAPPER_ASSIGNMENTS

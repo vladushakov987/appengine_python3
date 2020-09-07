@@ -30,11 +30,11 @@
 
 """Output writers for MapReduce."""
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six
 __all__ = [
     "BlobstoreOutputWriter",
@@ -57,7 +57,7 @@ __all__ = [
 
 
 
-import cStringIO
+import io
 import gc
 import logging
 import pickle
@@ -461,7 +461,7 @@ class _RecordsPoolBase(context.Pool):
   def flush(self):
     """Flush pool contents."""
 
-    buf = cStringIO.StringIO()
+    buf = io.StringIO()
     with records.RecordsWriter(buf) as w:
       for record in self._buffer:
         w.write(record)

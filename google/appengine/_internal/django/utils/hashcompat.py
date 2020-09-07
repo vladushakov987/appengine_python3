@@ -4,7 +4,7 @@ hashlib module containing both hash algorithms. Here, we provide a common
 interface to the md5 and sha constructors, depending on system version.
 """
 
-from __future__ import absolute_import
+
 import sys
 if sys.version_info >= (2, 5):
     import hashlib

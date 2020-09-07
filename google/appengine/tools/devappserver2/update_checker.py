@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import sys
 
 from google.appengine.tools import appengine_rpc

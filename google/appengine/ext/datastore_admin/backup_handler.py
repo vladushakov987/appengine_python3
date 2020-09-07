@@ -30,13 +30,13 @@ page.
 This module also contains actual mapper code for backing data over.
 """
 
-from __future__ import with_statement
 
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+
+import io
 import datetime
 import itertools
 import logging
@@ -1082,7 +1082,7 @@ def finalize_backup_info(backup_info_pk, gs_bucket):
 
 def parse_backup_info_file(content):
   """Returns entities iterator from a backup_info file content."""
-  reader = records.RecordsReader(cStringIO.StringIO(content))
+  reader = records.RecordsReader(io.StringIO(content))
   version = reader.read()
   if version != '1':
     raise IOError('Unsupported version')

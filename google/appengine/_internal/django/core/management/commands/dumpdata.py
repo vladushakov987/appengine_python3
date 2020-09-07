@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured
 from google.appengine._internal.django.core.management.base import BaseCommand, CommandError
 from google.appengine._internal.django.core import serializers

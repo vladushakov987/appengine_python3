@@ -88,7 +88,7 @@ Notes:
 
 
 
-from __future__ import absolute_import
+
 import itertools
 import logging
 
@@ -482,12 +482,12 @@ class _WrapIter(object):
 class ModelChoiceField(forms.Field):
 
   default_error_messages = {
-      'invalid_choice': _(u'Please select a valid choice. '
-                          u'That choice is not one of the available choices.'),
+      'invalid_choice': _('Please select a valid choice. '
+                          'That choice is not one of the available choices.'),
     }
 
   def __init__(self, reference_class, query=None, choices=None,
-               empty_label=u'---------',
+               empty_label='---------',
                required=True, widget=forms.Select, label=None, initial=None,
                help_text=None, *args, **kwargs):
     """Constructor.
@@ -692,7 +692,7 @@ class ModelFormMetaclass(type):
     """
 
     fields = sorted(((field_name, attrs.pop(field_name))
-                     for field_name, obj in attrs.items()
+                     for field_name, obj in list(attrs.items())
                      if isinstance(obj, forms.Field)),
                     key=lambda obj: obj[1].creation_counter)
 

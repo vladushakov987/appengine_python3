@@ -16,7 +16,7 @@
 #
 """Manages creation of VM Runtime instances."""
 
-from __future__ import absolute_import
+
 import logging
 
 import google

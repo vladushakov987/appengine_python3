@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.urlresolvers import RegexURLPattern, RegexURLResolver
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured
 import six

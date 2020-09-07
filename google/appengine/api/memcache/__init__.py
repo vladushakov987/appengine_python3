@@ -32,9 +32,9 @@ required and higher performance is desired.
 
 
 
-from __future__ import absolute_import
+
 import six.moves.cPickle
-import cStringIO
+import io
 import hashlib
 import math
 import types
@@ -388,7 +388,7 @@ class Client(object):
 
   def _do_pickle(self, value):
     """Pickles a provided value."""
-    pickle_data = cStringIO.StringIO()
+    pickle_data = io.StringIO()
     pickler = self._pickler_factory(pickle_data,
                                     protocol=self._pickle_protocol)
     if self._persistent_id is not None:
@@ -398,7 +398,7 @@ class Client(object):
 
   def _do_unpickle(self, value):
     """Unpickles a provided value."""
-    pickle_data = cStringIO.StringIO(value)
+    pickle_data = io.StringIO(value)
     unpickler = self._unpickler_factory(pickle_data)
     if self._persistent_load is not None:
       unpickler.persistent_load = self._persistent_load
@@ -700,7 +700,7 @@ class Client(object):
       DELETE_SUCCESSFUL, DELETE_ITEM_MISSING, or DELETE_NETWORK_FAILURE
       (see delete() docstring for details).
     """
-    if not isinstance(seconds, (int, int, float)):
+    if not isinstance(seconds, (int, float)):
       raise TypeError('Delete timeout must be a number.')
     if seconds < 0:
       raise ValueError('Delete timeout must not be negative.')
@@ -935,7 +935,7 @@ class Client(object):
       status values otherwise, where each status is one of STORED,
       NOT_STORED, ERROR, or EXISTS.
     """
-    if not isinstance(time, (int, int, float)):
+    if not isinstance(time, (int, float)):
       raise TypeError('Expiration must be a number.')
     if time < 0.0:
       raise ValueError('Expiration must not be negative.')

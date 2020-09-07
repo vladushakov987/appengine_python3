@@ -31,7 +31,7 @@ ImageOptions and ContainerOptions allow to pass parameters to these commands.
 Versions 1.9 and 1.10 of docker remote API are supported.
 """
 
-from __future__ import absolute_import
+
 from collections import namedtuple
 import itertools
 import json

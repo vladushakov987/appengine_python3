@@ -34,7 +34,7 @@ for their applications.  Also provides a few utility methods.
 
 
 
-from __future__ import absolute_import
+
 import email
 from email import MIMEBase
 from email import MIMEMultipart
@@ -312,7 +312,7 @@ def _email_check_and_list(emails, field):
   Raises:
     InvalidEmailError if any email addresses are invalid.
   """
-  if isinstance(emails, (str,)):
+  if isinstance(emails, str):
     check_email_valid(value)
   else:
     for address in iter(emails):
@@ -582,7 +582,7 @@ def _to_str(value):
   return value
 
 
-def _decode_and_join_header(header, separator=u' '):
+def _decode_and_join_header(header, separator=' '):
   """Helper function to decode RFC2047 encoded headers.
 
   Args:
@@ -1269,7 +1269,7 @@ class _EmailMessageBase(object):
     if reply_to:
       self.reply_to = reply_to
 
-    subject = _decode_and_join_header(mime_message['subject'], separator=u'')
+    subject = _decode_and_join_header(mime_message['subject'], separator='')
     if subject:
       self.subject = subject
 

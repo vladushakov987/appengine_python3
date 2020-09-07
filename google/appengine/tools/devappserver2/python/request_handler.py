@@ -22,8 +22,8 @@ module is the sandboxed version.
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import os
 import sys
 import traceback
@@ -207,7 +207,7 @@ class RequestHandler(object):
                                  six.moves.urllib.parse.quote(environ['PATH_INFO']),
                                  environ['QUERY_STRING'])
 
-    results_io = cStringIO.StringIO()
+    results_io = io.StringIO()
     old_sys_stdout = sys.stdout
 
     try:

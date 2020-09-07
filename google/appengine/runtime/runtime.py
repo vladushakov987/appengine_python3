@@ -31,8 +31,8 @@ WSGI interface.
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import six.moves._thread
 import threading
 import six.moves.urllib.parse
@@ -41,6 +41,7 @@ from google.appengine.api.logservice import logservice
 from google.appengine.runtime import cgi
 from google.appengine.runtime import request_environment
 from google.appengine.runtime import wsgi
+import importlib
 
 
 def _MakeStartNewThread(base_start_new_thread):
@@ -88,7 +89,7 @@ def PatchStartNewThread(thread_module=thread, threading_module=threading):
   """Installs a start_new_thread replacement created by _MakeStartNewThread."""
   thread_module.start_new_thread = _MakeStartNewThread(
       thread_module.start_new_thread)
-  reload(threading_module)
+  importlib.reload(threading_module)
 
 
 def HandleRequest(environ, handler_name, url, post_data, application_root,
@@ -143,7 +144,7 @@ def HandleRequest(environ, handler_name, url, post_data, application_root,
         environ['CONTENT_TYPE'] = environ['HTTP_CONTENT_TYPE']
       else:
         environ['CONTENT_TYPE'] = 'application/x-www-form-urlencoded'
-    post_data = cStringIO.StringIO(post_data)
+    post_data = io.StringIO(post_data)
 
     if '/' in handler_name or handler_name.endswith('.py'):
       response = cgi.HandleRequest(environ, handler_name, url, post_data, error,

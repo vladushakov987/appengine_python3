@@ -16,7 +16,7 @@
 #
 """Augment the mimetypes provided by Python."""
 
-from __future__ import absolute_import
+
 import mimetypes
 
 

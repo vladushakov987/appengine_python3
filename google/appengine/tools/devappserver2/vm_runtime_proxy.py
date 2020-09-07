@@ -16,7 +16,7 @@
 #
 """Manages a VM Runtime process running inside of a docker container."""
 
-from __future__ import absolute_import
+
 import datetime
 import logging
 import os

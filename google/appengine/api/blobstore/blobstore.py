@@ -32,7 +32,7 @@ class representing a blob-key.  Contains API part that forward to apiproxy.
 
 
 
-from __future__ import absolute_import
+
 import datetime
 import time
 

@@ -18,8 +18,8 @@
 
 
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import unittest
 import wsgiref.headers
 
@@ -98,7 +98,7 @@ class WSGITestCase(unittest.TestCase):
     """
 
     # Buffer for 'write' callable
-    write_buffer = cStringIO.StringIO()
+    write_buffer = io.StringIO()
 
     def start_response(status, headers, exc_info=None):
       self.assertEqual(expected_status, status)

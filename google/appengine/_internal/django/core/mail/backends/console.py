@@ -1,7 +1,7 @@
 """
 Email backend that writes messages to console instead of sending them.
 """
-from __future__ import absolute_import
+
 import sys
 import threading
 

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.dispatch import Signal
 
 request_started = Signal()

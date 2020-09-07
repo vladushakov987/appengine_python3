@@ -102,7 +102,7 @@ Using simplejson.tool from the shell to validate and pretty-print::
 # either of a later version of has the C speedups in place. Otherwise, fall
 # back to our local copy.
 
-from __future__ import absolute_import
+
 __version__ = '2.0.7'
 
 use_system_version = False

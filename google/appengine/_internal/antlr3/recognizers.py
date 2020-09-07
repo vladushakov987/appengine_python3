@@ -30,7 +30,7 @@
 #
 # end[licence]
 
-from __future__ import absolute_import
+
 import sys
 import inspect
 
@@ -40,7 +40,7 @@ from google.appengine._internal.antlr3.exceptions import RecognitionException, M
 from google.appengine._internal.antlr3.tokens import CommonToken, EOF_TOKEN, SKIP_TOKEN
 from google.appengine._internal.antlr3.compat import set, frozenset, reversed
 import six
-from six import unichr
+from six import chr
 
 
 class RecognizerSharedState(object):
@@ -1050,7 +1050,7 @@ class TokenSource(object):
         return self
 
 
-    def next(self):
+    def __next__(self):
         """Return next token or raise StopIteration.
 
         Note that this will raise StopIteration when hitting the EOF token,
@@ -1216,7 +1216,7 @@ class Lexer(BaseRecognizer, TokenSource):
                 if self._state.backtracking > 0:
                     raise BacktrackingFailed
 
-                mte = MismatchedTokenException(unichr(s), self.input)
+                mte = MismatchedTokenException(chr(s), self.input)
                 self.recover(mte) # don't really recover; just consume in lexer
                 raise mte
 
@@ -1232,7 +1232,7 @@ class Lexer(BaseRecognizer, TokenSource):
             if self._state.backtracking > 0:
                 raise BacktrackingFailed
 
-            mre = MismatchedRangeException(unichr(a), unichr(b), self.input)
+            mre = MismatchedRangeException(chr(a), chr(b), self.input)
             self.recover(mre)
             raise mre
 

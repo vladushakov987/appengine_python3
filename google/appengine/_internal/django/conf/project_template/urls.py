@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.conf.urls.defaults import *
 
 # Uncomment the next two lines to enable the admin:

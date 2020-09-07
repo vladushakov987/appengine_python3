@@ -26,7 +26,7 @@
 
 
 
-from __future__ import absolute_import
+
 from .file import *
 from . import blobstore
 from . import gs

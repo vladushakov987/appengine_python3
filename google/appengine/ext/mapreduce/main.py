@@ -43,7 +43,7 @@ This module should be specified as a handler for mapreduce URLs in app.yaml:
 
 
 
-from __future__ import absolute_import
+
 import google
 
 

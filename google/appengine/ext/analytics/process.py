@@ -28,7 +28,7 @@ a manner convenient for the UI.
 
 
 
-from __future__ import absolute_import
+
 import six
 from six.moves import range
 try:
@@ -375,7 +375,7 @@ def SplitByKind(freqdict):
 
 
   kinds = {}
-  for kind_fullname, freq in freqdict.items():
+  for kind_fullname, freq in list(freqdict.items()):
     (kind, fullname) = kind_fullname.split(',')
     if not kind in kinds:
       kinds[kind] = []

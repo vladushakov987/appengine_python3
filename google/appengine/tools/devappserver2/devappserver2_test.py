@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import argparse
 import getpass
 import itertools
@@ -189,17 +189,17 @@ class ParseMaxServerInstancesTest(unittest.TestCase):
     self.assertEqual(1, devappserver2.parse_max_module_instances('1'))
 
   def test_single_zero_arg(self):
-    self.assertRaisesRegexp(argparse.ArgumentTypeError,
+    self.assertRaisesRegex(argparse.ArgumentTypeError,
                             'count must be greater than zero',
                             devappserver2.parse_max_module_instances, '0')
 
   def test_single_negative_arg(self):
-    self.assertRaisesRegexp(argparse.ArgumentTypeError,
+    self.assertRaisesRegex(argparse.ArgumentTypeError,
                             'count must be greater than zero',
                             devappserver2.parse_max_module_instances, '-1')
 
   def test_single_nonint_arg(self):
-    self.assertRaisesRegexp(argparse.ArgumentTypeError,
+    self.assertRaisesRegex(argparse.ArgumentTypeError,
                             'Invalid max instance count:',
                             devappserver2.parse_max_module_instances, 'cat')
 
@@ -210,31 +210,31 @@ class ParseMaxServerInstancesTest(unittest.TestCase):
         devappserver2.parse_max_module_instances('default:10,foo:5'))
 
   def test_multiple_non_colon(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError,
         'Expected "module:max_instance_count"',
         devappserver2.parse_max_module_instances, 'default:10,foo')
 
   def test_multiple_non_int(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError,
         'Expected "module:max_instance_count"',
         devappserver2.parse_max_module_instances, 'default:cat')
 
   def test_duplicate_modules(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError,
         'Duplicate max instance count',
         devappserver2.parse_max_module_instances, 'default:5,default:10')
 
   def test_multiple_with_zero(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError,
         'count for module zero must be greater than zero',
         devappserver2.parse_max_module_instances, 'default:5,zero:0')
 
   def test_multiple_with_negative(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError,
         'count for module negative must be greater than zero',
         devappserver2.parse_max_module_instances, 'default:5,negative:-1')
@@ -245,7 +245,7 @@ class ParseMaxServerInstancesTest(unittest.TestCase):
         devappserver2.parse_max_module_instances(':10'))
 
   def test_multiple_missing_count(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError,
         'Expected "module:max_instance_count"',
         devappserver2.parse_max_module_instances, 'default:')
@@ -258,7 +258,7 @@ class ParseThreadsafeOverrideTest(unittest.TestCase):
     self.assertFalse(devappserver2.parse_threadsafe_override('No'))
 
   def test_single_nonbool_art(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError, 'Invalid threadsafe override',
         devappserver2.parse_threadsafe_override, 'okaydokey')
 
@@ -269,17 +269,17 @@ class ParseThreadsafeOverrideTest(unittest.TestCase):
         devappserver2.parse_threadsafe_override('default:False,foo:True'))
 
   def test_multiple_non_colon(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError, 'Expected "module:threadsafe_override"',
         devappserver2.parse_threadsafe_override, 'default:False,foo')
 
   def test_multiple_non_int(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError, 'Expected "module:threadsafe_override"',
         devappserver2.parse_threadsafe_override, 'default:okaydokey')
 
   def test_duplicate_modules(self):
-    self.assertRaisesRegexp(
+    self.assertRaisesRegex(
         argparse.ArgumentTypeError,
         'Duplicate threadsafe override value',
         devappserver2.parse_threadsafe_override, 'default:False,default:True')
@@ -310,25 +310,25 @@ class CreateModuleToSettingTest(unittest.TestCase):
         FakeModuleConfiguration('m3')])
 
   def testNone(self):
-    self.assertEquals(
+    self.assertEqual(
         {},
         devappserver2.DevelopmentServer._create_module_to_setting(
             None, self.application_configuration, '--option'))
 
   def testDict(self):
-    self.assertEquals(
+    self.assertEqual(
         {'m1': 3, 'm3': 1},
         devappserver2.DevelopmentServer._create_module_to_setting(
             {'m1': 3, 'm3': 1}, self.application_configuration, '--option'))
 
   def testSingleValue(self):
-    self.assertEquals(
+    self.assertEqual(
         {'m1': True, 'm2': True, 'm3': True},
         devappserver2.DevelopmentServer._create_module_to_setting(
             True, self.application_configuration, '--option'))
 
   def testDictWithUnknownModules(self):
-    self.assertEquals(
+    self.assertEqual(
         {'m1': 3.5},
         devappserver2.DevelopmentServer._create_module_to_setting(
             {'m1': 3.5, 'm4': 2.7}, self.application_configuration, '--option'))

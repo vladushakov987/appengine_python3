@@ -24,7 +24,7 @@ request context and do not need to end before the creator request completes.
 
 
 
-from __future__ import absolute_import
+
 import logging
 import sys
 import six.moves._thread

@@ -22,7 +22,7 @@
 
 
 
-from __future__ import absolute_import
+
 import json
 import re
 import unittest
@@ -335,26 +335,26 @@ class ParameterizedPathTest(unittest.TestCase):
     match = config_manager._compile_path_pattern(param_path).match(path)
     self.assertTrue(match is not None)   # Will be None if path was not matched
     params = config_manager._get_path_params(match)
-    self.assertEquals(param_count, len(params))
+    self.assertEqual(param_count, len(params))
     return params
 
   def test_one_variable_match(self):
     params = self.assert_match('/abc/123', '/abc/{x}', 1)
-    self.assertEquals('123', params.get('x'))
+    self.assertEqual('123', params.get('x'))
 
   def test_two_variable_match(self):
     params = self.assert_match('/abc/456/123/789', '/abc/{x}/123/{y}', 2)
-    self.assertEquals('456', params.get('x'))
-    self.assertEquals('789', params.get('y'))
+    self.assertEqual('456', params.get('x'))
+    self.assertEqual('789', params.get('y'))
 
   def test_message_variable_match(self):
     params = self.assert_match('/abc/123', '/abc/{x.y}', 1)
-    self.assertEquals('123', params.get('x.y'))
+    self.assertEqual('123', params.get('x.y'))
 
   def test_message_and_simple_variable_match(self):
     params = self.assert_match('/abc/123/456', '/abc/{x.y.z}/{t}', 2)
-    self.assertEquals('123', params.get('x.y.z'))
-    self.assertEquals('456', params.get('t'))
+    self.assertEqual('123', params.get('x.y.z'))
+    self.assertEqual('456', params.get('t'))
 
   def assert_invalid_value(self, value):
     """Assert that the path parameter value is not valid.

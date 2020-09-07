@@ -25,11 +25,11 @@
 
 Blobstore-specific Files API calls."""
 
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
+
+
 import six
 __all__ = ['create', 'get_blob_key', 'get_file_name']
 

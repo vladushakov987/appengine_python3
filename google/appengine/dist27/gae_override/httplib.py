@@ -4,8 +4,8 @@
 # Contributed by Ian and subsequently modified here at Google.
 """Copyright 2008 Python Software Foundation, Ian Bicking, and Google."""
 
-from __future__ import absolute_import
-import cStringIO
+
+import io
 import inspect
 import mimetools
 
@@ -262,7 +262,7 @@ class HTTPResponse:
                method=None,
                buffering=False):
     self._fetch_response = fetch_response
-    self.fp = cStringIO.StringIO(fetch_response.content)  # For the HTTP class.
+    self.fp = io.StringIO(fetch_response.content)  # For the HTTP class.
 
     self.debuglevel = debuglevel
     self.strict = strict
@@ -374,7 +374,7 @@ class HTTPConnection:
     # The default is set to socket.GLOBAL_DEFAULT_TIMEOUT which is an object.
     # We only accept float, int or long values, otherwise it can be
     # silently ignored.
-    if not isinstance(timeout, (float, int, int)):
+    if not isinstance(timeout, (float, int)):
       timeout = None
     self.timeout = timeout
     # Both 'strict' and 'source_address' are ignored.

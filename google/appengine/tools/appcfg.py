@@ -26,12 +26,12 @@ The bulk of this work is handled by the AppVersionUpload class, which exposes
 methods to add to the list of files, fetch a list of modified files, upload
 files, and commit or rollback the transaction.
 """
-from __future__ import with_statement
 
 
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
+
 import calendar
 import contextlib
 import copy

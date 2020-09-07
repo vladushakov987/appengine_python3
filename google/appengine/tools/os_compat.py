@@ -31,7 +31,7 @@ always import this module first.
 
 
 
-from __future__ import absolute_import
+
 import os
 os.environ['TZ'] = 'UTC'
 import time

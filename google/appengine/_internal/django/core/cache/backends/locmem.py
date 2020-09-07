@@ -1,6 +1,6 @@
 "Thread-safe in-memory cache backend."
 
-from __future__ import absolute_import
+
 import time
 try:
     import six.moves.cPickle as pickle

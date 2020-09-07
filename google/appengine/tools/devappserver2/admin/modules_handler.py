@@ -16,7 +16,7 @@
 #
 """A handler that displays servers and their instances."""
 
-from __future__ import absolute_import
+
 from google.appengine.tools.devappserver2.admin import admin_request_handler
 
 

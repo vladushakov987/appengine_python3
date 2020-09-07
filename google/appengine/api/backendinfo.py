@@ -30,7 +30,7 @@ configured for an application. Supports loading the records from backend.yaml.
 
 
 
-from __future__ import absolute_import
+
 import os
 import yaml
 from yaml import representer

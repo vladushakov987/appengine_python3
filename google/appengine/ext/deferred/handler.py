@@ -32,7 +32,7 @@ See deferred.py for full documentation.
 
 
 
-from __future__ import absolute_import
+
 from google.appengine.ext.deferred import deferred
 from google.appengine.ext.webapp.util import run_wsgi_app
 

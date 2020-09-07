@@ -26,5 +26,5 @@ terms of service, it is strongly recommended that all new applications use the
 Modules API instead."""
 
 
-from __future__ import absolute_import
+
 from .background_thread import *

@@ -92,7 +92,7 @@ Example usage:
 
 
 
-from __future__ import absolute_import
+
 import logging
 import os
 import pickle
@@ -299,7 +299,7 @@ class TaskHandler(webapp.RequestHandler):
       return
 
 
-    headers = ["%s:%s" % (k, v) for k, v in self.request.headers.items()
+    headers = ["%s:%s" % (k, v) for k, v in list(self.request.headers.items())
                if k.lower().startswith("x-appengine-")]
     logging.log(_DEFAULT_LOG_LEVEL, ", ".join(headers))
 

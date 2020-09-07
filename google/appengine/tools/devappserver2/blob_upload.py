@@ -22,10 +22,10 @@ contents into the blob store.
 
 
 
-from __future__ import absolute_import
+
 import base64
 import cgi
-import cStringIO
+import io
 import datetime
 import email.generator
 import email.message
@@ -286,7 +286,7 @@ class Application(object):
       _InvalidMetadataError: when metadata are not utf-8 encoded.
     """
     if base64_encoding:
-      blob_file = cStringIO.StringIO(base64.urlsafe_b64decode(blob_file.read()))
+      blob_file = io.StringIO(base64.urlsafe_b64decode(blob_file.read()))
 
     # If content_type or filename are bytes, assume UTF-8 encoding.
     try:
@@ -492,7 +492,7 @@ class Application(object):
             invalid_field, _MAX_STRING_NAME_LENGTH)
         self.abort(400, detail=detail)
 
-    message_out = cStringIO.StringIO()
+    message_out = io.StringIO()
     gen = email.generator.Generator(message_out, maxheaderlen=0)
     gen.flatten(message, unixfrom=False)
 
@@ -582,7 +582,7 @@ class Application(object):
     environ[constants.FAKE_IS_ADMIN_HEADER] = '1'
 
     # Set the wsgi variables
-    environ['wsgi.input'] = cStringIO.StringIO(content_text)
+    environ['wsgi.input'] = io.StringIO(content_text)
 
   def __call__(self, environ, start_response):
     """Handles WSGI requests.

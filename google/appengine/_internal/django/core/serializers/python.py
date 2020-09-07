@@ -4,7 +4,7 @@ and from basic Python data types (lists, dicts, strings, etc.). Useful as a basi
 other serializers.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.conf import settings
 from google.appengine._internal.django.core.serializers import base
 from google.appengine._internal.django.db import models, DEFAULT_DB_ALIAS
@@ -140,5 +140,5 @@ def _get_model(model_identifier):
     except TypeError:
         Model = None
     if Model is None:
-        raise base.DeserializationError(u"Invalid model identifier: '%s'" % model_identifier)
+        raise base.DeserializationError("Invalid model identifier: '%s'" % model_identifier)
     return Model

@@ -25,8 +25,8 @@ If the -s HOSTNAME flag is not specified, the APPID must be specified.
 
 
 
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from google.appengine.tools import os_compat
 
 import getpass
@@ -48,7 +48,7 @@ DEFAULT_FILE = 'appstats.pkl'
 
 
 def auth_func():
-  return (input('Email: '), getpass.getpass('Password: '))
+  return (eval(input('Email: ')), getpass.getpass('Password: '))
 
 
 def download_appstats(servername, appid, path, secure,

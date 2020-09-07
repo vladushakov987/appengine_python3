@@ -16,7 +16,7 @@
 #
 """Tests for google.appengine.tools.devappserver2.scheduled_executor."""
 
-from __future__ import absolute_import
+
 import threading
 import time
 import unittest

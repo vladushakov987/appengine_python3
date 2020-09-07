@@ -2,7 +2,7 @@
 Backend for test environment.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core import mail
 from google.appengine._internal.django.core.mail.backends.base import BaseEmailBackend
 

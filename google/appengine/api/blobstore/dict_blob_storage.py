@@ -34,8 +34,8 @@ blobs directly to a directory stored in memory.
 
 
 
-from __future__ import absolute_import
-import StringIO
+
+import io
 
 from google.appengine.api import blobstore
 from google.appengine.api.blobstore import blobstore_stub
@@ -51,7 +51,7 @@ class DictBlobStorage(blobstore_stub.BlobStorage):
 
   def StoreBlob(self, blob_key, blob_stream):
     """Store blob stream."""
-    content = StringIO.StringIO()
+    content = io.StringIO()
     try:
       while True:
         block = blob_stream.read(1 << 20)
@@ -68,7 +68,7 @@ class DictBlobStorage(blobstore_stub.BlobStorage):
 
   def OpenBlob(self, blob_key):
     """Get blob contents as stream."""
-    return StringIO.StringIO(
+    return io.StringIO(
         self._blobs[blobstore.BlobKey(six.text_type(blob_key))])
 
   def DeleteBlob(self, blob_key):

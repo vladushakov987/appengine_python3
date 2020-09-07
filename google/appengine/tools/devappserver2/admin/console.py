@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import threading
 
 from google.appengine.tools.devappserver2 import module

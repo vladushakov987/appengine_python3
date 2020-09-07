@@ -17,7 +17,7 @@
 """Regression tests for Endpoints server in devappserver2."""
 
 
-from __future__ import absolute_import
+
 import base64
 import json
 import os.path
@@ -183,10 +183,10 @@ class EndpointsServerRegtest(regtest_utils.BaseTestCase):
     self.assertEqual('application/json; charset=UTF-8', headers['Content-Type'])
 
     response_json = json.loads(content)
-    self.assertRegexpMatches(
+    self.assertRegex(
         response_json['baseUrl'],
         r'^http://localhost(:\d+)?/_ah/api/test_service/v1/$')
-    self.assertRegexpMatches(response_json['rootUrl'],
+    self.assertRegex(response_json['rootUrl'],
                              r'^http://localhost(:\d+)?/_ah/api/$')
 
   def test_multiclass_rest_get(self):

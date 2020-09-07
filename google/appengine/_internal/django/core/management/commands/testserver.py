@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.management.base import BaseCommand
 
 from optparse import make_option

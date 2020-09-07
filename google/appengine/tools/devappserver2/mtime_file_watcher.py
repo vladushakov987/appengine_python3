@@ -16,7 +16,7 @@
 #
 """Monitors a directory tree for changes using mtime polling."""
 
-from __future__ import absolute_import
+
 import os
 import threading
 import warnings

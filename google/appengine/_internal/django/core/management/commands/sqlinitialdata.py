@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.management.base import AppCommand, CommandError
 
 class Command(AppCommand):

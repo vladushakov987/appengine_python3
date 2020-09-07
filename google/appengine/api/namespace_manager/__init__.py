@@ -25,5 +25,5 @@
 
 
 
-from __future__ import absolute_import
+
 from .namespace_manager import *

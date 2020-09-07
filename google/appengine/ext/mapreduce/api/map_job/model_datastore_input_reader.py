@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 """Model Datastore Input Reader implementation for the map_job API."""
-from __future__ import absolute_import
+
 import copy
 
 from google.appengine.ext import ndb

@@ -20,7 +20,7 @@
 
 """A NotImplemented Images API stub for when the PIL library is not found."""
 
-from __future__ import absolute_import
+
 from google.appengine.api import apiproxy_stub
 from google.appengine.api.images import images_blob_stub
 

@@ -14,7 +14,7 @@
 #
 """Django middleware for NDB."""
 
-from __future__ import absolute_import
+
 __author__ = 'James A. Morrison'
 
 from . import eventloop, tasklets

@@ -16,7 +16,7 @@
 #
 """Tests for devappserver2.admin.mail_request_handler."""
 
-from __future__ import absolute_import
+
 import email.message
 import unittest
 

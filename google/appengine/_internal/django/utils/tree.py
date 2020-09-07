@@ -3,7 +3,7 @@ A class for storing a tree graph. Primarily used for filter constructs in the
 ORM.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.utils.copycompat import deepcopy
 
 class Node(object):
@@ -69,7 +69,7 @@ class Node(object):
         """
         return len(self.children)
 
-    def __nonzero__(self):
+    def __bool__(self):
         """
         For truth value testing.
         """

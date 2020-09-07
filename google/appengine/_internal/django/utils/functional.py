@@ -50,7 +50,7 @@
 # Agreement.
 
 
-from __future__ import absolute_import
+
 import six
 def curry(_curried_func, *args, **kwargs):
     def _curried(*moreargs, **morekwargs):
@@ -169,7 +169,7 @@ def lazy(func, *resultclasses):
             cls.__dispatch = {}
             for resultclass in resultclasses:
                 cls.__dispatch[resultclass] = {}
-                for (k, v) in resultclass.__dict__.items():
+                for (k, v) in list(resultclass.__dict__.items()):
                     # All __promise__ return the same wrapper method, but they
                     # also do setup, inserting the method into the dispatch
                     # dict.

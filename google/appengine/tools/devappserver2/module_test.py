@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import functools
 import six.moves.http_client
 import logging
@@ -339,7 +339,7 @@ class BuildRequestEnvironTest(unittest.TestCase):
         'wsgi.multiprocess': True}
     environ = self.module.build_request_environ(
         'PUT', '/foo?bar=baz', [('Header', 'Value'), ('Other', 'Values')],
-        u'body', '1.2.3.4', 80)
+        'body', '1.2.3.4', 80)
     self.assertEqual('', environ.pop('wsgi.errors').getvalue())
     self.assertEqual('body', environ.pop('wsgi.input').getvalue())
     self.assertEqual(expected_environ, environ)
@@ -2561,7 +2561,7 @@ class TestInteractiveCommandModule(unittest.TestCase):
         request_type=instance.INTERACTIVE_REQUEST).AndRaise(Exception('error'))
 
     self.mox.ReplayAll()
-    self.assertRaisesRegexp(module.InteractiveCommandError,
+    self.assertRaisesRegex(module.InteractiveCommandError,
                             'error',
                             self.servr.send_interactive_command,
                             'print 5+5')
@@ -2582,7 +2582,7 @@ class TestInteractiveCommandModule(unittest.TestCase):
             good_response)
 
     self.mox.ReplayAll()
-    self.assertRaisesRegexp(module.InteractiveCommandError,
+    self.assertRaisesRegex(module.InteractiveCommandError,
                             'Instance was restarted while executing command',
                             self.servr.send_interactive_command,
                             'print 5+5')

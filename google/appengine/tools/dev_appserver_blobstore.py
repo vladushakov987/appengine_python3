@@ -30,9 +30,9 @@ Classes:
 
 
 
-from __future__ import absolute_import
+
 import cgi
-import cStringIO
+import io
 import logging
 import mimetools
 import re
@@ -194,7 +194,7 @@ def _SetRangeRequestNotSatisfiable(response, blob_size):
   """
   response.status_code = 416
   response.status_message = 'Requested Range Not Satisfiable'
-  response.body = cStringIO.StringIO('')
+  response.body = io.StringIO('')
   response.headers['Content-Length'] = '0'
   response.headers['Content-Range'] = '*/%d' % blob_size
   del response.headers['Content-Type']
@@ -265,7 +265,7 @@ def DownloadRewriter(response, request_headers):
 
       blob_stream = GetBlobStorage().OpenBlob(blob_open_key)
       blob_stream.seek(start)
-      response.body = cStringIO.StringIO(blob_stream.read(content_length))
+      response.body = io.StringIO(blob_stream.read(content_length))
       response.headers['Content-Length'] = str(content_length)
 
       content_type = response.headers.getheader('Content-Type')
@@ -283,7 +283,7 @@ def DownloadRewriter(response, request_headers):
 
       response.status_code = 500
       response.status_message = 'Internal Error'
-      response.body = cStringIO.StringIO()
+      response.body = io.StringIO()
 
       if response.headers.getheader('content-type'):
         del response.headers['content-type']
@@ -378,8 +378,8 @@ def CreateUploadDispatcher(get_blob_storage=GetBlobStorage):
           return old_dev_appserver.AppServerRequest(
               success_path,
               None,
-              mimetools.Message(cStringIO.StringIO(complete_headers)),
-              cStringIO.StringIO(content_text),
+              mimetools.Message(io.StringIO(complete_headers)),
+              io.StringIO(content_text),
               force_admin=True)
         except dev_appserver_upload.InvalidMIMETypeFormatError:
           outfile.write('Status: 400\n\n')
@@ -411,7 +411,7 @@ def CreateUploadDispatcher(get_blob_storage=GetBlobStorage):
       """
       response = old_dev_appserver.RewriteResponse(dispatched_output)
       logging.info('Upload handler returned %d', response.status_code)
-      outfile = cStringIO.StringIO()
+      outfile = io.StringIO()
       outfile.write('Status: %s\n' % response.status_code)
 
       if response.body and len(response.body.read()) > 0:

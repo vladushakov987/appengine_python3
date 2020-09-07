@@ -38,7 +38,7 @@ Classes defined in this module:
 
 
 
-from __future__ import absolute_import
+
 import struct
 import six
 from six.moves import range

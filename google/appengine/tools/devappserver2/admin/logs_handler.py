@@ -16,7 +16,7 @@
 #
 """A handler that displays logs for instances."""
 
-from __future__ import absolute_import
+
 import json
 import os
 

@@ -46,7 +46,7 @@ Functions defined in this module:
 
 
 
-from __future__ import absolute_import
+
 import six
 __all__ = ['get_document',
            'get_subscription',
@@ -258,7 +258,7 @@ def _entity_schema_to_prospective_search_schema(schema, add_entry):
     SchemaError: schema is invalid.
   """
   all_names = []
-  for python_type, names in schema.items():
+  for python_type, names in list(schema.items()):
     all_names.extend(names)
     for name in names:
       model_type = _GetModelTypeForEntityType(python_type)

@@ -17,7 +17,7 @@
 """VMEngines constants."""
 
 # pylint: disable=g-import-not-at-top
-from __future__ import absolute_import
+
 try:
   from google.appengine.api import users
 except ImportError:

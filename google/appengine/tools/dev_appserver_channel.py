@@ -26,7 +26,7 @@ Classes:
 
 
 
-from __future__ import absolute_import
+
 import cgi
 import os
 import six.moves.urllib.parse

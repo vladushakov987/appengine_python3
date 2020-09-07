@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 """Datastore Input Reader implementation for the map_job API."""
-from __future__ import absolute_import
+
 import logging
 
 from google.appengine.ext.mapreduce import datastore_range_iterators as db_iters

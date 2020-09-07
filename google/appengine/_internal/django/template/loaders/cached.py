@@ -3,7 +3,7 @@ Wrapper class that takes a list of template loaders as an argument and attempts
 to load templates from them in order, caching the result.
 """
 
-from __future__ import absolute_import
+
 from google.appengine._internal.django.core.exceptions import ImproperlyConfigured
 from google.appengine._internal.django.template import TemplateDoesNotExist
 from google.appengine._internal.django.template.loader import BaseLoader, get_template_from_string, find_template_loader, make_origin

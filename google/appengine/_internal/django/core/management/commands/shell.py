@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import os
 from google.appengine._internal.django.core.management.base import NoArgsCommand
 from optparse import make_option

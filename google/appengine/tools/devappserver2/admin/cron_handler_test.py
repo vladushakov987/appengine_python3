@@ -16,7 +16,7 @@
 #
 """Tests for devappserver2.admin.cron_handler."""
 
-from __future__ import absolute_import
+
 import datetime
 import traceback
 import unittest

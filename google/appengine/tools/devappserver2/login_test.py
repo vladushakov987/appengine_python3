@@ -18,7 +18,7 @@
 
 
 
-from __future__ import absolute_import
+
 import six.moves.http_cookies
 import unittest
 import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
@@ -311,7 +311,7 @@ class LoginPageTest(unittest.TestCase):
     environ['REQUEST_METHOD'] = method
     if cookie_dict:
       cookie = six.moves.http_cookies.SimpleCookie(cookie_dict)
-      cookie_value = ';'.join(m.OutputString() for m in cookie.values())
+      cookie_value = ';'.join(m.OutputString() for m in list(cookie.values()))
       environ['HTTP_COOKIE'] = cookie_value
     query_dict = {}
     if action:

@@ -30,7 +30,7 @@
 #
 # end[licence]
 
-from __future__ import absolute_import
+
 from google.appengine._internal.antlr3.constants import INVALID_TOKEN_TYPE
 
 

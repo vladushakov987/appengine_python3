@@ -25,10 +25,10 @@
 
 
 
-from __future__ import absolute_import
+
 import os
 import six
-from six import unichr
+from six import chr
 from six.moves import range
 
 
@@ -579,7 +579,7 @@ class KeyRange(object):
         midpoint.append(start[i])
       else:
         ord_sum = ord(start[i]) + ord(end[i])
-        midpoint.append(unichr(ord_sum / 2))
+        midpoint.append(chr(ord_sum / 2))
         if ord_sum % 2:
           if len(start) > i + 1:
             ord_start = ord(start[i+1])
@@ -592,7 +592,7 @@ class KeyRange(object):
           else:
 
             ord_split = (0xFFFF + ord_start) / 2
-          midpoint.append(unichr(ord_split))
+          midpoint.append(chr(ord_split))
         break
     return "".join(midpoint)
 
@@ -646,7 +646,7 @@ class KeyRange(object):
       if kind1 != kind2:
         split_kind = KeyRange.bisect_string_range(kind1, kind2)
         out_path.append(split_kind)
-        out_path.append(unichr(0))
+        out_path.append(chr(0))
         break
 
 
@@ -703,7 +703,7 @@ class KeyRange(object):
         raise KeyRangeError("Wrong key order: %r, %r" %
                             (id_or_name1, id_or_name2))
 
-      zero_ch = unichr(0)
+      zero_ch = chr(0)
       if id_or_name2 == zero_ch:
         return (id_or_name1 + 2**63 - 1) / 2
       return zero_ch
@@ -762,7 +762,7 @@ class KeyRange(object):
         continue
       elif isinstance(piece, six.string_types):
 
-        full_path[index] = u"\xffff"
+        full_path[index] = "\xffff"
       else:
 
         full_path[index] = 2**63 - 1

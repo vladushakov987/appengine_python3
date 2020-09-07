@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 """Sample Input Reader for map job."""
-from __future__ import absolute_import
+
 import random
 import string
 import time

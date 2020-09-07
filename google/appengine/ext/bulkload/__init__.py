@@ -37,7 +37,7 @@ This package contains two separate systems:
 
 
 
-from __future__ import absolute_import
+
 from . import bulkload_deprecated
 Validate = bulkload_deprecated.Validate
 Loader = bulkload_deprecated.Loader
